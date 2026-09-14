@@ -97,6 +97,17 @@
     vista.rascunhoDe = '';
   }
 
+  /**
+   * Reler o cadastro pode encerrar a sessão (usuário desativado por outro gestor).
+   * Aí nada é gravado e a casca volta para o login, sem acusar o token.
+   */
+  function sessaoEncerrada() {
+    if (window.Auth.autenticado()) return false;
+    window.App.sinalizarGravacao('ocioso');
+    window.App.render();
+    return true;
+  }
+
   function temPendencias() {
     return !!rascunhoAtual();
   }
@@ -303,6 +314,7 @@
   function salvarUsuario(form) {
     const login = form.getAttribute('data-usuario');
     const novo = !login;
+    const papelAnterior = novo ? '' : (window.Auth.buscar(login) || {}).papel;
     const dados = {
       usuario: novo ? el('admUsuario').value.trim().toLowerCase() : login,
       nome: el('admNome').value.trim(),
@@ -332,7 +344,8 @@
 
         // As travas conferem os papéis como estão agora no repositório, não na abertura da página.
         return window.Acesso.carregarPapeis().then(function () {
-          if (!window.Acesso.papel(dados.papel)) throw erroComChave('form.erroPapel');
+          // Papel que sumiu do cadastro só barra quem o escolhe; quem já estava nele continua editável.
+          if ((novo || dados.papel !== papelAnterior) && !window.Acesso.papel(dados.papel)) throw erroComChave('form.erroPapelSumiu');
           return gravarCsv(cfg().dados.usuarios, function (csv) {
             if (novo) {
               if (csv.linhas.some(function (u) { return u.usuario === dados.usuario; })) throw erroComChave('form.erroDuplicado');
@@ -553,19 +566,26 @@
     }
 
     const rascunho = rascunhoAtual() || {};
-    const base = rascunho[papel] ? rascunho[papel].base : window.Acesso.permissoesDoPapel(papel);
-    rascunho[papel] = { base: base, lista: lista };
-    vista.rascunho = rascunho;
-    vista.rascunhoDe = quem();
+    const atual = window.Acesso.permissoesDoPapel(papel);
+    let base = rascunho[papel] ? rascunho[papel].base : atual;
+    // Papéis relidos no meio da edição deixam a base velha: voltar a ela sem bater
+    // com o estado atual continua sendo alteração pendente, agora sobre o atual.
+    if (lista.join(';') === base.join(';') && lista.join(';') !== atual.join(';')) base = atual;
+    if (lista.join(';') === base.join(';')) delete rascunho[papel];
+    else rascunho[papel] = { base: base, lista: lista };
 
-    const mudou = Object.keys(rascunho).some(function (p) {
-      return rascunho[p].lista.join(';') !== rascunho[p].base.join(';');
-    });
-    if (!mudou) descartarRascunho();
+    if (Object.keys(rascunho).length) {
+      vista.rascunho = rascunho;
+      vista.rascunhoDe = quem();
+    } else {
+      descartarRascunho();
+    }
 
+    // As caixas mostram o efetivo, nunca um estado que não está nem no rascunho nem no cadastro.
+    const efetivas = permissoesEfetivas(papel);
     Array.prototype.forEach.call(document.querySelectorAll('.adm-marca'), function (caixa) {
       if (caixa.getAttribute('data-adm-papel') !== papel) return;
-      caixa.checked = lista.indexOf(caixa.getAttribute('data-adm-permissao')) !== -1;
+      caixa.checked = efetivas.indexOf(caixa.getAttribute('data-adm-permissao')) !== -1;
     });
     renderRodapeMatriz();
   }
@@ -580,6 +600,7 @@
     // A trava do último administrador confere o cadastro de pessoas como está agora.
     window.Auth.carregarUsuarios()
       .then(function () {
+        if (sessaoEncerrada()) return null;
         return gravarCsv(
           cfg().dados.papeis,
           function (csv) {
@@ -595,6 +616,7 @@
         );
       })
       .then(function (resultado) {
+        if (!resultado) return;
         window.Acesso.aplicarTexto(resultado.texto);
         descartarRascunho();
         window.UI.toast(t('permissoes.salvas'), 'ok');
@@ -702,6 +724,7 @@
     // Confere de novo com o cadastro atual: alguém pode ter recebido o papel depois da abertura da página.
     window.Auth.carregarUsuarios()
       .then(function () {
+        if (sessaoEncerrada()) return null;
         const agora = usuariosDoPapel(chave);
         if (agora) throw erroComChave('permissoes.emUso', { n: agora });
         return gravarCsv(
@@ -713,6 +736,7 @@
         );
       })
       .then(function (resultado) {
+        if (!resultado) return;
         window.Acesso.aplicarTexto(resultado.texto);
         const rascunho = rascunhoAtual();
         if (rascunho) {

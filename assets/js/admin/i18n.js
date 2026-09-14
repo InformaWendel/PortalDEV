@@ -46,6 +46,7 @@
         'form.erroDuplicado': 'Já existe um usuário com esse login.',
         'form.erroNome': 'Informe o nome.',
         'form.erroPapel': 'Escolha um papel.',
+        'form.erroPapelSumiu': 'Esse papel não existe mais no cadastro. Escolha outro.',
         'form.erroVoce': 'Você não pode desativar o próprio usuário.',
         'form.erroUltimoAdmin':
           'A alteração deixaria o portal sem ninguém ativo com a permissão de administrar usuários.',
@@ -133,6 +134,7 @@
         'form.erroDuplicado': 'A user with that login already exists.',
         'form.erroNome': 'Enter the name.',
         'form.erroPapel': 'Pick a role.',
+        'form.erroPapelSumiu': 'That role no longer exists in the registry. Pick another one.',
         'form.erroVoce': 'You cannot deactivate your own user.',
         'form.erroUltimoAdmin': 'This change would leave the portal with no active person allowed to manage users.',
         'form.erroSumiu': 'That record no longer exists in the registry. Reload the page.',

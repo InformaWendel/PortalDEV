@@ -137,8 +137,10 @@ cliente, dado pessoal ou informação contratual.
 
 | Sintoma | Causa provável | Solução |
 |---|---|---|
-| "Token inválido ou sem acesso a este repositório" | Convite não aceito, ou token *fine-grained* | Aceite o convite e gere um token **clássico** com `public_repo` |
-| "O token enxerga o repositório, mas não consegue ler o conteúdo dele" | Faltou marcar o escopo `public_repo` | Gere de novo marcando **`public_repo`** |
+| "Token inválido ou sem acesso a este repositório" | Token digitado errado, expirado ou revogado | Gere um token **clássico** com `public_repo` e cole de novo |
+| "…a sua conta não tem permissão de escrita nele" | Convite de colaborador ainda não aceito | Aceite o convite no e-mail e salve o token de novo |
+| "O token não serve para gravar: falta o escopo public_repo" | Token clássico gerado sem o escopo | Gere de novo marcando **`public_repo`** |
+| "Token fine-grained não serve para colaborador…" | Foi gerado um token *fine-grained* | Gere um token **clássico** com `public_repo` |
 | "O GitHub recusou o seu token" (funcionava e parou) | Token expirou | Gere outro e salve pelo chip **GitHub** do cabeçalho |
 | "Usuário ou senha não conferem" logo depois de o gestor cadastrar ou redefinir | O site publicado leva um ou dois minutos para refletir o cadastro | Espere um pouco e tente de novo |
 | Uma ferramenta não aparece no menu | O seu papel não inclui essa ferramenta | Peça a um gestor |

@@ -128,7 +128,9 @@ gravação chama `App.sinalizarGravacao()`.
 **Token.** Um por pessoa, guardado em `portaldev:token:v1:<usuario>` e usado por todas
 as ferramentas. É pedido logo após o login quando falta. Como o repositório é de conta
 pessoal, colaborador usa token clássico com `public_repo`; *fine-grained* só serve ao
-dono. Sem token a leitura vem do
+dono. `Github.validarToken` confere o escopo pelo cabeçalho `X-OAuth-Scopes` e recusa
+*fine-grained* de quem não é o dono; um 404 numa gravação com token é tratado como
+problema de credencial, com o botão de configurar o token. Sem token a leitura vem do
 site publicado (`fetch` relativo); com token vem da API. Se a API recusar o token, a
 leitura cai no site publicado e `Github.estado.alerta = 'recusado'` aciona o aviso.
 No login o cadastro é sempre relido — pela API quando o navegador já tem o token de

@@ -41,6 +41,7 @@
     temporizadores: {},
     tentativas: {},
     emVoo: {}, // id do projeto -> Promise do commit em andamento
+    falhasLeitura: {}, // id do projeto -> erro da última leitura do catálogo que falhou
     gravacao: 'ocioso', // ocioso | gravando | salvo | erro | leitura
     erro: null,
     autor: '',
@@ -84,11 +85,18 @@
       .then(function (r) {
         if (!r.existe) throw new Error(projeto.arquivo + ' não encontrado');
         aplicarCsv(projetoId, r.texto);
-        // Releitura que deu certo tira o aviso de uma leitura anterior que falhou.
-        if (estado.gravacao === 'erro' && !temPendencias()) sinalizar('ocioso');
+        delete estado.falhasLeitura[projetoId];
+        // O aviso só sai se era de leitura e nenhum outro catálogo continua sem carregar.
+        if (estado.gravacao === 'erro' && estado.erro && estado.erro.leitura) {
+          const restantes = Object.keys(estado.falhasLeitura);
+          if (restantes.length) sinalizar('erro', estado.falhasLeitura[restantes[0]]);
+          else if (!temPendencias()) sinalizar('ocioso');
+        }
         return estado.catalogos[projetoId];
       })
       .catch(function (erro) {
+        erro.leitura = true;
+        estado.falhasLeitura[projetoId] = erro;
         sinalizar('erro', erro);
         return null;
       });

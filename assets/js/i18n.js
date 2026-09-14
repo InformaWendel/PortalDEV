@@ -101,8 +101,9 @@
       'token.remover': 'Remover token',
       'token.verificando': 'Verificando o token…',
       'token.invalido': 'Token inválido ou sem acesso a este repositório.',
-      'token.semEscrita': 'O token enxerga o repositório, mas a sua conta não tem permissão de escrita nele.',
-      'token.semConteudo': 'O token enxerga o repositório, mas não consegue ler o conteúdo dele: falta o escopo public_repo (ou a permissão Contents).',
+      'token.semEscrita': 'O token enxerga o repositório, mas a sua conta não tem permissão de escrita nele. Aceite o convite de colaborador e tente de novo.',
+      'token.semConteudo': 'O token não serve para gravar: falta o escopo public_repo (ou repo, se o repositório for privado).',
+      'token.fineGrained': 'Token fine-grained não serve para colaborador de repositório de conta pessoal. Gere um token clássico com o escopo public_repo.',
       'token.salvo': 'Token salvo — vale para todas as ferramentas.',
       'token.removido': 'Token removido deste navegador.',
 
@@ -220,8 +221,9 @@
       'token.remover': 'Remove token',
       'token.verificando': 'Checking the token…',
       'token.invalido': 'Invalid token, or no access to this repository.',
-      'token.semEscrita': 'The token can see the repository, but your account has no write permission on it.',
-      'token.semConteudo': 'The token can see the repository but cannot read its contents: the public_repo scope (or the Contents permission) is missing.',
+      'token.semEscrita': 'The token can see the repository, but your account has no write permission on it. Accept the collaborator invitation and try again.',
+      'token.semConteudo': 'The token cannot write: the public_repo scope (or repo, if the repository is private) is missing.',
+      'token.fineGrained': 'A fine-grained token does not work for a collaborator on a personal-account repository. Generate a classic token with the public_repo scope.',
       'token.salvo': 'Token saved — it works for every tool.',
       'token.removido': 'Token removed from this browser.',
 

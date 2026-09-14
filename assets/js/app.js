@@ -427,6 +427,9 @@
         function (sessao) {
           if (!sessao) return recusar(Auth.estado.carregado ? t('login.erro') : t('login.semUsuarios'));
           vista.erroLogin = '';
+          // Selo de uma sessão anterior não passa para quem acabou de entrar.
+          vista.gravacao = 'ocioso';
+          vista.erroGravacao = null;
           if (sessao.usuario !== login) Github.carregarToken(sessao.usuario);
           entrarNaRota();
           if (!Github.temToken()) abrirModalToken();
@@ -505,6 +508,7 @@
       .then(function (r) {
         if (!r.ok) return mostrarErro('tokenErro', t('token.invalido'));
         if (!r.escrita) return mostrarErro('tokenErro', t('token.semEscrita'));
+        if (r.fineGrained) return mostrarErro('tokenErro', t('token.fineGrained'));
         if (!r.conteudo) return mostrarErro('tokenErro', t('token.semConteudo'));
 
         Github.definirToken(valor);

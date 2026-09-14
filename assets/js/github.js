@@ -108,16 +108,17 @@
     return h;
   }
 
-  function erroDaResposta(r) {
+  /** `mensagemCredencial` marca o erro como problema de token e troca a mensagem crua do GitHub. */
+  function erroDaResposta(r, mensagemCredencial) {
     return r
       .json()
       .catch(function () {
         return {};
       })
       .then(function (json) {
-        const e = new Error(json.message || 'HTTP ' + r.status);
+        const e = new Error(mensagemCredencial ? mensagemCredencial + ' (HTTP ' + r.status + ')' : json.message || 'HTTP ' + r.status);
         e.status = r.status;
-        if (r.status === 401 || r.status === 403) e.credencial = true;
+        if (mensagemCredencial || r.status === 401 || r.status === 403) e.credencial = true;
         throw e;
       });
   }
@@ -221,6 +222,11 @@
         conflito.status = r.status;
         return Promise.reject(conflito);
       }
+      // 404 numa gravação com token é o GitHub escondendo falta de permissão:
+      // token clássico sem public_repo, ou fine-grained de colaborador.
+      if (r.status === 404) {
+        return erroDaResposta(r, 'o GitHub recusou a gravação — confira o escopo public_repo do token e o convite de colaborador');
+      }
       if (!r.ok) return erroDaResposta(r);
       return r.json().then(function (json) {
         estado.shas[caminho] = json.content.sha;
@@ -265,29 +271,57 @@
     return ciclo();
   }
 
-  /** Confere se o token enxerga o repositório e pode gravar nele, antes de aceitá-lo. */
+  /**
+   * Confere o token antes de aceitá-lo. Num repositório público qualquer token lê
+   * o conteúdo, então a leitura sozinha não prova que dá para gravar: o clássico
+   * precisa do escopo public_repo (repo, se privado), e colaborador de repositório
+   * de conta pessoal não pode usar fine-grained — o GitHub aceita a leitura e
+   * devolve 404 na gravação.
+   */
   function validarToken(token) {
-    const h = cabecalhos(String(token || '').trim());
+    const valor = String(token || '').trim();
+    const h = cabecalhos(valor);
     return fetch(urlRepositorio(), { headers: h, cache: 'no-store' })
       .then(function (r) {
         if (!r.ok) return { ok: false, status: r.status };
+        // Só o token clássico devolve este cabeçalho — vazio quando não tem escopo.
+        const escopos = r.headers.get('X-OAuth-Scopes');
         return r.json().then(function (json) {
           const p = json.permissions || {};
           if (!(p.push || p.maintain || p.admin)) return { ok: true, escrita: false };
-          // O papel da conta no repositório não garante que o TOKEN tenha a
-          // permissão Contents: um fine-grained sem ela passa na checagem acima e
-          // só falharia na primeira gravação. Ler o cadastro antecipa o erro.
-          return fetch(urlConteudo(window.PORTAL_CONFIG.dados.usuarios) + '?ref=' + encodeURIComponent(cfg().branch), {
-            headers: h,
-            cache: 'no-store',
-          }).then(function (c) {
-            return { ok: true, escrita: true, conteudo: c.ok };
-          });
+
+          if (escopos !== null) {
+            const lista = escopos.split(',').map(function (s) {
+              return s.trim();
+            });
+            const basta = lista.indexOf('repo') !== -1 || (!json.private && lista.indexOf('public_repo') !== -1);
+            if (!basta) return { ok: true, escrita: true, conteudo: false };
+          } else if (valor.indexOf('github_pat_') === 0 && json.owner && json.owner.type === 'User') {
+            return fetch(API + '/user', { headers: h, cache: 'no-store' })
+              .then(function (u) {
+                return u.ok ? u.json() : null;
+              })
+              .then(function (usuario) {
+                if (!usuario || usuario.login !== json.owner.login) return { ok: true, escrita: true, fineGrained: true };
+                return conferirConteudo(h);
+              });
+          }
+          return conferirConteudo(h);
         });
       })
       .catch(function () {
         return { ok: false, status: 0 };
       });
+  }
+
+  /** Ler o cadastro pega o fine-grained do dono criado sem a permissão Contents. */
+  function conferirConteudo(h) {
+    return fetch(urlConteudo(window.PORTAL_CONFIG.dados.usuarios) + '?ref=' + encodeURIComponent(cfg().branch), {
+      headers: h,
+      cache: 'no-store',
+    }).then(function (c) {
+      return { ok: true, escrita: true, conteudo: c.ok };
+    });
   }
 
   window.Github = {

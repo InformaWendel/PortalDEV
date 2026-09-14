@@ -100,7 +100,7 @@ Cole o token no portal — ele é pedido logo depois do primeiro login e fica no
 **GitHub** do cabeçalho. Ele fica só no navegador, guardado sob o usuário do portal:
 numa máquina compartilhada, cada pessoa grava com o próprio token. Antes de aceitar,
 o portal confere se ele enxerga o repositório, se a conta tem escrita e se o token
-consegue ler o conteúdo.
+serve para gravar: escopo `public_repo` no clássico, *fine-grained* só do dono.
 
 **Sem token o portal abre em modo leitura** — dá para consultar tudo, e os campos de
 registro ficam travados. Se o token expirar, o portal avisa, continua lendo pelo
