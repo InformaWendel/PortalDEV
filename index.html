@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Portal DEV da Informa Solutions: as ferramentas do time de desenvolvimento — Portal QA e Controle de Impedimentos — com um único login e um único token do GitHub.">
+  <title>Portal DEV — Informa Solutions</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23f7941d'/><text x='16' y='20.5' font-family='Segoe UI,sans-serif' font-size='10.5' font-weight='700' text-anchor='middle' fill='%231a1205'>DEV</text></svg>">
+  <link rel="stylesheet" href="assets/css/portal.css">
+</head>
+<body>
+
+  <header class="pd-topo" id="topo" hidden>
+    <div class="pd-topo-linha">
+      <a class="pd-marca" href="#/">
+        <div class="pd-marca-selo" aria-hidden="true">DEV</div>
+        <div>
+          <div class="pd-marca-nome" id="marcaNome">Portal DEV</div>
+          <div class="pd-marca-sub" id="marcaSub"></div>
+        </div>
+      </a>
+
+      <nav class="pd-ferramentas-nav" id="ferramentas"></nav>
+
+      <div class="pd-topo-acoes">
+        <span class="pd-gravacao" id="gravacao" role="status" aria-live="polite" hidden></span>
+        <button type="button" class="pd-chip" id="btnToken"></button>
+        <div class="pd-idioma" id="idiomaTopo" role="group" aria-label="Idioma / Language"></div>
+        <div class="pd-usuario" id="usuario"></div>
+      </div>
+    </div>
+
+    <div class="pd-subnav" id="subnav" hidden>
+      <nav class="pd-nav" id="nav"></nav>
+      <div class="pd-nav-acoes" id="navAcoes"></div>
+    </div>
+  </header>
+
+  <main class="pd-conteudo">
+    <div id="banners"></div>
+    <div id="vista"></div>
+  </main>
+
+  <footer class="pd-rodape" id="rodape" hidden></footer>
+
+  <!-- Gaveta de detalhe do caso de teste (Portal QA) -->
+  <div class="pd-fundo" id="fundo"></div>
+  <aside class="pd-gaveta" id="gaveta" aria-label="Caso de teste">
+    <div class="pd-gaveta-topo">
+      <div class="pd-gaveta-topo-texto">
+        <div class="pd-gaveta-id" id="gavetaId"></div>
+        <div class="pd-gaveta-titulo" id="gavetaTitulo"></div>
+        <div class="pd-gaveta-meta" id="gavetaMeta"></div>
+      </div>
+      <button type="button" class="pd-btn pd-btn-icone pd-btn-fantasma" id="btnFecharGaveta" aria-label="Fechar">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="pd-gaveta-corpo" id="gavetaCorpo"></div>
+  </aside>
+
+  <div class="pd-modal" id="modal">
+    <div class="pd-modal-caixa" id="modalCorpo" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <div class="pd-toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Núcleo compartilhado -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/csv.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/github.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/acesso.js"></script>
+
+  <!-- Portal QA -->
+  <script src="assets/js/qa/i18n.js"></script>
+  <script src="assets/js/qa/store.js"></script>
+  <script src="assets/js/qa/telas.js"></script>
+
+  <!-- Controle de Impedimentos -->
+  <script src="assets/js/impedimentos/i18n.js"></script>
+  <script src="assets/js/impedimentos/datahora.js"></script>
+  <script src="assets/js/impedimentos/graficos.js"></script>
+  <script src="assets/js/impedimentos/store.js"></script>
+  <script src="assets/js/impedimentos/calendario.js"></script>
+  <script src="assets/js/impedimentos/painel.js"></script>
+  <script src="assets/js/impedimentos/telas.js"></script>
+
+  <!-- Administração -->
+  <script src="assets/js/admin/i18n.js"></script>
+  <script src="assets/js/admin/telas.js"></script>
+
+  <!-- Casca: login, menu e rotas -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

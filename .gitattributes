@@ -1,0 +1,10 @@
+# O portal grava os CSV pela API do GitHub sempre com LF. Fixar a quebra de
+# linha aqui evita que o autocrlf de cada máquina gere diffs fantasma ao editar
+# ou clonar o repositório no Windows.
+* text=auto eol=lf
+
+*.csv  text eol=lf
+*.js   text eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.md   text eol=lf

@@ -1,0 +1,165 @@
+/**
+ * Controle de Impedimentos — textos nos dois idiomas.
+ * As chaves entram no dicionário do portal com o prefixo "imp.".
+ * Meses e dias da semana não ficam aqui: vêm do Intl do navegador.
+ */
+(function () {
+  'use strict';
+
+  window.I18N.registrar(
+    {
+      pt: {
+        'app.nome': 'Impedimentos',
+
+        'nav.calendario': 'Meu calendário',
+        'nav.painel': 'Painel consolidado',
+
+        'carregando': 'Carregando os seus registros…',
+
+        'atual': 'Impedimento em andamento',
+        'nenhum': 'Nenhum impedimento em andamento.',
+        'iniciar': 'Iniciar impedimento',
+        'finalizar': 'Finalizar impedimento',
+        'passado': 'Registrar impedimento passado',
+        'editar': 'Editar',
+        'excluir': 'Excluir',
+        'excluirConfirma': 'Excluir este impedimento? A ação não pode ser desfeita.',
+        'inicio': 'Início',
+        'termino': 'Término',
+        'motivoInicio': 'Motivo do início',
+        'motivoFim': 'Motivo da finalização',
+        'motivoInicioPlaceholder': 'O que interrompeu o seu trabalho?',
+        'motivoFimPlaceholder': 'Como foi resolvido?',
+        'esforco': 'Esforço',
+        'agora': 'Agora',
+        'situacao': 'Situação',
+        'usuario': 'Usuário',
+        'gravando': 'Gravando…',
+        'gravado': 'Gravado no repositório',
+        'semToken': 'Para registrar impedimentos, configure o token do GitHub.',
+
+        'erro.dataFutura': 'Não é permitido informar data ou hora futura.',
+        'erro.terminoAntes': 'O término não pode ser anterior ao início.',
+        'erro.motivo': 'Informe o motivo.',
+        'erro.jaAberto': 'Já existe um impedimento em andamento. Finalize-o antes de iniciar outro.',
+        'erro.gravar': 'Falha ao gravar no repositório.',
+        'erro.carregar': 'Falha ao carregar os dados.',
+        'erro.sumiu': 'O registro não existe mais — talvez tenha sido excluído em outra aba.',
+
+        'cal.hoje': 'Hoje',
+        'cal.anterior': 'Mês anterior',
+        'cal.proximo': 'Próximo mês',
+        'cal.diaTitulo': 'Impedimentos em',
+        'cal.diaVazio': 'Nenhum impedimento registrado neste dia.',
+        'cal.legendaRegistros': 'Com registros',
+
+        'painel.atualizar': 'Atualizar dados',
+        'painel.carregando': 'Carregando os dados de todos os usuários…',
+        'painel.de': 'De',
+        'painel.ate': 'Até',
+        'painel.usuarios': 'Usuários',
+        'painel.situacao': 'Situação',
+        'painel.todas': 'Todas',
+        'painel.busca': 'Buscar no motivo',
+        'painel.limpar': 'Limpar filtros',
+        'painel.kpiTotal': 'Impedimentos',
+        'painel.kpiEsforco': 'Esforço total',
+        'painel.kpiMedio': 'Esforço médio',
+        'painel.kpiAbertos': 'Em andamento',
+        'painel.kpiUsuarios': 'Usuários com registro',
+        'painel.graficoEsforcoUsuario': 'Esforço total por usuário',
+        'painel.graficoQtdUsuario': 'Quantidade por usuário',
+        'painel.graficoEsforcoDia': 'Esforço por dia',
+        'painel.graficoMotivos': 'Principais motivos, por esforço',
+        'painel.cliqueFiltra': 'Clique numa barra para filtrar o painel pelo usuário',
+        'painel.tabela': 'Detalhamento',
+        'painel.exportar': 'Exportar CSV consolidado',
+        'painel.vazio': 'Nenhum registro para os filtros selecionados.',
+        'painel.parcial': 'Alguns usuários não puderam ser carregados:',
+
+        'status.aberto': 'Em andamento',
+        'status.finalizado': 'Finalizado',
+
+        'unidade.min': 'min',
+        'unidade.h': 'h',
+      },
+
+      en: {
+        'app.nome': 'Impediments',
+
+        'nav.calendario': 'My calendar',
+        'nav.painel': 'Consolidated panel',
+
+        'carregando': 'Loading your records…',
+
+        'atual': 'Impediment in progress',
+        'nenhum': 'No impediment in progress.',
+        'iniciar': 'Start impediment',
+        'finalizar': 'Finish impediment',
+        'passado': 'Log a past impediment',
+        'editar': 'Edit',
+        'excluir': 'Delete',
+        'excluirConfirma': 'Delete this impediment? This cannot be undone.',
+        'inicio': 'Start',
+        'termino': 'Finish',
+        'motivoInicio': 'Reason for starting',
+        'motivoFim': 'Reason for finishing',
+        'motivoInicioPlaceholder': 'What interrupted your work?',
+        'motivoFimPlaceholder': 'How was it resolved?',
+        'esforco': 'Effort',
+        'agora': 'Now',
+        'situacao': 'Status',
+        'usuario': 'User',
+        'gravando': 'Saving…',
+        'gravado': 'Saved to the repository',
+        'semToken': 'To record impediments, set up the GitHub token.',
+
+        'erro.dataFutura': 'Future dates or times are not allowed.',
+        'erro.terminoAntes': 'The finish cannot be earlier than the start.',
+        'erro.motivo': 'Please provide a reason.',
+        'erro.jaAberto': 'An impediment is already in progress. Finish it before starting another.',
+        'erro.gravar': 'Failed to write to the repository.',
+        'erro.carregar': 'Failed to load data.',
+        'erro.sumiu': 'The record no longer exists — it may have been deleted in another tab.',
+
+        'cal.hoje': 'Today',
+        'cal.anterior': 'Previous month',
+        'cal.proximo': 'Next month',
+        'cal.diaTitulo': 'Impediments on',
+        'cal.diaVazio': 'No impediments recorded on this day.',
+        'cal.legendaRegistros': 'With records',
+
+        'painel.atualizar': 'Refresh data',
+        'painel.carregando': 'Loading data for all users…',
+        'painel.de': 'From',
+        'painel.ate': 'To',
+        'painel.usuarios': 'Users',
+        'painel.situacao': 'Status',
+        'painel.todas': 'All',
+        'painel.busca': 'Search in reason',
+        'painel.limpar': 'Clear filters',
+        'painel.kpiTotal': 'Impediments',
+        'painel.kpiEsforco': 'Total effort',
+        'painel.kpiMedio': 'Average effort',
+        'painel.kpiAbertos': 'In progress',
+        'painel.kpiUsuarios': 'Users with records',
+        'painel.graficoEsforcoUsuario': 'Total effort by user',
+        'painel.graficoQtdUsuario': 'Count by user',
+        'painel.graficoEsforcoDia': 'Effort per day',
+        'painel.graficoMotivos': 'Top reasons, by effort',
+        'painel.cliqueFiltra': 'Click a bar to filter the panel by that user',
+        'painel.tabela': 'Details',
+        'painel.exportar': 'Export consolidated CSV',
+        'painel.vazio': 'No records for the selected filters.',
+        'painel.parcial': 'Some users could not be loaded:',
+
+        'status.aberto': 'In progress',
+        'status.finalizado': 'Finished',
+
+        'unidade.min': 'min',
+        'unidade.h': 'h',
+      },
+    },
+    'imp.'
+  );
+})();

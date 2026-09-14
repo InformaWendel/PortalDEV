@@ -1,0 +1,13 @@
+# Ruído de sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# ATENÇÃO: os arquivos em data/ são o banco de dados do portal.
+# Eles DEVEM ser versionados — não adicione data/ aqui.

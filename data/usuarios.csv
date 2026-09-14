@@ -1,0 +1,16 @@
+usuario,nome,papel,senha_hash,ativo
+wendel.martins,Wendel Côrtes Martins,gestor,ea94e50d54dae634c612925046ecc3dd6a8583f2257175825bb112d51bcd9b9c,sim
+alisson.delatim,Alisson Delatim,qa,7dbee87fcd3657a53fb8a173b850ef2e7bda67d390d76d4a1c81dab03277bdd0,sim
+mateus.batalha,Mateus Batalha,qa,63718c786be62f03182221d71d0a62de288d25b187a2f2203a89a56d1c02bb5c,sim
+murilo,Murilo Pereira,gestor,,sim
+christopher.takahasi,Christopher Takahashi,dev,,sim
+andre.martins,André Martins,dev,,sim
+natan.oliveira,Cláudio Natan,dev,,sim
+adriano.ribeiro,Adriano Ribeiro,dev,,sim
+giovana.souza,Giovana de Souza,dev,,sim
+cicero,Cícero da Silva,dev,,sim
+marcelo.foresto,Marcelo Foresto,dev,,sim
+vandrei.ribeiro,Vandrei Ribeiro,dev,,sim
+francisco,Francisco Meneghetti,dev,,sim
+felipe.sanches,Felipe Mateus,dev,,sim
+gustavo.dias,Gustavo Dias,dev,,sim
