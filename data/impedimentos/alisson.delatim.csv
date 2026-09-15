@@ -1,3 +1,6 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em
-imp_mu2ptv8w_0gzh8f,alisson.delatim,2026-09-15T10:35,Auxilio ao analista Marcos sobre erro na emissão NFCOM (ERRO: DFe),,,,aberto,2026-09-15T13:36:36.464Z,2026-09-15T13:36:36.464Z
+imp_mu2ptv8w_0gzh8f,alisson.delatim,2026-09-15T10:35,Auxilio ao analista Marcos sobre erro na emissão NFCOM (ERRO: DFe),2026-09-15T12:30,"- Orientado o analista Marcos a alterar o status da reforma para **Ativo** e configurar os impostos como **zerados**, permitindo a emissão da NFCOM na nova versão do InfoRadio 3.8.148.
+- Atualizado o arquivo **“Leia-me”** com o passo a passo que deverá ser seguido pela equipe de atendimento durante o processo de atualização.
+- Restauradas, no arquivo **“ACBrNFComServicos”**, algumas configurações necessárias para a emissão da NFCOM no InfoRadio, removidas durante uma alteração realizada por Jorge, da YT.
+- Trocado a pasta do instalador do InfoRadio da versão 3.8.148 com as atualizações citados logo acima.",115,finalizado,2026-09-15T13:36:36.464Z,2026-09-15T15:36:09.483Z
 imp_mu2pnycm_m0zocb,alisson.delatim,2026-09-15T09:30,"Reunião de Desenvolvimento, Inovação e Qualidade",2026-09-15T10:30,Participei da reunião.,60,finalizado,2026-09-15T13:32:00.550Z,2026-09-15T13:32:00.550Z
