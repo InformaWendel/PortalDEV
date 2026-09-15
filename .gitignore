@@ -9,5 +9,8 @@ desktop.ini
 *.swp
 *~
 
+# Capturas de tela dos testes: são para olhar na hora, não para versionar.
+testes/*.png
+
 # ATENÇÃO: os arquivos em data/ são o banco de dados do portal.
 # Eles DEVEM ser versionados — não adicione data/ aqui.
