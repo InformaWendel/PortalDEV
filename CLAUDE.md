@@ -135,8 +135,10 @@ reaplicando só o que este navegador alterou (até 3 tentativas):
   sobre o impedimento — e a falha aparece no `banner()` de Impedimentos, com botão de
   tentar de novo. Ao entrar no calendário, `reconciliar()` compara os registros da
   pessoa com a fila e reenvia, num commit só, o que ficou só em memória (F5 no meio do
-  commit) ou o cancelamento que não saiu. A triagem da Administração grava direto por
-  `alterarArquivo`.
+  commit) ou o cancelamento que não saiu. Não cancela a linha de registro finalizado sem
+  módulo: isso só nasce de gravação pela versão antiga, que descarta as colunas novas ao
+  reescrever o arquivo, e a linha da fila é a única cópia do que foi informado. A triagem
+  da Administração grava direto por `alterarArquivo`.
 
 O selo no cabeçalho (`Salvando…` · `Salvo no repositório` · `Falha ao salvar` ·
 `Somente leitura` · `Somente consulta`) é a garantia visível — mantenha-o. Toda
@@ -372,7 +374,7 @@ escrever caso novo estão em `testes/LEIAME.md`. Percorrer:
   10 colunas ganha as duas na primeira gravação, com vírgula e quebra de linha intactas;
 - fila que falha não pinta o selo de falha, acende o aviso e sai no tentar de novo;
   linha perdida em memória volta pela reconciliação, em commit único, e registro que não
-  foi lido não cancela nada;
+  foi lido não cancela nada, nem registro reescrito pela versão antiga sem módulo;
 - fila do roadmap: a triagem grava **sem tocar nas catorze colunas de Impedimentos**,
   e uma gravação de Impedimentos não apaga `triagem` nem `roadmap_key`;
 - chave do roadmap cunhada uma vez só, sem colidir com as 61 `RMAP-` já no OPSView, e

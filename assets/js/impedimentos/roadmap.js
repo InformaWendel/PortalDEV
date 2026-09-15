@@ -350,6 +350,11 @@
    *
    * `lidoEm` é o instante em que os registros começaram a ser lidos. Linha da fila mais
    * nova que isso não é cancelada: pode ser de um registro que a leitura não pegou.
+   *
+   * Só se cancela a linha de registro que sumiu ou foi reaberto. Registro finalizado sem
+   * módulo, não: ele só nasce de gravação pela versão antiga do portal, que não conhece as
+   * colunas novas e as descarta ao reescrever o arquivo — e aí a linha da fila é a única
+   * cópia do que foi informado.
    */
   function reconciliar(usuario, registros, pessoa, lidoEm) {
     if (!window.Github.temToken() || !catalogoPronto()) return Promise.resolve(0);
@@ -362,9 +367,13 @@
 
       let enfileiradas = 0;
       const comItem = {};
+      const preservar = {};
 
       registros.forEach(function (registro) {
-        if (!geraItem(registro)) return;
+        if (!geraItem(registro)) {
+          if (registro.status === window.Impedimentos.Store.STATUS.FINALIZADO) preservar[registro.id] = true;
+          return;
+        }
         comItem[registro.id] = true;
         if (estado.pendentes[registro.id]) return;
         const esperada = linhaDoRegistro(registro, pessoa);
@@ -383,7 +392,7 @@
       const limite = new Date(new Date(lidoEm).getTime() - MARGEM_MS).toISOString();
       Object.keys(naFila).forEach(function (id) {
         const linha = naFila[id];
-        if (comItem[id] || estado.pendentes[id] || linha.situacao === SITUACAO.CANCELADO) return;
+        if (comItem[id] || preservar[id] || estado.pendentes[id] || linha.situacao === SITUACAO.CANCELADO) return;
         if (String(linha.atualizado_em || '') >= limite) return;
         prepararPendente({ id: id, situacao: SITUACAO.CANCELADO });
         enfileiradas++;

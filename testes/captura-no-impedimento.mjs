@@ -172,6 +172,8 @@ try {
     'imp_r1,' + DEV + ',2026-09-08T09:00,Pedido,2026-09-08T10:00,Feito,60,finalizado,2026-09-08T09:00:00.000Z,2026-09-08T10:00:00.000Z,glic,Renova a licenca sem abrir chamado',
     'imp_r2,' + DEV + ',2026-09-09T09:00,Bug,2026-09-09T09:30,Corrigido,30,finalizado,2026-09-09T09:00:00.000Z,2026-09-09T11:00:00.000Z,news,Texto novo do entregavel depois da edicao',
     'imp_r3,' + DEV + ',2026-09-10T09:00,Ajuste,2026-09-10T10:00,Feito,60,finalizado,2026-09-10T09:00:00.000Z,2026-09-10T10:00:00.000Z,podcast,Publica o episodio com a arte certa',
+    // r4: a versao antiga reescreveu o arquivo e descartou modulo e entregavel.
+    'imp_r4,' + DEV + ',2026-09-11T09:00,Suporte,2026-09-11T10:00,Resolvido,60,finalizado,2026-09-11T09:00:00.000Z,2026-09-11T10:00:00.000Z,,',
   ].join('\n') + '\n';
 
   // r1 ficou so em memoria; r2 foi editado depois de triado; r3 esta em dia; a orfa e
@@ -181,6 +183,7 @@ try {
     COLUNAS_FILA_TRIADA,
     'imp_r2,' + DEV + ',Dev de Teste,news,Jornalismo,Texto antigo do entregavel,Bug,Corrigido,2026-09-09T09:00,2026-09-09T09:30,30,ativo,2026-09-09T09:00:00.000Z,2026-09-09T09:30:00.000Z,Materia agendada,aprovado,gestor.teste,2026-09-09T12:00:00.000Z,,RMAP-I001,',
     'imp_r3,' + DEV + ',Dev de Teste,podcast,Podcast,Publica o episodio com a arte certa,Ajuste,Feito,2026-09-10T09:00,2026-09-10T10:00,60,ativo,2026-09-10T09:00:00.000Z,2026-09-10T10:00:00.000Z,,,,,,,',
+    'imp_r4,' + DEV + ',Dev de Teste,midia,Distribuição de Mídia,Linha migrada que a versao antiga apagou do CSV,Suporte,Resolvido,2026-09-11T09:00,2026-09-11T10:00,60,ativo,2026-09-11T09:00:00.000Z,2026-09-11T10:00:00.000Z,,,,,,,',
     'imp_orfa,' + DEV + ',Dev de Teste,opec,OPEC,Registro excluido cujo cancelamento nao saiu,X,Y,2026-09-01T09:00,2026-09-01T10:00,60,ativo,2026-09-01T09:00:00.000Z,2026-09-01T10:00:00.000Z,,,,,,,',
     'imp_recente,' + DEV + ',Dev de Teste,opec,OPEC,Finalizado agora noutra aba,X,Y,2026-09-15T09:00,2026-09-15T10:00,60,ativo,' + agoraIso + ',' + agoraIso + ',,,,,,,',
     'imp_alheio,alisson.delatim,Alisson,opec,OPEC,Linha de outra pessoa,X,Y,2026-09-01T09:00,2026-09-01T10:00,60,ativo,2026-09-01T09:00:00.000Z,2026-09-01T10:00:00.000Z,,,,,,,',
@@ -213,6 +216,8 @@ try {
   conferir('orfa antiga foi cancelada', linha('imp_orfa').situacao === 'cancelado');
   conferir('linha recente sem registro lido nao foi cancelada', linha('imp_recente').situacao === 'ativo');
   conferir('linha de outra pessoa nao foi tocada', linha('imp_alheio').situacao === 'ativo');
+  conferir('registro reescrito pela versao antiga, sem modulo, nao tem a linha cancelada',
+    linha('imp_r4').situacao === 'ativo' && linha('imp_r4').modulo === 'midia');
 
   secao('reconciliar de novo nao grava nada');
   const segunda = await js(`
