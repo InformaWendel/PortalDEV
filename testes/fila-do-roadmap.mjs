@@ -66,7 +66,11 @@ try {
   await esperar(1400);
   conferir('a tela desenha', await js('return !!document.querySelector(\'[data-adm="rmGerar"]\');'));
   conferir('as 5 linhas da fila foram lidas', (await js('return window.Admin.Roadmap.estado.linhas.length;')) === 5);
-  conferir('o catalogo de modulos foi lido', (await js('return window.Admin.Roadmap.estado.modulos.length;')) === 28);
+  // Conta as linhas do próprio arquivo: o catálogo cresce, e o teste não deve fixar um número.
+  conferir('o catalogo de modulos foi lido', await js(
+    "const texto = await (await fetch('data/roadmap/modulos.csv', { cache: 'no-store' })).text();" +
+    'const n = window.CSV.parse(texto).linhas.filter(function (m) { return m.modulo; }).length;' +
+    'return n > 0 && n === window.Admin.Roadmap.estado.modulos.length;'));
 
   secao('painel de acompanhamento');
   const kpis = await js("return [...document.querySelectorAll('.pd-kpi-valor')].map(e => e.textContent);");

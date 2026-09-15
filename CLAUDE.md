@@ -270,6 +270,10 @@ repositório em tempo de execução. `frente` é `S` (SaaS), `P` (Premise) ou `T
 
 > **`nome` é o nome do produto no OPSView, byte a byte** — acento e o `×` (U+00D7) de
 > `PROG × PLAYOUT` inclusive. Divergir aqui cria um produto novo lá, em silêncio.
+>
+> **Exceção:** `inforadio-cobol` ("InfoRádio Cobol", Tarefas Internas) foi criado aqui em
+> 15/09/2026 e ainda não existe nem no roadmap nem no OPSView — o primeiro envio dele
+> cria o produto lá. Alinhar com o dono do OPSView antes, e levar o módulo ao roadmap.
 
 ### `data/roadmap/fila.csv`
 

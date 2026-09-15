@@ -1,1 +1,5 @@
 id,usuario,pessoa,modulo,modulo_nome,entregavel,motivo_inicio,motivo_fim,inicio,fim,duracao_min,situacao,criado_em,atualizado_em
+imp_mu2ptv8w_0gzh8f,alisson.delatim,Alisson Delatim,inforadio-cobol,InfoRádio Cobol,"A emissora volta a emitir a NFCom na versão 3.8.148, e o atendimento atualiza seguindo um passo a passo documentado.",Auxilio ao analista Marcos sobre erro na emissão NFCOM (ERRO: DFe),"- Orientado o analista Marcos a alterar o status da reforma para **Ativo** e configurar os impostos como **zerados**, permitindo a emissão da NFCOM na nova versão do InfoRadio 3.8.148.
+- Atualizado o arquivo **“Leia-me”** com o passo a passo que deverá ser seguido pela equipe de atendimento durante o processo de atualização.
+- Restauradas, no arquivo **“ACBrNFComServicos”**, algumas configurações necessárias para a emissão da NFCOM no InfoRadio, removidas durante uma alteração realizada por Jorge, da YT.
+- Trocado a pasta do instalador do InfoRadio da versão 3.8.148 com as atualizações citados logo acima.",2026-09-15T10:35,2026-09-15T12:30,115,ativo,2026-09-15T13:36:36.464Z,2026-09-15T17:34:29.062Z

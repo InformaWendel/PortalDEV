@@ -33,9 +33,10 @@ window.PORTAL_CONFIG = {
    * Como uma linha aprovada da fila vira item do roadmap do OPSView.
    *
    * Isto é acordo com quem é dono daquele ambiente, não dedução nossa: `ambiente`
-   * cria valor novo em silêncio se o nome divergir, e `area` é enum fechado. Os 28
-   * módulos de data/roadmap/modulos.csv já existem lá como produto, com o nome
-   * escrito exatamente assim — não renomeie de um lado só.
+   * cria valor novo em silêncio se o nome divergir, e `area` é enum fechado. Os módulos
+   * de data/roadmap/modulos.csv existem lá como produto com o nome escrito exatamente
+   * assim — não renomeie de um lado só. A exceção é `inforadio-cobol`, criado em
+   * 15/09/2026 sem produto correspondente: o primeiro envio dele cria o produto lá.
    *
    * O portal monta o pacote e para aí. O POST não sai do navegador: o endereço não
    * responde à verificação prévia (OPTIONS devolve 405, sem
