@@ -8,7 +8,7 @@
 
   const I = window.Impedimentos;
   const DataHora = I.DataHora;
-  const Graficos = I.Graficos;
+  const Graficos = window.Graficos;
   const Store = I.Store;
   const esc = window.UI.esc;
   const el = window.UI.el;

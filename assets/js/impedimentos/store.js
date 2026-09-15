@@ -11,7 +11,11 @@
 
   const DataHora = window.Impedimentos.DataHora;
 
-  /** Colunas do CSV, nesta ordem exata. */
+  /**
+   * Colunas do CSV, nesta ordem exata. `modulo` e `entregavel` são o que o analista
+   * informa ao finalizar e o que alimenta o item do roadmap — ficam aqui, e não só na
+   * fila, para o que ele digitou nunca depender da segunda gravação.
+   */
   const COLUNAS = [
     'id',
     'usuario',
@@ -23,6 +27,8 @@
     'status',
     'criado_em',
     'atualizado_em',
+    'modulo',
+    'entregavel',
   ];
 
   const STATUS = { ABERTO: 'aberto', FINALIZADO: 'finalizado' };
@@ -112,6 +118,8 @@
       motivo_inicio: dados.motivo_inicio,
       fim: dados.fim || '',
       motivo_fim: dados.motivo_fim || '',
+      modulo: dados.modulo || '',
+      entregavel: dados.entregavel || '',
       criado_em: agora,
       atualizado_em: agora,
     });

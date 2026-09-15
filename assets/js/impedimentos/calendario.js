@@ -8,6 +8,7 @@
   const I = window.Impedimentos;
   const DataHora = I.DataHora;
   const Store = I.Store;
+  const Roadmap = I.Roadmap;
   const esc = window.UI.esc;
   const el = window.UI.el;
 
@@ -54,20 +55,35 @@
 
   function recarregar() {
     const usuario = estado.usuario;
-    return Store.carregarUsuario(usuario)
-      .then(
+    // Marcado antes da leitura: a reconciliação não cancela linha mais nova que isso.
+    const lidoEm = new Date().toISOString();
+    let lidos = false;
+    return Promise.all([
+      Store.carregarUsuario(usuario).then(
         function (r) {
           if (usuario !== estado.usuario) return;
           estado.registros = r.registros;
           estado.erro = '';
+          // Arquivo que não veio não é lista vazia: reconciliar contra ele cancelaria
+          // tudo o que a pessoa tem na fila.
+          lidos = r.existe;
         },
         function (erro) {
           estado.erro = t('erro.carregar') + ' ' + (erro.message || '');
         }
-      )
-      .then(function () {
-        estado.carregado = true;
-      });
+      ),
+      // O catálogo alimenta o seletor de módulo. Iniciar segue sem ele; finalizar pede o
+      // catálogo, e o formulário oferece tentar de novo.
+      Roadmap.carregarModulos(true),
+    ]).then(function () {
+      estado.carregado = true;
+      // Em segundo plano: a tela não espera a fila.
+      if (lidos && usuario === estado.usuario) {
+        Roadmap.reconciliar(usuario, estado.registros, window.Auth.nomeDe(usuario), lidoEm).catch(function () {
+          // Fila ilegível agora: a próxima entrada tenta de novo.
+        });
+      }
+    });
   }
 
   function sair() {
@@ -239,6 +255,12 @@
               esc(aberto ? t('status.aberto') : DataHora.formatarDuracao(r.duracao_min)) + '</span></span>' +
               '<span class="imp-item-motivo"><b>' + esc(t('motivoInicio')) + ':</b> ' + esc(r.motivo_inicio || '—') + '</span>' +
               (r.motivo_fim ? '<span class="imp-item-motivo"><b>' + esc(t('motivoFim')) + ':</b> ' + esc(r.motivo_fim) + '</span>' : '') +
+              (aberto
+                ? ''
+                : Roadmap.geraItem(r)
+                ? '<span class="imp-item-motivo"><b>' + esc(t('roadmap.secao')) + ':</b> ' +
+                  esc(nomeDoModulo(r.modulo)) + ' — ' + esc(r.entregavel) + '</span>'
+                : '<span class="pd-tag pd-tag-nao_implementada">' + esc(t('roadmap.incompleto')) + '</span>') +
               '</div>' +
               '<div class="imp-item-acoes">' +
               '<button type="button" class="pd-btn pd-btn-p" data-imp="editar" data-id="' + esc(r.id) + '"' + travado + '>' + esc(t('editar')) + '</button>' +
@@ -273,11 +295,15 @@
     let motivoInicio = '';
     let fim = modo === 'passado' ? agora : '';
     let motivoFim = '';
+    let modulo = '';
+    let entregavel = '';
     if (registro) {
       inicio = registro.inicio;
       motivoInicio = registro.motivo_inicio;
       fim = registro.fim || (modo === 'finalizar' ? agora : '');
       motivoFim = registro.motivo_fim || '';
+      modulo = registro.modulo || '';
+      entregavel = registro.entregavel || '';
     }
 
     const comFim = modo !== 'iniciar';
@@ -292,7 +318,8 @@
       (comFim
         ? campoDataHora('impFim', t('termino'), fim, agora, fimObrigatorio) +
           campoMotivo('impMotivoFim', t('motivoFim'), motivoFim, t('motivoFimPlaceholder'), fimObrigatorio) +
-          '<p class="imp-duracao">' + esc(t('esforco')) + ': <strong id="impDuracao">—</strong></p>'
+          '<p class="imp-duracao">' + esc(t('esforco')) + ': <strong id="impDuracao">—</strong></p>' +
+          blocoRoadmap(modulo, entregavel)
         : '') +
       '<div id="impErro" class="pd-alerta-erro" role="alert" hidden></div>' +
       '<div class="pd-modal-acoes"><span class="pd-espaco"></span>' +
@@ -301,6 +328,57 @@
       '</div></form>'
     );
     atualizarDuracao();
+  }
+
+  /**
+   * O que vira item do roadmap. Sem o catálogo não há o que escolher, e finalizar sem
+   * módulo deixaria o impedimento fora da fila: o bloco dá lugar ao erro, com um botão
+   * de tentar de novo. O término já digitado fica no campo — nada se perde na espera.
+   *
+   * Tudo dentro de #impRoadmap, para o tentar de novo trocar só este pedaço. Módulo e
+   * entregável de um registro em edição viajam nos atributos, para voltarem ao seletor.
+   */
+  function blocoRoadmap(modulo, entregavel) {
+    if (!Roadmap.catalogoPronto()) {
+      return (
+        '<div id="impRoadmap" class="pd-nota" data-modulo="' + esc(modulo) + '" data-entregavel="' + esc(entregavel) + '">' +
+        '<span>' + esc(t('roadmap.semCatalogo')) + '</span>' +
+        '<button type="button" class="pd-btn pd-btn-p" data-imp="recarregarCatalogo">' + esc(t('roadmap.tentarDeNovo')) + '</button>' +
+        '</div>'
+      );
+    }
+
+    const grupos = Roadmap.porFrente()
+      .map(function (grupo) {
+        const opcoes = grupo.modulos
+          .map(function (m) {
+            return (
+              '<option value="' + esc(m.modulo) + '"' + (m.modulo === modulo ? ' selected' : '') + '>' +
+              esc(m.nome) + '</option>'
+            );
+          })
+          .join('');
+        return '<optgroup label="' + esc(t('roadmap.frente' + grupo.frente)) + '">' + opcoes + '</optgroup>';
+      })
+      .join('');
+
+    return (
+      '<div id="impRoadmap" class="imp-roadmap">' +
+      '<div class="imp-roadmap-titulo">' + esc(t('roadmap.secao')) + '</div>' +
+      '<p class="pd-ajuda">' + esc(t('roadmap.ajuda')) + '</p>' +
+      '<div class="pd-campo-grupo"><label class="pd-rotulo" for="impModulo">' + esc(t('roadmap.modulo')) + '</label>' +
+      '<select id="impModulo" class="pd-campo">' +
+      '<option value="">' + esc(t('roadmap.moduloVazio')) + '</option>' + grupos + '</select></div>' +
+      '<div class="pd-campo-grupo"><label class="pd-rotulo" for="impEntregavel">' + esc(t('roadmap.entregavel')) + '</label>' +
+      '<textarea id="impEntregavel" class="pd-campo" rows="3" placeholder="' + esc(t('roadmap.entregavelPlaceholder')) + '">' +
+      esc(entregavel) + '</textarea></div>' +
+      '</div>'
+    );
+  }
+
+  function nomeDoModulo(chave) {
+    const modulo = Roadmap.moduloPorChave(chave);
+    return modulo ? modulo.nome : chave;
   }
 
   function campoDataHora(id, rotulo, valor, max, obrigatorio) {
@@ -354,6 +432,15 @@
       if (!fim || fim.getTime() > limite) return t('erro.dataFutura');
       if (fim.getTime() < inicio.getTime()) return t('erro.terminoAntes');
       if (!dados.motivo_fim.trim()) return t('erro.motivo');
+
+      // Todo impedimento finalizado vira item do roadmap: sem módulo e sem entregável
+      // não há item que se escreva. Sem o catálogo também não se finaliza — é o que
+      // impede um soluço de rede de deixar o registro fora da fila sem ninguém saber.
+      if (!Roadmap.catalogoPronto()) return t('erro.semCatalogo');
+      if (!dados.modulo) return t('erro.modulo');
+      if ((dados.entregavel || '').trim().length < Roadmap.MIN_ENTREGAVEL) {
+        return t('erro.entregavel', { n: Roadmap.MIN_ENTREGAVEL });
+      }
     }
     return null;
   }
@@ -386,6 +473,9 @@
       fim: campoFim ? campoFim.value : '',
       motivo_fim: campoFim ? el('impMotivoFim').value : '',
     };
+    // Só entram quando os campos estão na tela: sem eles, a edição preserva o que havia.
+    if (el('impModulo')) dados.modulo = el('impModulo').value;
+    if (el('impEntregavel')) dados.entregavel = el('impEntregavel').value;
 
     const problema = validar(dados);
     if (problema) {
@@ -401,12 +491,21 @@
     const modo = estado.modo;
     const editandoId = estado.editandoId;
     const usuario = estado.usuario;
+    // O registro é montado aqui, fora do mutador: numa releitura por conflito o id
+    // precisa ser o mesmo, porque é ele que amarra a linha da fila do roadmap.
+    const novoRegistro =
+      modo === 'iniciar' || modo === 'passado'
+        ? Store.montarRegistro(Object.assign({ usuario: usuario }, dados))
+        : null;
+    const alvoId = editandoId || (novoRegistro && novoRegistro.id);
+    const anterior = estado.registros.filter(function (r) { return r.id === alvoId; })[0];
+    const tinhaItem = Roadmap.geraItem(anterior);
     window.App.sinalizarGravacao('gravando');
 
     Store.alterarUsuario(usuario, mensagemDeCommit(modo), function (registros) {
       if (modo === 'iniciar' && Store.emAberto(registros)) throw new Error('ja-aberto');
       if (modo === 'iniciar' || modo === 'passado') {
-        return registros.concat([Store.montarRegistro(Object.assign({ usuario: usuario }, dados))]);
+        return registros.concat([novoRegistro]);
       }
       const indice = registros.findIndex(function (r) { return r.id === editandoId; });
       // O registro sumiu (excluído em outra aba): nada a alterar.
@@ -430,6 +529,7 @@
         }
         window.UI.fecharModal();
         if (ativo()) render();
+        if (!resultado.abortado) sincronizarRoadmap(alvoId, tinhaItem);
       })
       .catch(function (erro) {
         if (erro.message === 'ja-aberto') {
@@ -452,6 +552,21 @@
       });
   }
 
+  /**
+   * O impedimento já está gravado; a linha da fila vai depois, em segundo plano. Falhar
+   * aqui não desfaz nada: módulo e entregável ficam no CSV do impedimento, e a linha é
+   * reconstruível.
+   */
+  function sincronizarRoadmap(id, tinhaItem) {
+    const registro = estado.registros.filter(function (r) { return r.id === id; })[0];
+    if (Roadmap.geraItem(registro)) {
+      Roadmap.enfileirar(Roadmap.linhaDoRegistro(registro, window.Auth.nomeDe(registro.usuario)));
+      return;
+    }
+    // Reaberto ou esvaziado: a linha fica na fila, marcada, para o roadmap saber.
+    if (tinhaItem) Roadmap.cancelar(id);
+  }
+
   function excluir(id, dia) {
     if (!window.Github.temToken()) {
       window.UI.fecharModal();
@@ -461,6 +576,7 @@
 
     if (!window.confirm(t('excluirConfirma'))) return;
 
+    const tinhaItem = Roadmap.geraItem(estado.registros.filter(function (r) { return r.id === id; })[0]);
     window.App.sinalizarGravacao('gravando');
     Store.alterarUsuario(estado.usuario, mensagemDeCommit('excluir'), function (registros) {
       return registros.filter(function (r) { return r.id !== id; });
@@ -469,12 +585,34 @@
         estado.registros = resultado.registros;
         window.App.sinalizarGravacao('salvo');
         window.UI.toast(t('gravado'), 'ok');
+        if (tinhaItem) Roadmap.cancelar(id);
         if (ativo()) abrirDia(dia);
       })
       .catch(function (erro) {
         window.App.sinalizarGravacao('erro', erro);
         window.UI.toast((t('erro.gravar') + ' ' + (erro.message || '')).trim(), 'erro');
       });
+  }
+
+  /**
+   * Lê o catálogo de novo e troca só o bloco do roadmap. O resto do formulário —
+   * término, motivo — fica como a pessoa deixou.
+   */
+  function tentarCatalogo(botao) {
+    const bloco = el('impRoadmap');
+    if (!bloco) return;
+    const modulo = bloco.getAttribute('data-modulo') || '';
+    const entregavel = bloco.getAttribute('data-entregavel') || '';
+    botao.disabled = true;
+    botao.textContent = t('roadmap.tentando');
+    Roadmap.carregarModulos(true).then(function () {
+      const atual = el('impRoadmap');
+      // O formulário foi fechado durante a espera: não há onde desenhar.
+      if (!atual) return;
+      atual.outerHTML = blocoRoadmap(modulo, entregavel);
+      if (Roadmap.catalogoPronto()) mostrarErro('');
+      else window.UI.toast(t('roadmap.aindaSemCatalogo'), 'erro');
+    });
   }
 
   /* ---------------- eventos ---------------- */
@@ -508,6 +646,7 @@
     if (nome === 'iniciar' || nome === 'passado') return abrirFormulario(nome);
     if (nome === 'finalizar' || nome === 'editar') return abrirFormulario(nome, id);
     if (nome === 'excluir') return excluir(id, acao.getAttribute('data-dia'));
+    if (nome === 'recarregarCatalogo') return tentarCatalogo(acao);
     if (nome === 'mesAnterior') return mudarMes(-1);
     if (nome === 'mesProximo') return mudarMes(1);
     if (nome === 'hoje') {

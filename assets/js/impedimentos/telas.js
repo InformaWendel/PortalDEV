@@ -9,6 +9,7 @@
   'use strict';
 
   const I = window.Impedimentos;
+  const esc = window.UI.esc;
 
   function t(chave, valores) {
     return window.I18N.t('imp.' + chave, valores);
@@ -56,7 +57,37 @@
     return Promise.all([
       I.Calendario.carregado() ? I.Calendario.recarregar() : null,
       I.Painel.carregado() ? I.Painel.recarregar() : null,
+      I.Roadmap.carregarModulos(true),
+      // Token novo: o que ficou pendente na fila do roadmap sai agora.
+      I.Roadmap.gravar(),
     ]);
+  }
+
+  /** Linha da fila do roadmap que ainda não virou commit. */
+  function temPendencias() {
+    return I.Roadmap.temPendencias();
+  }
+
+  /** A casca chama no logout, e espera: a fila precisa sair antes de o token ir embora. */
+  function descarregar() {
+    return I.Roadmap.descarregar();
+  }
+
+  /**
+   * Aviso da fila do roadmap. Só aparece quando a gravação da fila falhou: o impedimento
+   * está salvo, e o selo do cabeçalho já disse isso — aqui fica o que falta, com o botão
+   * de tentar de novo.
+   */
+  function banner() {
+    const fila = I.Roadmap;
+    if (!fila.estado.erro || !fila.temPendencias()) return '';
+    return (
+      '<div class="pd-aviso pd-aviso-alerta"><div class="pd-aviso-texto">' +
+      '<div class="pd-aviso-titulo">' + esc(t('roadmap.bannerTitulo', { n: fila.pendencias().length })) + '</div>' +
+      '<div class="pd-aviso-detalhe">' + esc(t('roadmap.bannerAjuda')) + '</div></div>' +
+      '<button type="button" class="pd-btn pd-btn-p" data-imp-roadmap="reenviar"' +
+      (fila.estado.emVoo ? ' disabled' : '') + '>' + esc(t('roadmap.reenviar')) + '</button></div>'
+    );
   }
 
   function abas() {
@@ -94,6 +125,18 @@
   function iniciar() {
     I.Calendario.iniciar();
     I.Painel.iniciar();
+
+    // O aviso mora na faixa da casca, fora de #vista: vale nas duas abas.
+    document.addEventListener('click', function (evento) {
+      if (window.App.ferramentaAtual() !== 'impedimentos') return;
+      const botao = evento.target.closest('[data-imp-roadmap]');
+      if (!botao || botao.disabled) return;
+      botao.disabled = true;
+      I.Roadmap.gravar().then(function () {
+        if (!I.Roadmap.estado.erro) window.UI.toast(t('roadmap.reenviado'), 'ok');
+        window.App.renderBanners();
+      });
+    });
   }
 
   I.Telas = {
@@ -106,7 +149,10 @@
     abaAtual: abaAtual,
     subtitulo: subtitulo,
     render: render,
+    banner: banner,
     somenteLeitura: somenteLeitura,
+    temPendencias: temPendencias,
+    descarregar: descarregar,
     icone: ICONE,
     atalhos: atalhos,
   };

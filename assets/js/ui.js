@@ -68,11 +68,12 @@
   /**
    * Dispara o download de um texto. O BOM só entra quando pedido: o Excel
    * precisa dele para os acentos, mas o CSV de catálogo exportado tem de sair
-   * idêntico ao do repositório.
+   * idêntico ao do repositório — e o JSON do OPSView também, que o outro lado
+   * lê com `curl --data-binary` e não tolera byte a mais.
    */
   function baixarArquivo(nome, texto, opcoes) {
     const conteudo = (opcoes && opcoes.bom ? '\uFEFF' : '') + texto;
-    const blob = new Blob([conteudo], { type: 'text/csv;charset=utf-8' });
+    const blob = new Blob([conteudo], { type: (opcoes && opcoes.tipo) || 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;

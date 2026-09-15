@@ -10,6 +10,7 @@
       pt: {
         'nav.usuarios': 'Usuários',
         'nav.permissoes': 'Permissões',
+        'nav.roadmap': 'Fila do roadmap',
 
         'usuarios.titulo': 'Usuários do portal',
         'usuarios.ajuda':
@@ -90,6 +91,93 @@
         'papel.salvo': 'Papel salvo.',
         'papel.excluido': 'Papel excluído.',
 
+        'roadmap.titulo': 'Fila do roadmap',
+        'roadmap.ajuda':
+          'Todo impedimento finalizado com módulo e entregável entra aqui. Confira um a um, aprove o que descreve uma entrega de verdade e gere o pacote do OPSView. O envio em si é um comando digitado por quem decide enviar — o portal não fala com o OPSView.',
+        'roadmap.contagem': '{n} na fila',
+        'roadmap.gerar': 'Gerar pacote ({n})',
+        'roadmap.semToken': 'Sem token do GitHub a fila fica só para consulta.',
+        'roadmap.erroLeituraTitulo': 'Não foi possível ler a fila',
+        'roadmap.erroLeituraAjuda': 'O que aparece abaixo pode estar desatualizado. Recarregue a página antes de triar.',
+        'roadmap.orfasTitulo': '{n} item(ns) enviado(s) e depois cancelado(s)',
+        'roadmap.orfasAjuda':
+          'O impedimento foi excluído ou reaberto depois de o item ir para o OPSView. Lá não há como remover pela API: corrija na tela do OPSView, à mão.',
+
+        'roadmap.kpi.pendentes': 'A triar',
+        'roadmap.kpi.aprovadas': 'Aprovadas',
+        'roadmap.kpi.enviadas': 'Enviadas',
+        'roadmap.kpi.recusadas': 'Recusadas',
+        'roadmap.kpi.esforco': 'Esforço somado',
+        'roadmap.graficoModulo': 'Esforço por módulo',
+        'roadmap.graficoPessoa': 'Esforço por pessoa',
+        'roadmap.semDados': 'Nada para mostrar ainda.',
+        'roadmap.vazio': 'Nenhuma linha nesta situação.',
+        'roadmap.alterado': 'Editado após a triagem',
+
+        'roadmap.situacao.todos': 'Todas',
+        'roadmap.situacao.pendente': 'A triar',
+        'roadmap.situacao.aprovado': 'Aprovada',
+        'roadmap.situacao.enviado': 'Enviada',
+        'roadmap.situacao.recusado': 'Recusada',
+        'roadmap.situacao.cancelado': 'Cancelada',
+
+        'roadmap.col.pessoa': 'Pessoa',
+        'roadmap.col.modulo': 'Módulo',
+        'roadmap.col.entregavel': 'Entregável',
+        'roadmap.col.esforco': 'Esforço',
+        'roadmap.col.situacao': 'Situação',
+        'roadmap.col.acoes': 'Ações',
+        'roadmap.acao.aprovar': 'Aprovar',
+        'roadmap.acao.recusar': 'Recusar',
+        'roadmap.acao.reabrir': 'Reabrir',
+
+        'roadmap.duracaoMin': '{m} min',
+        'roadmap.duracaoHora': '{h} h',
+        'roadmap.duracaoHoraMin': '{h} h {m} min',
+
+        'roadmap.aprovar.titulo': 'Aprovar para o roadmap',
+        'roadmap.aprovar.campoTitulo': 'Nome do item',
+        'roadmap.aprovar.ajudaTitulo':
+          'Até {n} caracteres: o OPSView só tem nome curto, não há campo de descrição. O prefixo entra sozinho, e a numeração de MVP nunca sai daqui.',
+        'roadmap.aprovar.previa': 'O que vai no pacote',
+        'roadmap.aprovar.chaveNova': 'cunhada ao aprovar',
+        'roadmap.aprovar.confirmar': 'Aprovar',
+        'roadmap.aprovar.erroTitulo': 'Informe o nome do item.',
+        'roadmap.campo.chave': 'Chave',
+        'roadmap.campo.produto': 'Produto',
+        'roadmap.campo.ambiente': 'Ambiente e área',
+        'roadmap.campo.fase': 'Fase',
+        'roadmap.campo.periodo': 'Período',
+
+        'roadmap.recusar.titulo': 'Recusar a linha',
+        'roadmap.recusar.ajuda':
+          'A linha fica na fila, marcada, e não entra em pacote nenhum. O impedimento em si não é alterado.',
+        'roadmap.recusar.campo': 'Motivo',
+        'roadmap.recusar.confirmar': 'Recusar',
+        'roadmap.recusar.erroMotivo': 'Informe o motivo da recusa.',
+
+        'roadmap.enviar.titulo': 'Pacote com {n} item(ns) baixado',
+        'roadmap.enviar.ajuda':
+          'O envio não sai do navegador. Abra o PowerShell na pasta do download e rode o comando abaixo, com o token colado na hora — nunca gravado em arquivo.',
+        'roadmap.enviar.conferir':
+          'Confira o relatório que a API devolve no corpo da resposta, não o código HTTP: falha de credencial responde com redirecionamento para a tela de login, que um cliente comum lê como sucesso. Só marque como enviado depois de ver criadas e atualizadas com erros em zero.',
+        'roadmap.enviar.marcar': 'Marcar como enviados',
+
+        'roadmap.aprovada': 'Linha aprovada.',
+        'roadmap.recusada': 'Linha recusada.',
+        'roadmap.reaberta': 'Linha devolvida para triagem.',
+        'roadmap.marcados': '{n} linha(s) marcada(s) como enviada(s).',
+        'roadmap.semAprovadas': 'Não há linha aprovada esperando envio.',
+        'roadmap.pacoteGerado': 'Pacote gerado com {n} item(ns).',
+        'roadmap.pacoteComProblema': '{n} linha(s) ficaram de fora por falta de dado obrigatório.',
+        'roadmap.erroSemChave': 'sem chave do roadmap',
+        'roadmap.erroSemProduto': 'sem módulo',
+        'roadmap.erroSemTitulo': 'sem nome do item',
+        'roadmap.erroSemData': 'sem data de início ou término',
+        'roadmap.erroSumiu': 'Essa linha não está mais na fila. Recarregue a página.',
+        'roadmap.erroCancelado': 'Essa linha foi cancelada: o impedimento foi excluído ou reaberto.',
+        'roadmap.falha': 'Não foi possível gravar: {erro}',
+
         'semToken': 'Sem token do GitHub a administração fica só para consulta.',
         'salvo': 'Cadastro salvo.',
         'falha': 'Não foi possível gravar: {erro}',
@@ -98,6 +186,7 @@
       en: {
         'nav.usuarios': 'Users',
         'nav.permissoes': 'Permissions',
+        'nav.roadmap': 'Roadmap queue',
 
         'usuarios.titulo': 'Portal users',
         'usuarios.ajuda':
@@ -176,6 +265,93 @@
         'papel.erroNome': 'Enter the Portuguese name.',
         'papel.salvo': 'Role saved.',
         'papel.excluido': 'Role deleted.',
+
+        'roadmap.titulo': 'Roadmap queue',
+        'roadmap.ajuda':
+          'Every finished impediment with a module and a deliverable lands here. Review them one by one, approve the ones that describe a real delivery and build the OPSView package. Sending it is a command typed by whoever decides to send — the portal does not talk to OPSView.',
+        'roadmap.contagem': '{n} in the queue',
+        'roadmap.gerar': 'Build package ({n})',
+        'roadmap.semToken': 'Without a GitHub token the queue is view only.',
+        'roadmap.erroLeituraTitulo': 'Could not read the queue',
+        'roadmap.erroLeituraAjuda': 'What you see below may be out of date. Reload the page before reviewing.',
+        'roadmap.orfasTitulo': '{n} item(s) sent and cancelled afterwards',
+        'roadmap.orfasAjuda':
+          'The impediment was deleted or reopened after the item reached OPSView. There is no API to remove it there: fix it by hand on the OPSView screen.',
+
+        'roadmap.kpi.pendentes': 'To review',
+        'roadmap.kpi.aprovadas': 'Approved',
+        'roadmap.kpi.enviadas': 'Sent',
+        'roadmap.kpi.recusadas': 'Rejected',
+        'roadmap.kpi.esforco': 'Total effort',
+        'roadmap.graficoModulo': 'Effort by module',
+        'roadmap.graficoPessoa': 'Effort by person',
+        'roadmap.semDados': 'Nothing to show yet.',
+        'roadmap.vazio': 'No rows in this state.',
+        'roadmap.alterado': 'Edited after review',
+
+        'roadmap.situacao.todos': 'All',
+        'roadmap.situacao.pendente': 'To review',
+        'roadmap.situacao.aprovado': 'Approved',
+        'roadmap.situacao.enviado': 'Sent',
+        'roadmap.situacao.recusado': 'Rejected',
+        'roadmap.situacao.cancelado': 'Cancelled',
+
+        'roadmap.col.pessoa': 'Person',
+        'roadmap.col.modulo': 'Module',
+        'roadmap.col.entregavel': 'Deliverable',
+        'roadmap.col.esforco': 'Effort',
+        'roadmap.col.situacao': 'State',
+        'roadmap.col.acoes': 'Actions',
+        'roadmap.acao.aprovar': 'Approve',
+        'roadmap.acao.recusar': 'Reject',
+        'roadmap.acao.reabrir': 'Reopen',
+
+        'roadmap.duracaoMin': '{m} min',
+        'roadmap.duracaoHora': '{h} h',
+        'roadmap.duracaoHoraMin': '{h} h {m} min',
+
+        'roadmap.aprovar.titulo': 'Approve for the roadmap',
+        'roadmap.aprovar.campoTitulo': 'Item name',
+        'roadmap.aprovar.ajudaTitulo':
+          'Up to {n} characters: OPSView only has a short name, there is no description field. The prefix is added for you, and MVP numbering never comes from here.',
+        'roadmap.aprovar.previa': 'What goes in the package',
+        'roadmap.aprovar.chaveNova': 'minted on approval',
+        'roadmap.aprovar.confirmar': 'Approve',
+        'roadmap.aprovar.erroTitulo': 'Enter the item name.',
+        'roadmap.campo.chave': 'Key',
+        'roadmap.campo.produto': 'Product',
+        'roadmap.campo.ambiente': 'Environment and area',
+        'roadmap.campo.fase': 'Phase',
+        'roadmap.campo.periodo': 'Period',
+
+        'roadmap.recusar.titulo': 'Reject the row',
+        'roadmap.recusar.ajuda':
+          'The row stays in the queue, marked, and never enters a package. The impediment itself is not changed.',
+        'roadmap.recusar.campo': 'Reason',
+        'roadmap.recusar.confirmar': 'Reject',
+        'roadmap.recusar.erroMotivo': 'Enter the reason for rejecting.',
+
+        'roadmap.enviar.titulo': 'Package with {n} item(s) downloaded',
+        'roadmap.enviar.ajuda':
+          'Sending does not happen in the browser. Open PowerShell in the download folder and run the command below, pasting the token at that moment — never stored in a file.',
+        'roadmap.enviar.conferir':
+          'Check the report the API returns in the response body, not the HTTP status: a credential failure answers with a redirect to the login screen, which a plain client reads as success. Only mark as sent after seeing created and updated with zero errors.',
+        'roadmap.enviar.marcar': 'Mark as sent',
+
+        'roadmap.aprovada': 'Row approved.',
+        'roadmap.recusada': 'Row rejected.',
+        'roadmap.reaberta': 'Row sent back for review.',
+        'roadmap.marcados': '{n} row(s) marked as sent.',
+        'roadmap.semAprovadas': 'There is no approved row waiting to be sent.',
+        'roadmap.pacoteGerado': 'Package built with {n} item(s).',
+        'roadmap.pacoteComProblema': '{n} row(s) were left out for missing required data.',
+        'roadmap.erroSemChave': 'no roadmap key',
+        'roadmap.erroSemProduto': 'no module',
+        'roadmap.erroSemTitulo': 'no item name',
+        'roadmap.erroSemData': 'no start or finish date',
+        'roadmap.erroSumiu': 'That row is no longer in the queue. Reload the page.',
+        'roadmap.erroCancelado': 'That row was cancelled: the impediment was deleted or reopened.',
+        'roadmap.falha': 'Could not save: {erro}',
 
         'semToken': 'Without a GitHub token the administration is view only.',
         'salvo': 'Registry saved.',

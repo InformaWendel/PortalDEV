@@ -1255,6 +1255,15 @@ table.pd-tabela { width: 100%; border-collapse: collapse; }
 .imp-form { display: flex; flex-direction: column; gap: 14px; }
 .imp-form .pd-modal-titulo { margin-bottom: 0; }
 .imp-form .pd-modal-acoes { margin-top: 2px; }
+.imp-roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--pd-border);
+}
+
+.imp-roadmap-titulo { font-size: 12px; font-weight: 650; text-transform: uppercase; letter-spacing: 0.06em; color: var(--pd-primary); }
 .imp-duracao { margin: 0; font-size: 12.5px; color: var(--pd-text-suave); }
 .imp-duracao strong { color: var(--pd-info); }
 
@@ -1404,6 +1413,88 @@ table.pd-tabela { width: 100%; border-collapse: collapse; }
 }
 
 .adm-rodape-pendente { color: var(--pd-alerta); font-weight: 550; }
+
+/* ---------- Administração · fila do roadmap ---------- */
+
+.adm-rm-graficos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+/* O entregável é o texto que decide a aprovação: ganha a largura da tabela. */
+.adm-rm-cel-texto { min-width: 260px; max-width: 480px; }
+.adm-rm-titulo { color: var(--pd-primary); font-size: 11.5px; margin-top: 4px; }
+.adm-rm-recusa {
+  color: var(--pd-text-suave);
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 8px;
+  border-left: 2px solid var(--pd-border-forte);
+}
+
+.adm-rm-origem {
+  background: var(--pd-surface-2);
+  border: 1px solid var(--pd-border);
+  border-radius: var(--pd-raio-p);
+  padding: 10px 12px;
+}
+
+.adm-rm-origem-rotulo {
+  font-size: 10.5px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pd-text-fraco);
+  margin-bottom: 4px;
+}
+
+.adm-rm-origem-texto { margin: 0; font-size: 13px; line-height: 1.45; }
+.adm-rm-origem-meta { margin-top: 6px; font-size: 11.5px; color: var(--pd-text-suave); }
+
+.adm-rm-previa {
+  border: 1px solid var(--pd-primary-borda);
+  border-radius: var(--pd-raio-p);
+  padding: 10px 12px;
+  background: var(--pd-primary-suave);
+}
+
+.adm-rm-previa-titulo {
+  font-size: 10.5px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pd-primary);
+  margin-bottom: 6px;
+}
+
+.adm-rm-previa-lista {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 12px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.adm-rm-previa-lista dt { color: var(--pd-text-suave); }
+.adm-rm-previa-lista dd { margin: 0; }
+
+/* O comando do envio é para copiar inteiro: quebra em vez de rolar na horizontal. */
+.adm-rm-comando {
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--pd-surface-3);
+  border: 1px solid var(--pd-border);
+  border-radius: var(--pd-raio-p);
+  font-family: var(--pd-mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--pd-text);
+  white-space: pre-wrap;
+  word-break: break-all;
+  user-select: all;
+}
 
 /* ---------- Rodapé ---------- */
 

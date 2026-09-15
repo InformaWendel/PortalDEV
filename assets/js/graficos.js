@@ -1,5 +1,6 @@
 /**
- * Controle de Impedimentos — gráficos em SVG puro, sem biblioteca externa.
+ * Gráficos em SVG puro, sem biblioteca externa. Compartilhado pelas ferramentas:
+ * o painel de Impedimentos e o acompanhamento da fila do roadmap desenham daqui.
  *
  * Cada gráfico é um <svg> com viewBox e largura fluida: acompanha o contêiner
  * sem precisar de listener de resize. Uma série só por gráfico, então não há
@@ -326,8 +327,7 @@
     conteiner.appendChild(svg);
   }
 
-  window.Impedimentos = window.Impedimentos || {};
-  window.Impedimentos.Graficos = {
+  window.Graficos = {
     barrasHorizontais: barrasHorizontais,
     serieArea: serieArea,
     esconderDica: esconderDica,

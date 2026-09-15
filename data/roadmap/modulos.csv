@@ -1,0 +1,29 @@
+modulo,nome,frente,ativo
+opec,OPEC,S,sim
+financeiro,Financeiro,S,sim
+comercial,Gestão Comercial,S,sim
+news,Jornalismo,S,sim
+gestao-ouvintes,Gestão de Ouvintes,S,sim
+voicetracker,VoiceTracker,S,sim
+continuidade,DisasterRecovery,S,sim
+inforadio-web,InfoRadio Web,S,sim
+portal,Portal do Cliente,S,sim
+glic,GLic,S,sim
+midia,Distribuição de Mídia,S,sim
+multiplayout,MultiPlayout,S,sim
+monitoramento,Monitoramento e Sinal,S,sim
+inforemote,InfoRemote,S,sim
+playout,Playout,P,sim
+prog-playout,PROG × PLAYOUT,P,sim
+programacao-cn,CN,P,sim
+podcast,Podcast,P,sim
+editor,Editor de Mídias,P,sim
+sincronizador,Sincronizador,P,sim
+integracao-go,Integração GO,P,sim
+ia-produto,IA no Produto,P,sim
+news-premise,Jornalismo Premise,P,sim
+horario-politico,Horário Político,P,sim
+licenciamento,Licenciamento no Produto,T,sim
+tools,InfoRadioTools,T,sim
+experiencia,Interface e Experiência,T,sim
+conformidade,Conformidade de Dados,T,sim
