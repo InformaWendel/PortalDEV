@@ -7,7 +7,7 @@
  *   #/                        início — as ferramentas do papel de quem entrou
  *   #/qa/...                  Portal QA
  *   #/impedimentos[/painel]   Controle de Impedimentos
- *   #/admin[/permissoes]      Administração: usuários e permissões
+ *   #/admin[/permissoes|/roadmap]  Administração: usuários, permissões e fila do roadmap
  */
 (function () {
   'use strict';
@@ -292,6 +292,17 @@
     }
 
     const partes = [];
+
+    // Primeiro de todos: gravar pela versão antiga pode deixar dado de fora, e nenhum
+    // outro aviso vale mais que recarregar.
+    if (window.Versao && window.Versao.desatualizada()) {
+      partes.push(
+        aviso('pd-aviso-alerta', t('banner.versaoTitulo'), t('banner.versaoAjuda'),
+          '<button type="button" class="pd-btn pd-btn-primario pd-btn-p" data-acao="recarregarPagina">' +
+          esc(t('acao.recarregar')) + '</button>')
+      );
+    }
+
     const mod = moduloAtual();
     if (mod && mod.permitido() && mod.banner) partes.push(mod.banner());
 
@@ -634,6 +645,8 @@
     if (nome === 'senha') return abrirModalSenha();
     if (nome === 'removerToken') return removerToken();
     if (nome === 'fecharModal') return window.UI.fecharModal();
+    // Pendência de gravação ainda passa pelo aviso de sair da página, no beforeunload.
+    if (nome === 'recarregarPagina') return window.location.reload();
   }
 
   function aoEnviar(evento) {
@@ -698,6 +711,9 @@
     render();
 
     carregarRegistro().then(entrarNaRota);
+
+    // A página fica aberta o dia todo: quem abriu de manhã precisa saber que saiu versão nova.
+    window.Versao.iniciar(renderBanners);
   }
 
   window.App = {

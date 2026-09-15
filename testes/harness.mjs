@@ -100,8 +100,12 @@ export function servirPortal(porta) {
  * `ausentes` responde 404 pela API e pelo site publicado; `falhas` responde 500 no
  * PUT. Os dois viram `Set` em window.__ausentes e window.__falhas, mutáveis durante o
  * teste — é assim que se simula a rede caindo e voltando.
+ *
+ * `sobrescritas` troca o que o site publicado responde num caminho: texto vira 200
+ * com aquele corpo, `{ status }` vira resposta vazia com aquele código. É como se
+ * simula uma publicação nova com a página aberta. Mutável em window.__sobrescritas.
  */
-export function simulacaoGithub({ arquivos = {}, tokens = [], ausentes = [], falhas = [] } = {}) {
+export function simulacaoGithub({ arquivos = {}, tokens = [], ausentes = [], falhas = [], sobrescritas = {} } = {}) {
   const repo = CONFIG.github.owner + '/' + CONFIG.github.repo;
   return `
 (function () {
@@ -121,6 +125,7 @@ export function simulacaoGithub({ arquivos = {}, tokens = [], ausentes = [], fal
   window.__baixados = [];
   window.__ausentes = new Set(${JSON.stringify(ausentes)});
   window.__falhas = new Set(${JSON.stringify(falhas)});
+  window.__sobrescritas = ${JSON.stringify(sobrescritas)};
   window.__arquivo = (c) => ARQUIVOS[c];
   window.__semear = (c, texto) => { ARQUIVOS[c] = texto; sha(c); };
 
@@ -133,6 +138,10 @@ export function simulacaoGithub({ arquivos = {}, tokens = [], ausentes = [], fal
     const metodo = ((opcoes && opcoes.method) || 'GET').toUpperCase();
     const local = url.replace(location.origin + '/', '').split('?')[0];
     if (window.__ausentes.has(local)) return Promise.resolve(new Response('nao encontrado', { status: 404 }));
+    if (Object.prototype.hasOwnProperty.call(window.__sobrescritas, local)) {
+      const s = window.__sobrescritas[local];
+      return Promise.resolve(typeof s === 'string' ? new Response(s, { status: 200 }) : new Response('', { status: s.status }));
+    }
 
     if (url === BASE) {
       return Promise.resolve(json({ full_name: '${repo}', owner: { login: '${CONFIG.github.owner}' } },

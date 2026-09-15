@@ -67,6 +67,7 @@ PortalDEV/
         ├── github.js             token por usuário, leitura, gravação, ler-alterar-gravar
         ├── auth.js               login, sessão, troca e gravação de senha
         ├── acesso.js             papéis e permissões (pode, podeFerramenta)
+        ├── versao.js             percebe versão nova publicada e pede para recarregar
         ├── qa/                   i18n.js · store.js · telas.js
         ├── impedimentos/         i18n.js · datahora.js · store.js · roadmap.js ·
         │                         calendario.js · painel.js · telas.js
@@ -151,6 +152,20 @@ site publicado (`fetch` relativo); com token vem da API. Se a API recusar o toke
 leitura cai no site publicado e `Github.estado.alerta = 'recusado'` aciona o aviso.
 No login o cadastro é sempre relido — pela API quando o navegador já tem o token de
 quem está entrando, senão pelo site publicado.
+
+## Versão nova com a página aberta
+
+O portal fica aberto o dia todo e o roteamento é por hash: sem recarregar, quem abriu
+de manhã segue com o código da manhã. `versao.js` assina o conteúdo dos arquivos que a
+página carregou — index, scripts e CSS — e confere a cada 5 minutos e ao voltar à aba.
+Se o site publicado mudou, a casca mostra o aviso com **Recarregar**, antes de qualquer
+outro. Não há número de versão para subir, e commit só de dados não acende o aviso.
+Arquivo que a página carregou e sumiu do site conta como versão nova; erro de rede e
+5xx não contam.
+
+> Em 15/09/2026, antes disso existir, um impedimento finalizado uma hora depois da
+> publicação da fila do roadmap saiu sem módulo, pela versão antiga, e foi corrigido à
+> mão. Publicação que muda o que se grava ainda merece aviso à equipe.
 
 ## A fila do roadmap e o OPSView
 
@@ -342,9 +357,8 @@ não apenas o que já foi codificado:
 Não há framework de teste. O harness está em `testes/` — servidor de arquivo,
 Chrome headless pelo protocolo de DevTools e a API de conteúdo do GitHub **simulada
 em memória** por um script injetado antes da página, tudo em Node puro, sem
-dependência. `node testes/fila-do-roadmap.mjs` e `node testes/captura-no-impedimento.mjs` rodam o
-que já está coberto; como
-escrever caso novo está em `testes/LEIAME.md`. Percorrer:
+dependência. Cada suíte roda com `node testes/<suíte>.mjs`; a lista delas e como
+escrever caso novo estão em `testes/LEIAME.md`. Percorrer:
 
 - login com senha errada, senha compartilhada e senha pessoal; usuário inativo;
 - dev sem token (modo leitura), com token (somente consulta), sem acesso a `#/admin`;
@@ -372,6 +386,8 @@ escrever caso novo está em `testes/LEIAME.md`. Percorrer:
   dependência entre permissões, gravação de outro gestor preservada, trava do último
   administrador, papel em uso, rascunho descartado no logout;
 - hash desconhecido (inclusive `#/constructor`) cai no início;
+- versão nova publicada com a página aberta acende o aviso de recarregar; arquivo que
+  sumiu no deploy também; commit só de dados, erro de rede e 5xx não;
 - inglês; 400px de largura sem rolagem horizontal.
 
 Olhe as capturas de tela: o teste confere comportamento, não layout.

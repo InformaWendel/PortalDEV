@@ -32,6 +32,7 @@
       'acao.cancelar': 'Cancelar',
       'acao.salvar': 'Salvar',
       'acao.fechar': 'Fechar',
+      'acao.recarregar': 'Recarregar',
 
       'carregando': 'Carregando…',
 
@@ -83,6 +84,9 @@
       'banner.senhaTitulo': 'Defina a sua senha pessoal',
       'banner.senhaAjuda':
         'Você entrou com a senha compartilhada do antigo Controle de Impedimentos. Troque-a por uma senha só sua — é ela que carimba os seus registros.',
+      'banner.versaoTitulo': 'Saiu uma versão nova do portal',
+      'banner.versaoAjuda':
+        'Recarregue a página antes de continuar. Registrar pela versão antiga pode deixar dados de fora — como o módulo do roadmap ao finalizar um impedimento.',
 
       'token.titulo': 'Token do GitHub',
       'token.configurar': 'Configurar token',
@@ -152,6 +156,7 @@
       'acao.cancelar': 'Cancel',
       'acao.salvar': 'Save',
       'acao.fechar': 'Close',
+      'acao.recarregar': 'Reload',
 
       'carregando': 'Loading…',
 
@@ -203,6 +208,9 @@
       'banner.senhaTitulo': 'Set your personal password',
       'banner.senhaAjuda':
         'You signed in with the shared password of the former Impediment Tracker. Replace it with a password of your own — it is what stamps your records.',
+      'banner.versaoTitulo': 'A new version of the portal is out',
+      'banner.versaoAjuda':
+        'Reload the page before going on. Saving from the old version can leave data out — such as the roadmap module when finishing an impediment.',
 
       'token.titulo': 'GitHub token',
       'token.configurar': 'Set up token',

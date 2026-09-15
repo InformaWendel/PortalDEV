@@ -237,10 +237,14 @@ try {
     const chaves = ['roadmap.semCatalogo', 'roadmap.aindaSemCatalogo', 'roadmap.tentarDeNovo', 'roadmap.tentando',
       'roadmap.pendente', 'roadmap.bannerTitulo', 'roadmap.bannerAjuda', 'roadmap.reenviar', 'roadmap.reenviado',
       'erro.semCatalogo'];
+    window.I18N.definir('pt');
+    const emPt = chaves.map(function (k) { return window.I18N.t('imp.' + k); });
+    window.I18N.definir('en');
     const faltam = [];
-    ['pt', 'en'].forEach(function (idioma) {
-      window.I18N.definir(idioma);
-      chaves.forEach(function (k) { if (window.I18N.t('imp.' + k) === 'imp.' + k) faltam.push(idioma + ':' + k); });
+    chaves.forEach(function (k, i) {
+      if (emPt[i] === 'imp.' + k) faltam.push('pt:' + k);
+      // Chave que falta em inglês cai no português: texto igual nos dois é chave sem tradução.
+      if (window.I18N.t('imp.' + k) === emPt[i]) faltam.push('en:' + k);
     });
     window.I18N.definir('pt');
     return faltam;
