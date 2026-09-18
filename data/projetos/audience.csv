@@ -101,7 +101,7 @@ QA-044,aud-promocoes,,,E4/E8/E9/E15,,alta,funcional,Ciclo do prêmio,Prize lifec
 - Registro ",,Alisson Delatim,2026-09-18,0,,"Catálogo anterior: QA-AUD-90, QA-AUD-91, QA-AUD-93, QA-AUD-120",
 QA-045,aud-promocoes,,,E4/E8/E9/E15,,media,interface,Recibo,Receipt,"Abrir recibo de entrega, pré-visualizar, salvar PDF e imprimir fisicamente.","Open the delivery receipt, preview it, save as PDF and print it physically.",Dados de ouvinte/prêmio/data corretos; sem corte de campos/assinatura; impressão física registrada separadamente do PDF.,Correct listener/prize/date data; no clipped fields/signature; physical printing recorded separately from the PDF.,em_teste,sim,"- Gerado recibo de entrega.
 
-- Feito a pré-visulização.
+- Feito a pré-visualização.
 
 - Salvado o PDF em minha maquina local.",,Alisson Delatim,2026-09-18,0,,Catálogo anterior: QA-AUD-92,
 QA-AUD-26,aud-promocoes,/:tenant/audience/draws/new,Frontends/InfoRadio.Front.React/src/features/audience/draw,E4; A-024,Onda 1,alta,funcional,Tratar quem está sem o dado do filtro,Handle listeners missing the filtered data,,,"Dá para incluir ou excluir os não informados, e a tela diz quantos saíram por falta de dado","Not-informed listeners can be included or excluded, and the screen says how many were dropped for missing data",nao_testado,nao,,,,,0,,,
