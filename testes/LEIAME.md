@@ -9,6 +9,7 @@ injetado antes da página.
 node testes/fila-do-roadmap.mjs
 node testes/captura-no-impedimento.mjs
 node testes/versao-nova.mjs
+node testes/qa-plano.mjs
 ```
 
 Cada um sai `0` quando tudo passa e `1` quando algo falha, com a lista no fim.
@@ -33,6 +34,7 @@ que exercita o ciclo ler-alterar-gravar de `Github.alterarArquivo`.
 | `fila-do-roadmap.mjs` | Triagem em `#/admin/roadmap`, pacote do OPSView, trava de permissão, item órfão, inglês e 400px |
 | `captura-no-impedimento.mjs` | O lado de quem registra: finalizar sem catálogo, CSV antigo ganhando as colunas, fila que falha sem pintar o selo, reconciliação ao entrar |
 | `versao-nova.mjs` | Aviso de versão nova com a página aberta: script mudado e arquivo sumido acendem; dado, erro de rede e 5xx não |
+| `qa-plano.mjs` | Portal QA no formato do plano executável: os quatro catálogos na estrutura nova e exportados idênticos, seções e sumário, conferência e anotações gravadas, conflito com o colega, gaveta, catálogo de 19 colunas, papel que só consulta, inglês e 400px |
 
 As capturas saem em `testes/*.png` e não são versionadas. **Olhe-as:** o teste confere
 comportamento, não layout.
@@ -53,5 +55,8 @@ comportamento, não layout.
 - Conferência de tradução compara inglês com português, e não com a chave: `I18N.t`
   cai no português quando falta o inglês, então chave faltando só em inglês devolve
   texto, não a chave.
+- Captura de tela é da página inteira: filtre antes de capturar uma lista longa. O plano
+  do Audience inteiro passa da altura que o Chrome headless consegue capturar, e a
+  suíte trava ali em vez de falhar.
 - `nav.excecoes` acumula toda exceção do navegador. Uma asserção no fim de cada suíte
   exigindo que esteja vazia pega o erro que não derrubou nada visível.

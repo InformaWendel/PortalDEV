@@ -9,7 +9,8 @@ Portal estático que reúne as ferramentas do time de desenvolvimento da Informa
 Solutions sobre **um login, um cadastro de permissões e um token do GitHub**:
 
 - **Portal QA** (`#/qa`) — testes de qualidade por projeto: planejado, em andamento,
-  concluído e retrabalho.
+  concluído e retrabalho. Cada projeto é um plano executável — seções com preparação,
+  casos com passos e resultado esperado, e a conferência do QA em cada um.
 - **Controle de Impedimentos** (`#/impedimentos`) — interrupções do dia a dia, com
   cronômetro, calendário e painel consolidado. Ao finalizar, o analista classifica o
   que fez num módulo do roadmap e escreve o entregável.
@@ -84,7 +85,7 @@ ferramenta (textos → dados → telas), e `app.js` por último.
 |---|---|---|
 | `#/` | Início: ferramentas do papel e o que ele permite | sessão |
 | `#/qa` · `#/qa/guia` | Visão geral e guia do QA | `qa.consultar` |
-| `#/qa/p/<id>` · `#/qa/p/<id>/casos` | Painel e catálogo do projeto | `qa.consultar` (registrar: `qa.registrar`) |
+| `#/qa/p/<id>` · `#/qa/p/<id>/casos` | Painel e plano executável do projeto | `qa.consultar` (registrar: `qa.registrar`) |
 | `#/impedimentos` | Meu calendário | `impedimentos.registrar` |
 | `#/impedimentos/painel` | Painel consolidado | `impedimentos.painel` |
 | `#/admin` · `#/admin/permissoes` | Usuários e matriz | `admin.usuarios` |
@@ -120,9 +121,12 @@ com o `sha` da versão lida). Há dois caminhos, e os dois resolvem conflito rel
 reaplicando só o que este navegador alterou (até 3 tentativas):
 
 - **Portal QA** — `QA.Store.registrar()` aplica em memória e põe o caso numa fila;
-  após `atrasoGravacao` ms sem tecla, grava o CSV inteiro. Fechar a gaveta, sair da
-  ferramenta ou fazer logout força a gravação. Há um commit por projeto de cada vez:
-  o que for registrado com o PUT em voo continua na fila e sai logo em seguida.
+  após `atrasoGravacao` ms sem tecla, grava o CSV inteiro. Vale igual para a caixa, a
+  situação e as anotações digitadas direto no plano, e para a gaveta. Fechar a gaveta,
+  sair da ferramenta ou fazer logout força a gravação. Há um commit por projeto de cada
+  vez: o que for registrado com o PUT em voo continua na fila e sai logo em seguida. O
+  plano não é redesenhado a cada tecla — `atualizarCaso()` mexe só na faixa, na caixa,
+  na situação e na assinatura, para quem digita não perder o campo.
 - **Impedimentos e Administração** — `Github.alterarArquivo(caminho, mutador)`: lê,
   aplica o mutador sobre a versão mais nova e grava. O mutador pode lançar erro (ex.:
   impedimento já aberto, último administrador) para abortar. A matriz de permissões
@@ -225,21 +229,35 @@ chave desconhecida.
 
 ### `data/projetos/<id>.csv` — catálogo de casos
 
-`id,modulo,rota,stub,uc,rf,prioridade,tipo,titulo_pt,titulo_en,criterio_pt,criterio_en,status,testado_por,data_teste,devolucoes,ultima_devolucao,referencia,observacoes`
+`id,modulo,rota,stub,uc,rf,prioridade,tipo,titulo_pt,titulo_en,passos_pt,passos_en,criterio_pt,criterio_en,status,verificado,execucao,falha,testado_por,data_teste,devolucoes,ultima_devolucao,referencia,observacoes`
+
+É o formato do **plano executável**, padrão de todo projeto desde 18/09/2026: cada
+módulo é uma seção com texto de preparação, cada caso tem cenário, passos e resultado
+esperado, e o QA registra a conferência, o que testou e a possível falha. Veio do app
+que o QA do Audience fez à parte para trabalhar assim.
 
 | Coluna | Origem | Descrição |
 |---|---|---|
-| `id` | catálogo | `QA-<MOD>-<NN>` |
-| `modulo` | catálogo | Chave do módulo; o rótulo bilíngue mora em `qa/i18n.js` |
+| `id` | catálogo | `QA-<MOD>-<NN>`. Exceção: `QA-NNN` no Audience, os ids do plano do QA |
+| `modulo` | catálogo | Chave do módulo — a seção do plano; nome e preparação bilíngues moram em `qa/i18n.js` |
 | `rota` · `stub` | catálogo | Onde a funcionalidade é exercida · componente de referência |
 | `uc` / `rf` | catálogo | Referências do SRS |
-| `prioridade` | catálogo | `alta` · `media` · `baixa` |
+| `prioridade` | catálogo | `alta` · `media` · `baixa`; a tela mostra P0 · P1 · P2 |
 | `tipo` | catálogo | `funcional` · `interface` · `permissao` · `integracao` · `dados` |
-| `titulo_pt` / `titulo_en` · `criterio_pt` / `criterio_en` | catálogo | O que testar · como validar |
+| `titulo_pt` / `titulo_en` | catálogo | Cenário: o que testar |
+| `passos_pt` / `passos_en` | catálogo | Roteiro de execução. Vazio mostra "Passos a detalhar" |
+| `criterio_pt` / `criterio_en` | catálogo | Resultado esperado |
 | `status` | **QA** | Ver situações abaixo |
+| `verificado` | **QA** | `sim`/`nao` — a conferência do QA; ver regras abaixo |
+| `execucao` · `falha` | **QA** | O que foi testado (ambiente, massa, evidência) · possível falha. Texto livre |
 | `testado_por` · `data_teste` | **QA** | Preenchidos sozinhos pela sessão (`AAAA-MM-DD`, dia local) |
 | `devolucoes` · `ultima_devolucao` | **QA** | Contador de voltas; sobe sozinho a cada `devolvida` |
 | `referencia` · `observacoes` | **QA** | Texto livre |
+
+O portal grava sempre nesta ordem. Catálogo em formato anterior é lido normalmente e
+ganha as colunas na próxima gravação — sem `verificado`, conta como verificado o caso
+com desfecho e `testado_por` preenchido. Coluna que o portal não conhece não se perde:
+vai para o fim do arquivo.
 
 ### `data/impedimentos/<usuario>.csv`
 
@@ -314,6 +332,20 @@ cliente e o que já está de pé no ambiente. **Não remover essa situação.**
 - **Liberado** — `liberada` sobre o total.
 - **Retrabalho** — casos com `devolucoes >= 1` sobre os casos com desfecho; ao lado, o
   total de devoluções e os reincidentes (`devolucoes >= 2`).
+- **Verificados** — `verificado = sim` sobre o total; ao lado, os casos com `falha`
+  preenchida. `nao_aplicavel` sai das duas contas.
+
+**Verificado e situação andam juntos** (`acoplarVerificacao` no `qa/store.js`), para o
+painel não chamar de "não testado" o que o QA já executou:
+
+- marcar a caixa, ou escrever em `execucao` ou `falha`, num caso `nao_testado` o põe
+  `em_teste` — e assina, como toda troca de situação;
+- dar um desfecho (`liberada`, `devolvida`, `bloqueada`, `nao_implementada`) marca
+  verificado; voltar a `nao_testado` desmarca;
+- desmarcar não mexe na situação: é o QA avisando que vai conferir de novo.
+
+A faixa na borda do caso segue o app do QA: âmbar com falha registrada, verde verificado
+sem falha.
 
 ### Dimensionar o catálogo de um projeto novo
 
@@ -324,8 +356,11 @@ não apenas o que já foi codificado:
    serviços.
 2. Cada tela e cada ação discreta vira um caso; `stub` aponta o componente que define
    o comportamento esperado.
-3. Agrupar em módulos que reflitam o domínio, não a estrutura de pastas.
-4. Escrever título e critério nos dois idiomas.
+3. Agrupar em módulos que reflitam o domínio, não a estrutura de pastas. O módulo é a
+   seção do plano, na ordem em que aparece no CSV: ordene as linhas na ordem em que o
+   plano deve ser executado.
+4. Escrever cenário, passos e resultado esperado nos dois idiomas, e a preparação de
+   cada seção (onde entrar, que perfil, que massa).
 5. O que ainda não existe no ambiente entra como `nao_implementada` conforme o QA
    passar.
 
@@ -333,7 +368,8 @@ não apenas o que já foi codificado:
 
 1. Criar `data/projetos/<id>.csv` com as colunas acima.
 2. Acrescentar a linha em `data/projetos.csv`.
-3. Incluir os rótulos pt/en dos módulos novos em `MODULOS` no `qa/i18n.js`.
+3. Incluir em `MODULOS` no `qa/i18n.js` o nome pt/en de cada módulo novo e, em
+   `preparo`, o texto de preparação da seção nos dois idiomas.
 
 > **Chave de módulo é global — prefixe por projeto** (`news-cadastros`, `ed-pontos`,
 > `vt-hotkeys`, `aud-sorteios`).
@@ -345,11 +381,23 @@ não apenas o que já foi codificado:
 | `news` | InfoRadio News (Jornalismo) | 180 | Protótipo validado do módulo Jornalismo — 43 rotas, ~155 componentes |
 | `editor` | Editor de Mídias | 45 | Integração do novo editor de áudio e vídeo entregue em 2026 na Central de Negócios |
 | `voicetracker` | VoiceTracker MVP II | 60 | Backlog de produto do MVP 2 e do MVP 3 — 21 cards, um caso por critério "Pronto quando" |
-| `audience` | InfoRadio Audience (Gestão de Ouvintes) | 131 | 17 épicos do plano Audience, conferidos contra a implementação do serviço e do front React |
+| `audience` | InfoRadio Audience (Gestão de Ouvintes) | 138 | Plano executável do QA (83 casos, `QA-001` a `QA-083`, em 11 seções) mais 55 casos do catálogo por épico que o plano não cobre |
 
 > **Audience: a implementação viva está no front React.** O módulo Angular é a
 > geração anterior; olhar só o Angular leva a concluir, errado, que o recurso não
 > foi implementado.
+
+> **Audience: de onde veio o catálogo.** Em 18/09/2026 o plano que Alisson Delatim
+> (QA) mantinha num app à parte foi trazido para o portal, com as anotações dele
+> assinadas e datadas de 17/09 (o `db.json` não guardava data por caso). Verificado sem
+> falha virou `liberada`; verificado com falha, ou só anotado, virou `em_teste`. Dos 131
+> casos do catálogo por épico, 76 eram duplicados de um caso do plano e saíram: o id de
+> cada um está em `referencia` do caso que o absorveu ("Catálogo anterior: …"), e o que
+> tinham registrado foi junto — as observações da varredura de 09/09 em `observacoes`,
+> e a assinatura e a devolução do `QA-AUD-21` no `QA-039`. A situação
+> `nao_implementada` dos absorvidos **não** foi levada: o plano do QA é mais novo que a
+> varredura, e o desfecho é dele. Os 55 que ficaram entraram na seção do plano do assunto
+> deles, sem passos.
 
 ## Permissões — acrescentar uma
 
@@ -386,6 +434,11 @@ escrever caso novo estão em `testes/LEIAME.md`. Percorrer:
 - `#/admin/roadmap` com papel sem `admin.usuarios` cai em "sem acesso" e não lê a fila;
 - QA: registrar, contador de voltas, **conflito** com alteração alheia preservada,
   alteração feita com o commit em voo, catálogo que falhou relido ao entrar;
+- plano executável: seções na ordem do CSV com preparação, passos e resultado; marcar
+  verificado ou anotar num não testado o põe em teste e assina; desfecho marca e "não
+  testado" desmarca; anotação com vírgula, aspas e quebra de linha grava intacta;
+  anotar na gaveta não tira o cursor; catálogo de 19 colunas ganha as novas na primeira
+  gravação; quem só consulta vê texto, sem campo;
 - **exportar sem editar devolve cada catálogo idêntico ao arquivo** — senão o
   primeiro commit gera um diff falso no catálogo inteiro;
 - Administração: novo usuário, duplicado, desativar a si mesmo, matriz com

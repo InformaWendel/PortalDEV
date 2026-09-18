@@ -8,9 +8,43 @@
 (function () {
   'use strict';
 
+  /**
+   * Colunas do catálogo, na ordem em que são gravadas: primeiro o que o catálogo
+   * define (cenário, passos, resultado esperado), depois o registro do QA.
+   */
+  const COLUNAS = [
+    'id',
+    'modulo',
+    'rota',
+    'stub',
+    'uc',
+    'rf',
+    'prioridade',
+    'tipo',
+    'titulo_pt',
+    'titulo_en',
+    'passos_pt',
+    'passos_en',
+    'criterio_pt',
+    'criterio_en',
+    'status',
+    'verificado',
+    'execucao',
+    'falha',
+    'testado_por',
+    'data_teste',
+    'devolucoes',
+    'ultima_devolucao',
+    'referencia',
+    'observacoes',
+  ];
+
   /** Colunas que o portal deixa preencher pela tela; o resto vem do catálogo. */
   const CAMPOS_EDITAVEIS = [
     'status',
+    'verificado',
+    'execucao',
+    'falha',
     'testado_por',
     'data_teste',
     'devolucoes',
@@ -127,14 +161,33 @@
     return carga;
   }
 
+  /**
+   * Catálogo em formato anterior ganha as colunas que faltam na próxima gravação,
+   * vazias. Coluna que o portal não conhece continua no arquivo, no fim: o CSV
+   * pode ter sido editado à mão, e reescrevê-lo não pode apagar nada.
+   */
+  function colunasDoArquivo(lidas) {
+    return COLUNAS.concat(
+      lidas.filter(function (coluna) {
+        return coluna && COLUNAS.indexOf(coluna) === -1;
+      })
+    );
+  }
+
   function aplicarCsv(projetoId, texto) {
     const resultado = window.CSV.parse(texto);
-    estado.catalogos[projetoId] = {
-      colunas: resultado.colunas,
-      linhas: resultado.linhas.filter(function (linha) {
-        return linha.id && linha.id.trim() !== '';
-      }),
-    };
+    const linhas = resultado.linhas.filter(function (linha) {
+      return linha.id && linha.id.trim() !== '';
+    });
+    // Arquivo de antes da conferência: caso com desfecho assinado foi conferido por
+    // quem assinou. É a mesma regra que migrou os catálogos que já existiam.
+    if (resultado.colunas.indexOf('verificado') === -1) {
+      linhas.forEach(function (linha) {
+        linha.verificado =
+          COM_DESFECHO.indexOf(linha.status) !== -1 && String(linha.testado_por || '').trim() !== '' ? 'sim' : 'nao';
+      });
+    }
+    estado.catalogos[projetoId] = { colunas: colunasDoArquivo(resultado.colunas), linhas: linhas };
   }
 
   /* ---------------- leitura ---------------- */
@@ -191,6 +244,31 @@
   }
 
   /**
+   * "Verificado" é a conferência do QA; a situação é o desfecho que alimenta as
+   * métricas. As duas andam juntas para o painel não dizer "não testado" de um
+   * caso que o QA já executou:
+   *  - marcar, ou escrever o que foi testado ou a falha, num caso não testado o
+   *    põe em teste;
+   *  - dar um desfecho marca verificado, e voltar a "não testado" desmarca.
+   * Desmarcar não mexe na situação: é o QA avisando que vai conferir de novo.
+   */
+  function acoplarVerificacao(linha, mudancas) {
+    const registrouExecucao =
+      mudancas.verificado === 'sim' ||
+      (mudancas.execucao !== undefined && String(mudancas.execucao).trim() !== '') ||
+      (mudancas.falha !== undefined && String(mudancas.falha).trim() !== '');
+    const situacaoAtual = linha.status || 'nao_testado';
+
+    if (registrouExecucao && mudancas.status === undefined && situacaoAtual === 'nao_testado') {
+      mudancas.status = 'em_teste';
+    }
+    if (mudancas.verificado === undefined && mudancas.status !== undefined && mudancas.status !== situacaoAtual) {
+      if (COM_DESFECHO.indexOf(mudancas.status) !== -1) mudancas.verificado = 'sim';
+      else if (mudancas.status === 'nao_testado') mudancas.verificado = 'nao';
+    }
+  }
+
+  /**
    * Aplica a alteração em memória e agenda o commit.
    *
    * A contagem de devoluções é automática: cada entrada em "devolvida" vinda de
@@ -202,6 +280,7 @@
 
     const hoje = dataLocal(new Date());
     const mudancas = Object.assign({}, campos);
+    acoplarVerificacao(linha, mudancas);
 
     if (mudancas.status !== undefined && mudancas.status !== linha.status) {
       // Quem mexeu no resultado assina o teste, com a data.
@@ -233,8 +312,9 @@
     const linha = linhaDe(projetoId, id);
     if (!linha) return;
     const campos = {};
+    const vazio = { devolucoes: '0', status: 'nao_testado', verificado: 'nao' };
     CAMPOS_EDITAVEIS.forEach(function (campo) {
-      campos[campo] = campo === 'devolucoes' ? '0' : campo === 'status' ? 'nao_testado' : '';
+      campos[campo] = vazio[campo] !== undefined ? vazio[campo] : '';
     });
     const fila = (estado.pendentes[projetoId] = estado.pendentes[projetoId] || {});
     fila[id] = Object.assign({}, campos);
@@ -270,8 +350,9 @@
     const projeto = projetoPorId(projetoId);
     const quem = estado.autor ? ' por ' + estado.autor : '';
     if (ids.length === 1) {
-      const situacao = fila[ids[0]].status;
-      return 'chore(qa): ' + ids[0] + (situacao ? ' ' + situacao : ' atualizado') + quem;
+      const doCaso = fila[ids[0]];
+      const resumo = doCaso.status || (doCaso.verificado === 'sim' ? 'verificado' : 'atualizado');
+      return 'chore(qa): ' + ids[0] + ' ' + resumo + quem;
     }
     return 'chore(qa): ' + (projeto ? projeto.id : projetoId) + ' — ' + ids.length + ' casos atualizados' + quem;
   }
@@ -376,6 +457,14 @@
 
   /* ---------------- métricas ---------------- */
 
+  function verificado(caso) {
+    return caso.verificado === 'sim';
+  }
+
+  function temFalha(caso) {
+    return String(caso.falha || '').trim() !== '';
+  }
+
   /** "Não se aplica" sai do denominador — não é dívida de teste nem de entrega. */
   function metricas(lista) {
     const todos = lista || [];
@@ -413,9 +502,15 @@
       return n >= 2;
     }).length;
 
+    const verificados = consideraveis.filter(verificado).length;
+    const comFalha = consideraveis.filter(temFalha).length;
+
     return {
       total: todos.length,
       consideraveis: consideraveis.length,
+      verificados: verificados,
+      comFalha: comFalha,
+      verificacao: consideraveis.length ? verificados / consideraveis.length : 0,
       comDesfecho: comDesfecho.length,
       liberadas: conta('liberada'),
       devolvidas: conta('devolvida'),
@@ -497,6 +592,9 @@
     porStatus: porStatus,
     porModulo: porModulo,
     exportarCsv: exportarCsv,
+    verificado: verificado,
+    temFalha: temFalha,
+    colunas: COLUNAS,
     camposEditaveis: CAMPOS_EDITAVEIS,
     comDesfecho: COM_DESFECHO,
     emAbertoStatus: EM_ABERTO,

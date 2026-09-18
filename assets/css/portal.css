@@ -659,6 +659,7 @@ textarea.pd-campo { resize: vertical; min-height: 62px; }
 .pd-kpi-erro .pd-kpi-valor { color: var(--pd-erro); }
 .pd-kpi-erro .pd-kpi-barra i { background: var(--pd-erro); }
 .pd-kpi-info .pd-kpi-valor { color: var(--pd-info); }
+.pd-kpi-info .pd-kpi-barra i { background: var(--pd-info); }
 
 .pd-kpis-compactos { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .pd-kpis-compactos .pd-kpi { padding: 14px 16px; }
@@ -996,9 +997,350 @@ table.pd-tabela { width: 100%; border-collapse: collapse; }
 
 .pd-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .pd-form-largo { grid-column: 1 / -1; }
-.pd-form label { display: block; font-size: 11.5px; color: var(--pd-text-suave); margin-bottom: 5px; font-weight: 550; }
+.pd-form label,
+.pd-form-rotulo { display: block; font-size: 11.5px; color: var(--pd-text-suave); margin-bottom: 5px; font-weight: 550; }
 .pd-form .pd-campo { width: 100%; }
-.pd-form textarea.pd-campo { min-height: 70px; }
+.pd-form textarea.pd-campo { min-height: 70px; field-sizing: content; max-height: 320px; }
+.pd-form .pd-exec-chk { display: inline-flex; margin-bottom: 0; }
+
+/* Passos e preparação: texto do catálogo, com as quebras de linha de quem escreveu. */
+.pd-texto-bloco {
+  background: var(--pd-surface);
+  border: 1px solid var(--pd-border);
+  border-radius: var(--pd-raio-p);
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--pd-text-suave);
+  white-space: pre-line;
+}
+
+/* ---------- Portal QA: plano executável ---------- */
+
+.pd-exec-progresso { display: grid; gap: 8px; margin-bottom: 18px; }
+
+.pd-exec-progresso-linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 13px;
+  color: var(--pd-text-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.pd-exec-falhas-ativo { color: var(--pd-alerta); font-weight: 600; }
+.pd-exec-trilho { height: 4px; border-radius: 2px; background: var(--pd-surface-3); overflow: hidden; }
+.pd-exec-trilho i { display: block; height: 100%; background: var(--pd-ok); border-radius: 2px; transition: width 0.3s ease; }
+
+.pd-exec {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+/* O cabeçalho do portal é fixo: sumário e seções param abaixo dele. */
+.pd-exec-sumario {
+  position: sticky;
+  top: 118px;
+  max-height: calc(100vh - 136px);
+  overflow-y: auto;
+  font-size: 12.5px;
+}
+
+.pd-exec-sumario > summary {
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--pd-text-fraco);
+  padding: 2px 0 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.pd-exec-sumario > summary::-webkit-details-marker { display: none; }
+
+.pd-exec-sumario > summary::before {
+  content: "";
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: 1px;
+  border-left: 5px solid var(--pd-text-fraco);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.12s ease;
+}
+
+.pd-exec-sumario[open] > summary::before { transform: rotate(90deg); }
+.pd-exec-tabela thead abbr { text-decoration: none; cursor: help; }
+.pd-exec-sumario ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+
+.pd-exec-sumario button {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--pd-raio-p);
+  background: none;
+  color: var(--pd-text-suave);
+  text-align: left;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.pd-exec-sumario button:hover { background: var(--pd-surface-2); color: var(--pd-text); }
+.pd-exec-sumario button:focus-visible { outline: 2px solid var(--pd-primary); outline-offset: 1px; }
+
+.pd-exec-cont {
+  flex: none;
+  font: 600 11px/1 var(--pd-mono);
+  color: var(--pd-text-fraco);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pd-exec-cont-completo { color: var(--pd-ok); }
+
+.pd-exec-secao { margin-bottom: 34px; scroll-margin-top: 124px; }
+
+.pd-exec-secao-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.pd-exec-secao-titulo::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--pd-primary);
+}
+
+.pd-exec-secao-titulo .pd-exec-cont { margin-left: auto; }
+
+.pd-exec-preparo {
+  margin: 0 0 12px;
+  max-width: 880px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--pd-text-suave);
+}
+
+.pd-exec-caixa {
+  overflow-x: auto;
+  background: var(--pd-surface);
+  border: 1px solid var(--pd-border);
+  border-radius: var(--pd-raio);
+}
+
+table.pd-exec-tabela { width: 100%; min-width: 860px; border-collapse: collapse; table-layout: fixed; font-size: 12.5px; }
+.pd-exec-col-id { width: 9%; }
+.pd-exec-col-prio { width: 6%; }
+.pd-exec-col-cenario { width: 17%; }
+.pd-exec-col-passos { width: 32%; }
+.pd-exec-col-resultado { width: 36%; }
+
+.pd-exec-tabela thead th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--pd-surface-2);
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pd-text-fraco);
+  border-bottom: 1px solid var(--pd-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pd-exec-caso > tr > td { padding: 11px 12px; vertical-align: top; line-height: 1.55; color: var(--pd-text-suave); }
+.pd-exec-caso + .pd-exec-caso > tr:first-child > td { border-top: 1px solid var(--pd-border); }
+.pd-exec-caso.pd-selecionada > tr > td { background: var(--pd-primary-suave); }
+
+/* Faixa de estado na borda esquerda, contínua nas duas linhas do caso. */
+.pd-exec-caso > tr > td:first-child { box-shadow: inset 3px 0 0 var(--pd-faixa, transparent); }
+.pd-exec-ok { --pd-faixa: var(--pd-ok); }
+.pd-exec-falha { --pd-faixa: var(--pd-alerta); }
+
+.pd-exec-id { white-space: nowrap; }
+
+.pd-exec-id-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 650 11.5px var(--pd-mono);
+  color: var(--pd-text);
+  cursor: pointer;
+}
+
+.pd-exec-id-btn:hover { color: var(--pd-primary); text-decoration: underline; }
+.pd-exec-id-btn:focus-visible { outline: 2px solid var(--pd-primary); outline-offset: 2px; }
+
+.pd-exec-prio {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 4px;
+  border: 1px solid;
+  font: 700 11px/1.4 var(--pd-mono);
+}
+
+.pd-exec-prio-alta { color: var(--pd-erro); background: var(--pd-erro-suave); border-color: rgba(248, 81, 73, 0.35); }
+.pd-exec-prio-media { color: var(--pd-alerta); background: var(--pd-alerta-suave); border-color: rgba(210, 153, 34, 0.35); }
+.pd-exec-prio-baixa { color: var(--pd-text-suave); background: var(--pd-surface-3); border-color: var(--pd-border-forte); }
+
+.pd-exec-caso > tr > td.pd-exec-cenario { color: var(--pd-text); font-weight: 600; }
+.pd-exec-texto { white-space: pre-line; }
+.pd-exec-vazio { color: var(--pd-text-fraco); font-style: italic; }
+
+.pd-exec-registro > td { border-top: 1px dashed var(--pd-border); }
+.pd-exec-caso > tr.pd-exec-registro > td { padding-top: 9px; padding-bottom: 13px; }
+
+.pd-exec-rotulo {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--pd-text-fraco);
+}
+
+.pd-exec-controles { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.pd-exec-chk {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px 5px 8px;
+  border: 1px solid var(--pd-border-forte);
+  border-radius: var(--pd-raio-p);
+  background: var(--pd-bg-elevado);
+  color: var(--pd-text-suave);
+  font-weight: 600;
+  font-size: 12.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pd-exec-chk input { width: 15px; height: 15px; margin: 0; accent-color: var(--pd-ok); cursor: pointer; }
+.pd-exec-chk:hover { border-color: var(--pd-text-fraco); }
+.pd-exec-chk:has(input:checked) { background: var(--pd-ok-suave); border-color: rgba(63, 185, 80, 0.45); color: var(--pd-ok); }
+.pd-exec-chk:has(input:focus-visible) { outline: 2px solid var(--pd-primary); outline-offset: 2px; }
+.pd-exec-chk:has(input:disabled) { cursor: not-allowed; opacity: 0.7; }
+
+.pd-exec-situacao { padding: 5px 8px; font-size: 12.5px; min-width: 0; max-width: 100%; }
+
+.pd-exec-selo {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--pd-text-fraco);
+  border: 1px solid var(--pd-border);
+}
+
+.pd-exec-selo-ok { color: var(--pd-ok); background: var(--pd-ok-suave); border-color: rgba(63, 185, 80, 0.35); }
+
+.pd-exec-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 9px;
+}
+
+.pd-exec-assinatura { font-size: 11.5px; color: var(--pd-text-fraco); }
+
+.pd-exec-nota {
+  display: block;
+  width: 100%;
+  min-height: 58px;
+  max-height: 320px;
+  field-sizing: content;
+  resize: vertical;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.pd-exec-nota-falha { border-color: var(--pd-alerta); }
+
+.pd-exec-lido { white-space: pre-line; font-size: 12.5px; color: var(--pd-text-suave); }
+.pd-exec-lido-falha { color: var(--pd-text); border-left: 2px solid var(--pd-alerta); padding-left: 9px; }
+
+@media (max-width: 1100px) {
+  .pd-exec { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+
+  .pd-exec-sumario {
+    position: static;
+    max-height: none;
+    background: var(--pd-surface);
+    border: 1px solid var(--pd-border);
+    border-radius: var(--pd-raio);
+    padding: 10px 12px;
+  }
+
+  .pd-exec-sumario > summary { padding: 2px 0; }
+  .pd-exec-sumario[open] > summary { padding-bottom: 8px; }
+  .pd-exec-sumario ol { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); column-gap: 16px; }
+}
+
+/* Em tela estreita cada caso vira um cartão: rolar a tabela de lado com dois campos de
+   texto dentro não dá para usar. */
+@media (max-width: 860px) {
+  .pd-exec-caixa { overflow: visible; background: none; border: 0; border-radius: 0; }
+  table.pd-exec-tabela { display: block; min-width: 0; }
+  .pd-exec-tabela colgroup,
+  .pd-exec-tabela thead { display: none; }
+
+  .pd-exec-caso {
+    display: block;
+    margin-bottom: 10px;
+    background: var(--pd-surface);
+    border: 1px solid var(--pd-border);
+    border-radius: var(--pd-raio);
+    box-shadow: inset 3px 0 0 var(--pd-faixa, transparent);
+    overflow: hidden;
+  }
+
+  .pd-exec-caso + .pd-exec-caso > tr:first-child > td { border-top: 0; }
+  .pd-exec-caso > tr > td:first-child { box-shadow: none; }
+  .pd-exec-caso > tr { display: block; }
+  .pd-exec-caso > tr > td { display: block; padding: 5px 14px; }
+  .pd-exec-caso > tr > td.pd-exec-id,
+  .pd-exec-caso > tr > td.pd-exec-prio-cel { display: inline-block; padding-top: 12px; padding-right: 0; }
+  .pd-exec-caso > tr > td.pd-exec-cenario { padding-top: 2px; font-size: 13.5px; }
+
+  .pd-exec-texto::before {
+    content: attr(data-rotulo);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 10.5px;
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--pd-text-fraco);
+  }
+
+  .pd-exec-registro { margin-top: 8px; border-top: 1px dashed var(--pd-border); padding: 6px 0 8px; }
+  .pd-exec-registro > td { border-top: 0; }
+  .pd-exec-caso > tr.pd-exec-registro > td { padding-top: 6px; padding-bottom: 6px; }
+}
 
 /* ---------- Portal QA: árvore de testes em aberto ---------- */
 
