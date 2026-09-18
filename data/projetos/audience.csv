@@ -25,9 +25,14 @@ QA-AUD-09,aud-ouvintes,/:tenant/audience/interactions,Frontends/InfoRadio.Front.
 QA-AUD-10,aud-ouvintes,/:tenant/audience/listeners,Services/Audience/InfoRadio.Audience.Api/Controllers/ListenersController.cs,E1,Onda 1,alta,permissao,Mesclar e desfazer restritos por perfil,Merge and undo restricted by role,,,Usuário sem o perfil de segurança não vê a ação e é recusado se chamar a API direto,A user without the security role neither sees the action nor succeeds calling the API directly,nao_testado,nao,,,,,0,,,
 QA-AUD-126,aud-ouvintes,/:tenant/audience/listeners,Frontends/InfoRadio.Front.React/src/features/audience/listener,T0; A-032,Onda 0,media,funcional,Busca encontra por qualquer parte do texto,Search finds any part of the text,,,"Digitar um trecho do meio do nome traz o registro, sem exigir o começo exato","Typing a fragment from the middle of the name returns the record, with no need for the exact beginning",nao_testado,nao,,,,,0,,,
 QA-014,aud-importacao,,,E14; AUD-02/03; TEC-04,,alta,funcional,Origem e prévia,Source and preview,"Escolher CSV e depois InfoAudience; enviar arquivo válido; percorrer prévia, simulação, revisão e confirmação.","Choose CSV and then InfoAudience; upload a valid file; go through preview, simulation, review and confirmation.",InfoAudience significa upload de CSV extraído externamente; não há conexão automática ao banco legado. Simulação não altera cadastro final.,InfoAudience means uploading an externally extracted CSV; there is no automatic connection to the legacy database. Simulation does not change the final records.,em_teste,sim,"- Enviado arquivo com sucesso.
+
 - Feito a previa dados foram computados corretamente.
+
 - Feito a simulação de acordo com arquivo excel.
-- Feito a Revisão dos erros, sem nenhum erro na planilha.
+
+- Feito a Revisão dos erros, sem nenhum erro na 
+planilha.
+
 - Feito a confirmação e a exportação foi feita com sucesso.",,Alisson Delatim,2026-09-18,0,,"Catálogo anterior: QA-AUD-11, QA-AUD-12",
 QA-015,aud-importacao,,,E14; AUD-02/03; TEC-04,,media,dados,Arquivo inválido,Invalid file,"Enviar cabeçalho incorreto, campo obrigatório ausente, telefone/data inválidos e arquivo misto válido/inválido.","Upload an incorrect header, a missing required field, invalid phone/date and a mixed valid/invalid file.","Erros identificam linhas e motivos; contagens de válidos, erros e conflitos reconciliam com o arquivo.","Errors identify rows and reasons; counts of valid rows, errors and conflicts reconcile with the file.",liberada,sim,"- Alteração de qualquer nome da coluna da tabela do excel a importação não funciona.
 
