@@ -1,4 +1,4 @@
 papel,nome_pt,nome_en,permissoes
 gestor,Gestor,Manager,qa.consultar;qa.registrar;impedimentos.registrar;impedimentos.painel;admin.usuarios
 qa,Analista de QA,QA analyst,qa.consultar;qa.registrar;impedimentos.registrar
-dev,Desenvolvedor,Developer,impedimentos.registrar
+dev,Desenvolvedor,Developer,qa.consultar;impedimentos.registrar
