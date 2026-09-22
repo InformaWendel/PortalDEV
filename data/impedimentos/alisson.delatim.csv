@@ -4,6 +4,10 @@ imp_mucyjcik_9xyh3q,alisson.delatim,2026-09-22T08:00,"- Participado da palestra 
 - Migração do aplicativo Kit YMNFCOM para InfoRadio Tools SASS",2026-09-22T12:20,"- Participado da palestra.
 - Realizado uma parte da migração",260,finalizado,2026-09-22T17:38:03.932Z,2026-09-22T17:38:03.932Z,tools,"- Participado da palestra.
 - Realizado uma parte da migração"
+imp_muczma3i_rnjxbi,alisson.delatim,2026-09-21T15:00,"- Triagem das ocorrências do InfoRadio urgentes e criação das releases atrelando as ocorrência.
+- Criando o protótipo do Kit Utilitário YMNFCOM conforme a solicitação do atendimento junto com Wendel para facilitar na demanda.",2026-09-21T18:00,"- Criado a releases e atrelado as ocorrência.
+- Criado o protótipo do Kit Utilitário YMNFCOM.",180,finalizado,2026-09-22T18:08:20.382Z,2026-09-22T18:08:20.382Z,tools,"- Criado a releases e atrelado as ocorrência.
+- Criado o protótipo do Kit Utilitário YMNFCOM."
 imp_mu2ptv8w_0gzh8f,alisson.delatim,2026-09-15T10:35,Auxilio ao analista Marcos sobre erro na emissão NFCOM (ERRO: DFe),2026-09-15T12:30,"- Orientado o analista Marcos a alterar o status da reforma para **Ativo** e configurar os impostos como **zerados**, permitindo a emissão da NFCOM na nova versão do InfoRadio 3.8.148.
 - Atualizado o arquivo **“Leia-me”** com o passo a passo que deverá ser seguido pela equipe de atendimento durante o processo de atualização.
 - Restauradas, no arquivo **“ACBrNFComServicos”**, algumas configurações necessárias para a emissão da NFCOM no InfoRadio, removidas durante uma alteração realizada por Jorge, da YT.
