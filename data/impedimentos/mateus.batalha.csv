@@ -1,4 +1,5 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
+imp_mucmxo13_wcxsn2,mateus.batalha,2026-09-22T09:00,Auxilio a MM,,,,aberto,2026-09-22T12:13:16.647Z,2026-09-22T12:13:16.647Z,,
 imp_muba2mr7_r8vego,mateus.batalha,2026-09-21T10:25,Auxilio a Dave Tyler com cliente WFJA. ,2026-09-21T10:50,"Após queda de energia, cliente está com problemas para inciar InfoAudio.
 Verificado que nenhuma saida de áudio está sendo identificada pelo Windows.
  Cliente tentou verificar os cabos e trocar de porta mas não funcionou. Cliente não possuia técnico na radio no momento. Ficou de verificar com o proprietário como prosseguir, pois o problema é com a máquina e não no InfoAudio.",25,finalizado,2026-09-21T13:25:27.091Z,2026-09-21T18:54:37.587Z,voicetracker,Validação de gravação durante quedas de conexão.
