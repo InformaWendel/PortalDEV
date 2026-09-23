@@ -1,5 +1,7 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
-imp_mue29a8t_lg3fzn,mateus.batalha,2026-09-23T08:08,Auxilio ao Analista Shando com duvidas sobre regras do MusicMaster Pro,,,,aberto,2026-09-23T12:09:59.069Z,2026-09-23T12:09:59.069Z,,
+imp_mue29a8t_lg3fzn,mateus.batalha,2026-09-23T08:08,Auxilio ao Analista Shando com duvidas sobre regras do MusicMaster Pro em atendiment ao cliente Inspira.,2026-09-23T08:50,"Segundo Shando o cliente solicitou a verificação de alguns pontos.
+1- Cliente possui regra de descanso para musicas, porem deseja que em horários especificos estas.
+",42,finalizado,2026-09-23T12:09:59.069Z,2026-09-23T12:49:24.932Z,playout,Testes release 27.0.0.1
 imp_mud1ec7e_2nkgym,mateus.batalha,2026-09-22T15:57,Reunião com MM e Atendimento,2026-09-22T17:00,Reuniçao com MM e ATE sobre implantação LM Communications.,63,finalizado,2026-09-22T18:58:09.098Z,2026-09-23T12:07:52.950Z,ia-produto,Recurso de extensão padrão de arquivos
 imp_mucmxo13_wcxsn2,mateus.batalha,2026-09-22T09:00,Auxilio a MM com suporte a Sevens Radio.,2026-09-22T09:51,"Cliente nos acionou informando que o Voice Tracker não está funcionando, está exibindo a mensagem ""API Offline"".
 Após varias tentativas de investigação via e-mail sem sucesso, cliente nos autorizou a conectar na máquina para verficar.
