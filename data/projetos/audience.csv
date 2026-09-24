@@ -85,6 +85,7 @@ QA-033,aud-participacoes,,,E16/E11; AUD-07/18,,alta,funcional,Mover e revincular
 QA-034,aud-participacoes,,,E16/E11; AUD-07/18,,alta,dados,Conflito de vínculo,Link conflict,"Duas sessões alteram o mesmo vínculo; tentar motivo vazio, destino inativo e destino de outra estação.","Two sessions change the same link; try an empty reason, an inactive destination and a destination from another station.",Conflito de versão retorna 409 sem auditoria parcial; entradas inválidas recusadas; atualização vencedora preservada.,Version conflict returns 409 with no partial audit; invalid inputs rejected; winning update preserved.,em_teste,sim,"- Com motivo vazio não é possível mover a participação.
 
 - Programa inativo não é possível mover.
+
  
 ",,Alisson Delatim,2026-09-24,0,,,
 QA-035,aud-participacoes,,,E16/E11; AUD-07/18,,alta,funcional,Entrada em moderação,Entry into moderation,"Criar participações em programa com Moderation ligado e desligado, incluindo auto-vínculo.","Create participations in a program with Moderation on and off, including auto-link.",Programa moderado cria Analyze; somente aceitas elegíveis chegam à fila ao vivo. Legado sem status não é tratado como Analyze.,A moderated program creates Analyze; only accepted eligible ones reach the live queue. Legacy without status is not treated as Analyze.,nao_testado,nao,,,,,0,,,
