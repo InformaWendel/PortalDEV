@@ -18,7 +18,7 @@ QA-006,aud-acesso,,,,,media,funcional,Cadastros de apoio,Supporting records,"Cri
 
 
 - Criado, editado, pesquisado e inativado ""promoção"" funcionou normalmente.
-","- Na tela ""Promoção"" ao vincular brin",Alisson Delatim,2026-09-25,0,,,
+","- Na criação da""Promoção"" ao vincular brinde ",Alisson Delatim,2026-09-25,0,,,
 QA-AUD-102,aud-acesso,/:tenant/audience/programs/edit/:id,Frontends/InfoRadio.Front.React/src/features/audience/program,E16,Onda 2,media,dados,Grade de horários do programa aceita várias janelas,The program schedule accepts several windows,,,"Um programa pode ter mais de uma janela de dias e horários, e todas valem","A program can have more than one window of days and times, and all of them count",nao_testado,nao,,,,,0,,,
 QA-AUD-119,aud-acesso,/:tenant/audience/configuration,Frontends/InfoRadio.Front.React/src/features/audience/configuration,E6,Onda 2,media,funcional,Configuração da emissora reúne as políticas em um lugar,Station settings gather the policies in one place,,,"Atendimento, sorteio, retenção e consentimento são configurados na mesma tela","Service desk, draw, retention and consent are configured on the same screen",nao_testado,nao,,,,,0,,,
 QA-AUD-121,aud-acesso,/:tenant/audience/configuration,Frontends/InfoRadio.Front.React/src/features/audience/configuration,E8,Onda 1,media,funcional,Dias de bloqueio automático do ganhador são configuráveis,The automatic winner block period is configurable,,,Alterar os dias muda o bloqueio aplicado aos ganhadores seguintes,Changing the days changes the block applied to subsequent winners,nao_testado,nao,,,,,0,,,
