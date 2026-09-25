@@ -7,7 +7,7 @@ QA-005,aud-acesso,,,,,media,funcional,Programas e grade,Programs and schedule,"C
 - Vinculado e mudado o locutor dentro do programa.
 - Feito a auto-vinculação na tela de atendimento.
 - Inativado o programa.
-",,Alisson Delatim,2026-09-25,0,,,
+- Feito a auto-vinculação na tela de atendimento.",,Alisson Delatim,2026-09-25,0,,,
 QA-006,aud-acesso,,,,,media,funcional,Cadastros de apoio,Supporting records,"Criar, editar, pesquisar e inativar locutor, etiqueta, promoção e brinde; reabrir os formulários.","Create, edit, search and deactivate announcer, tag, promotion and prize; reopen the forms.","Campos, filtros e vínculos persistem; exclusão/inativação respeita dependências e não deixa referência inválida.","Fields, filters and links persist; deletion/deactivation respects dependencies and leaves no invalid reference.",nao_testado,nao,,,,,0,,,
 QA-AUD-102,aud-acesso,/:tenant/audience/programs/edit/:id,Frontends/InfoRadio.Front.React/src/features/audience/program,E16,Onda 2,media,dados,Grade de horários do programa aceita várias janelas,The program schedule accepts several windows,,,"Um programa pode ter mais de uma janela de dias e horários, e todas valem","A program can have more than one window of days and times, and all of them count",nao_testado,nao,,,,,0,,,
 QA-AUD-119,aud-acesso,/:tenant/audience/configuration,Frontends/InfoRadio.Front.React/src/features/audience/configuration,E6,Onda 2,media,funcional,Configuração da emissora reúne as políticas em um lugar,Station settings gather the policies in one place,,,"Atendimento, sorteio, retenção e consentimento são configurados na mesma tela","Service desk, draw, retention and consent are configured on the same screen",nao_testado,nao,,,,,0,,,
