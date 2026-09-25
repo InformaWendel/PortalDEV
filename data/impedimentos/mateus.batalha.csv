@@ -1,5 +1,5 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
-imp_mugvl2u9_xnz1gs,mateus.batalha,2026-09-25T08:26,Auxilio ao ATE na elaboração de e-mail para a MM sobre o cliente Inspira,,,,aberto,2026-09-25T11:26:30.561Z,2026-09-25T11:26:30.561Z,,
+imp_mugvl2u9_xnz1gs,mateus.batalha,2026-09-25T08:26,Auxilio ao ATE na elaboração de e-mail para a MM sobre o cliente Inspira,2026-09-25T08:48,Auxilio ao ATE na elaboração de e-mail para a MM sobre o cliente Inspira,22,finalizado,2026-09-25T11:26:30.561Z,2026-09-25T11:49:48.284Z,news,Testes MVP I do Jornalismo
 imp_mufnakcv_q777lc,mateus.batalha,2026-09-24T10:46,Suporte a cliente MusicMaster Sevens Radio.,2026-09-24T13:34,"Jerry Butler entrou em contato conosco solicitando auxilio com a emissora Sevens.
 Auxiliamos com ajuste no tempos de mixagem, em que o cliente havia inserido as informações de mixagem incorretas.
 Tambem auxiliamos com uma manutenção na biblioteca de musicas onde alguns eventos estavam duplicados devido a forma de ingest realizada pelo cliente.",168,finalizado,2026-09-24T14:46:36.943Z,2026-09-24T18:43:26.812Z,news,Testes no Jornalismo
