@@ -130,7 +130,7 @@ QA-BIB-04,news-biblioteca,/:tenant/biblioteca-midias,core/services/audit-trail.s
 QA-BIB-05,news-biblioteca,/:tenant/biblioteca-midias,core/services/midia.service.ts,,,media,dados,"Mídia mostra a que matéria, lauda ou vinheta está vinculada","Media shows which story, script or jingle it is linked to",,,O vínculo é navegável e some quando a mídia é desvinculada,The link is navigable and disappears when the media is unlinked,nao_testado,nao,,,,,0,,,
 QA-CAD-01,news-cadastros,/:tenant/cadastros/recursos,features/cadastros/recursos/lista-recursos/lista-recursos.component.ts,UC-18,RF-RECURSO,media,funcional,"Recursos operacionais: criar, editar, desativar e reativar","Operational resources: create, edit, deactivate and reactivate",,,Recurso desativado não aparece na reserva da pauta e volta ao ser reativado,A deactivated resource does not appear in assignment booking and returns when reactivated,devolvida,sim,"- Testado a função de ""criar"" funcionando corretamente.
 
-- Testado a função de ""editar"" funcionando;
+- Testado a função de ""editar"" funcionando.
 
 - Testado a função de ""desativar"" funcionando.
 
