@@ -138,7 +138,7 @@ QA-CAD-01,news-cadastros,/:tenant/cadastros/recursos,features/cadastros/recursos
 
 ","- Remover o botão de desativar/reativar que fica ao lado do botão de excluir, pois já tem um botão switch que faz a mesma funcionalidade.
 
-- Não deixar ""excluir se o recurso está vinculado á uma pauta ativa.
+- Não deixar ""excluir"" se o recurso está vinculado á uma pauta ativa.
 
 - Não deixar ""inativar"" se o recurso está vinculado á uma pauta ativa.
 
