@@ -131,7 +131,10 @@ QA-BIB-05,news-biblioteca,/:tenant/biblioteca-midias,core/services/midia.service
 QA-CAD-01,news-cadastros,/:tenant/cadastros/recursos,features/cadastros/recursos/lista-recursos/lista-recursos.component.ts,UC-18,RF-RECURSO,media,funcional,"Recursos operacionais: criar, editar, desativar e reativar","Operational resources: create, edit, deactivate and reactivate",,,Recurso desativado não aparece na reserva da pauta e volta ao ser reativado,A deactivated resource does not appear in assignment booking and returns when reactivated,em_teste,sim,"- Testado a função de ""criar"" funcionando corretamente.
 
 - Testado a função de ""editar"" funcionando corretamente.
+
 - Testado a função de ""editar"" funcionando corretamente.
+
+Testado a função de ""editar"" funcionando corretamente.
 
 ",,Alisson Delatim,2026-09-28,0,,,
 QA-CAD-02,news-cadastros,/:tenant/cadastros/vinhetas,features/cadastros/vinhetas/lista-vinhetas/lista-vinhetas.component.ts,UC-19,RF-VINHETA,media,funcional,Vinhetas: cadastrar com envio de áudio e audição na tela,Jingles: register with audio upload and on-screen playback,,,A vinheta cadastrada fica disponível como item não-jornalístico do espelho,The registered jingle becomes available as a non-editorial rundown item,nao_testado,nao,,,,,0,,,
