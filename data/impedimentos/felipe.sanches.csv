@@ -1,1 +1,2 @@
-id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em
+id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
+imp_mula3h13_4kbado,felipe.sanches,2026-09-24T17:00,Coleta de informações referente a solicitações da CN do cliente BERG.,2026-09-24T18:00,Coleta de informações referente a solicitações da CN do cliente BERG.,60,finalizado,2026-09-28T13:23:48.087Z,2026-09-28T13:23:48.087Z,programacao-cn,Enviar informações a cliente.
