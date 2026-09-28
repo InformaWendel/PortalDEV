@@ -178,6 +178,7 @@ QA-CAD-08,news-cadastros,/:tenant/cadastros/temas,features/cadastros/temas/temas
 - Testado a função de ""excluir"" funcionando.
 
 SUB TEMA: 
+------------
 - Testado a função de ""criar"" funcionando.
 
 - Testado a função de ""editar"" funcionando.
