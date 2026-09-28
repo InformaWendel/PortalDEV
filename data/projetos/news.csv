@@ -138,7 +138,9 @@ QA-CAD-01,news-cadastros,/:tenant/cadastros/recursos,features/cadastros/recursos
 
 ","- Remover o botão de desativar/reativar que fica ao lado do botão de excluir, pois já tem um botão switch que faz a mesma funcionalidade.
 
-- Não deixar excluir se o recurso está vinculado á uma pauta;
+- Não deixar excluir se o recurso está vinculado á uma pauta ativa.
+
+- 
 
 ",Alisson Delatim,2026-09-28,1,2026-09-28,,
 QA-CAD-02,news-cadastros,/:tenant/cadastros/vinhetas,features/cadastros/vinhetas/lista-vinhetas/lista-vinhetas.component.ts,UC-19,RF-VINHETA,media,funcional,Vinhetas: cadastrar com envio de áudio e audição na tela,Jingles: register with audio upload and on-screen playback,,,A vinheta cadastrada fica disponível como item não-jornalístico do espelho,The registered jingle becomes available as a non-editorial rundown item,nao_testado,nao,,,,,0,,,
