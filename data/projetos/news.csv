@@ -192,6 +192,8 @@ QA-CAD-09,news-cadastros,/:tenant/cadastros/pessoas,features/cadastros/pessoas/l
 
 - Testado o filtro de pesquisa ""cidade"" da pessoa está funcionando.
 
+- Testado o filtro de pesquisa ""uf"" da pessoa está funcionando.
+
 - Testado o filtro de pesquisa ""uf"" da pessoa está funcionando.","- Testado o filtro de pesquisa ""email"" da pessoa está funcionando.",Alisson Delatim,2026-09-28,1,2026-09-28,,
 QA-CAD-10,news-cadastros,/:tenant/cadastros/pessoas/:id,features/cadastros/pessoas/dialogs/form-contato-pessoa-dialog.component.ts,,,media,funcional,"Pessoas: contatos, telefones e endereços","People: contacts, phone numbers and addresses",,,Cada bloco aceita vários registros e o principal fica sinalizado,Each block accepts several records and the primary one is flagged,nao_testado,nao,,,,,0,,,
 QA-CAD-11,news-cadastros,/:tenant/cadastros/pessoas/:id,features/cadastros/pessoas/detalhe-pessoa/historico-participacao.component.ts,,,baixa,dados,Pessoas: histórico de participação em pautas e matérias,People: participation history in assignments and stories,,,O histórico lista as aparições reais da pessoa e navega para cada uma,The history lists the person's real appearances and navigates to each one,nao_testado,nao,,,,,0,,,
