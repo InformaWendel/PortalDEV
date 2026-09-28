@@ -167,6 +167,7 @@ QA-CAD-07,news-cadastros,/:tenant/cadastros/tipos-lauda,features/cadastros/tipos
 - Testado a função de ""excluir"" funcionando.","- Não deixar ""excluir"" se tiver entrelaçado com outra tabela no banco de dados.
 ",Alisson Delatim,2026-09-28,1,2026-09-28,,
 QA-CAD-08,news-cadastros,/:tenant/cadastros/temas,features/cadastros/temas/temas-page.component.ts,UC-21,RF-TEMA,media,funcional,"Temas e subtemas: criar, editar e desativar em cascata","Themes and subthemes: create, edit and cascade-deactivate",,,Desativar o tema oferece desativar os subtemas e o efeito é o escolhido,Deactivating the theme offers to deactivate the subthemes and the chosen effect applies,em_teste,sim,"TEMA:
+-------
 - Testado a função de ""criar"" funcionando.
 
 - Testado a função de ""editar"" funcionando.
