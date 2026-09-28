@@ -154,7 +154,7 @@ QA-CAD-05,news-cadastros,/:tenant/cadastros/entidades,features/cadastros/entidad
 
 - Testado a função de ""reativar"" funcionando.
 
-- Testado a função de ""reativar"" funcionando.",,Alisson Delatim,2026-09-28,0,,,
+- Testado a função de ""exc"" funcionando.",,Alisson Delatim,2026-09-28,0,,,
 QA-CAD-06,news-cadastros,/:tenant/cadastros/comissoes,features/cadastros/comissoes/lista-comissoes.component.ts,,,baixa,funcional,"Comissões: criar, editar e desativar","Committees: create, edit and deactivate",,,A comissão cadastrada fica disponível para vínculo na pauta,The registered committee becomes available to link on the assignment,nao_testado,nao,,,,,0,,,
 QA-CAD-07,news-cadastros,/:tenant/cadastros/tipos-lauda,features/cadastros/tipos-lauda/lista-tipos-lauda.component.ts,,,media,funcional,"Tipos de Lauda: criar, editar e desativar","Script types: create, edit and deactivate",,,O tipo cadastrado aparece na criação da lauda com o comportamento definido,The registered type appears when creating a script with the defined behavior,nao_testado,nao,,,,,0,,,
 QA-CAD-08,news-cadastros,/:tenant/cadastros/temas,features/cadastros/temas/temas-page.component.ts,UC-21,RF-TEMA,media,funcional,"Temas e subtemas: criar, editar e desativar em cascata","Themes and subthemes: create, edit and cascade-deactivate",,,Desativar o tema oferece desativar os subtemas e o efeito é o escolhido,Deactivating the theme offers to deactivate the subthemes and the chosen effect applies,nao_testado,nao,,,,,0,,,
