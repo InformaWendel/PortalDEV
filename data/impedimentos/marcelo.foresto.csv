@@ -1,1 +1,2 @@
-id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em
+id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
+imp_mumz46dq_kq6sqa,marcelo.foresto,2026-09-18T10:00,Auxílio Vandrei.,2026-09-18T12:00,A dúvida foi esclarecida.,120,finalizado,2026-09-29T17:51:57.518Z,2026-09-29T17:51:57.518Z,inforadio-web,Iniciar a implementacao do módulo Erp
