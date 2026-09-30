@@ -1,4 +1,5 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
+imp_muo40239_8qx6ry,mateus.batalha,2026-09-30T09:30,Impedimento para analise da ocorrência CAS-137847-M4K8S6.,,,,aberto,2026-09-30T12:56:29.589Z,2026-09-30T12:56:29.589Z,,
 imp_mun3vs4b_qj10kf,mateus.batalha,2026-09-29T15:50,"Auxilio ao Analista Shando solicitado por Wendel, com duvidas sobre o funcionamento de Grupo de Regras no MM Pro, para o cliente Inspira.",2026-09-29T16:10,"Shando informou que o Grupo de Regras não estava funcionando corretamnete.Após verificar, conclui que a configuração do horário de restrição das regras havia sido feita incorretamente.
 Corrigi a configuração e orientei Shando a como realiza-la da forma correta.",20,finalizado,2026-09-29T20:05:23.867Z,2026-09-29T20:05:23.867Z,playout,Teste release 27.0.0.1
 imp_mun39t6z_rdqqoi,mateus.batalha,2026-09-29T14:30,"Auxilio a Dave Tyler da MM, com duvidas sobre o InfoAudio.",2026-09-29T15:00,"Auxiliamos Dave com suas duvidas sobre manipulação e edição de Eventos no catálogo do InfoAudio.
