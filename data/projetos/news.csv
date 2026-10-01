@@ -245,7 +245,7 @@ QA-CAD-15,news-cadastros,/:tenant/cadastros/estruturas/:id,features/cadastros/es
 
 - Testado o filtro de pesquisa ""tipo de matéria"" está funcionando.
 
-- Testado o filtro de pesquisa ""tipo de matéria"" está funcionando.","- Na tela de cadastro ""Nova Lauda do Zero"" está divergente com a do protótipo do Chico.
+- Testado o filtro de pesquisa ""estado da versão atu"" está funcionando.","- Na tela de cadastro ""Nova Lauda do Zero"" está divergente com a do protótipo do Chico.
 
 - Na tela de editar ""Nova Lauda do Zero"" está divergente com a do protótipo do Chico.
 
