@@ -20,9 +20,9 @@ QA-DSH-01,news-dashboard,/:tenant/dashboard,features/dashboard/dashboard.compone
 QA-DSH-02,news-dashboard,/:tenant/dashboard,features/dashboard/widgets/agora/agora-widget.component.ts,,,media,funcional,Bloco Agora mostra as apresentações e os itens do dia,Now block shows the day's presentations and items,,,O que está no ar e o que vem a seguir aparecem corretos e atualizam sozinhos,What is on air and what comes next appear correctly and refresh on their own,liberada,sim,"- Sim, é mostrado os espelhos do dia atual",,Alisson Delatim,2026-10-01,0,,,
 QA-DSH-03,news-dashboard,/:tenant/dashboard,features/dashboard/avisos-card/aviso-geral-dialog.component.ts,,,media,funcional,"Avisos gerais: criar, editar e excluir","General notices: create, edit and delete",,,Aviso publicado aparece para os demais usuários da emissora,A published notice appears for the station's other users,liberada,sim,"- Testado a função de ""criar"" funcionando.
 
-- Testado a função de ""editar"" funcionando.
+- Testado a função de ""editar"" está  funcionando.
 
-- Testado a função de ""encerrar"" funcionando.
+- Testado a função de ""encerrar"" está  funcionando.
 
 - Testado a função de ""reativar"" está funcionando.
 ",,Alisson Delatim,2026-10-01,0,,,
