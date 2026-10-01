@@ -205,7 +205,7 @@ QA-CAD-10,news-cadastros,/:tenant/cadastros/pessoas/:id,features/cadastros/pesso
 
 - Testado o filtro de pesquisa ""nome"" está funcionando.
 
-- Testado o filtro de pesquisa ""nome"" está funcionando.","- Na tela de cadastro de pessoa adicionar o ""cadastro de telefone"".
+- Testado o filtro de pesquisa ""profissão"" está funcionando.","- Na tela de cadastro de pessoa adicionar o ""cadastro de telefone"".
 
  - Na tela de cadastro de pessoa adicionar o ""cadastro de endereço"".
 
