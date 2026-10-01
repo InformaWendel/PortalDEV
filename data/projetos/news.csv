@@ -217,7 +217,7 @@ QA-CAD-13,news-cadastros,/:tenant/cadastros/jornais-programas,features/cadastros
 
 - Testado a função de ""inativar"" funcionando.
 
-- Testado o filtro de pesquisa ""nome""está funcionando.
+- Testado o filtro de pesquisa ""nome"" está funcionando.
 
 - Testado o filtro de pesquisa ""status"" está funcionando.","- Testado o filtro de pesquisa ""Tipo"" não está funcionando.
 
