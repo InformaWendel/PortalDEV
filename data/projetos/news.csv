@@ -186,7 +186,7 @@ SUB TEMA:
 
 - Testado a função de ""desativar"" funcionando.","SUB TEMA: 
 - Não aparece o registro que foi inativado, impossibilitando a reativação do sub-tema.",Alisson Delatim,2026-09-28,0,,,
-QA-CAD-09,news-cadastros,/:tenant/cadastros/pessoas,features/cadastros/pessoas/lista-pessoas/lista-pessoas.component.ts,,,media,funcional,Pessoas: lista com busca e detalhe completo,People: list with search and full detail,,,Encontrar a fonte pelo nome e abrir o cadastro completo funciona,Finding the source by name and opening the full record works,devolvida,sim,"- Testado o filtro de pesquisa ""nome"" da pessoa está funcionando.
+QA-CAD-09,news-cadastros,/:tenant/cadastros/pessoas,features/cadastros/pessoas/lista-pessoas/lista-pessoas.component.ts,,,media,funcional,Pessoas: lista com busca e detalhe completo,People: list with search and full detail,,,Encontrar a fonte pelo nome e abrir o cadastro completo funciona,Finding the source by name and opening the full record works,devolvida,sim,"- Testado o filtro de pesquisa ""nome"" está funcionando.
 
 - Testado o filtro de pesquisa ""profissão"" da pessoa está funcionando.
 
