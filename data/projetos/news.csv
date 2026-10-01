@@ -26,7 +26,7 @@ QA-DSH-03,news-dashboard,/:tenant/dashboard,features/dashboard/avisos-card/aviso
 
 - Testado a função de ""reativar"" está funcionando.
 ",,Alisson Delatim,2026-10-01,0,,,
-QA-DSH-04,news-dashboard,/:tenant/dashboard,features/dashboard/widgets/meus-lembretes/meus-lembretes-widget.component.ts,,,baixa,funcional,"Meus lembretes: criar, concluir e excluir lembrete pessoal","My reminders: create, complete and delete a personal reminder",,,Lembrete é pessoal e não aparece para outro usuário,A reminder is personal and does not show for another user,em_teste,nao,"- Testado a função de ""criar"" está  funcionando.
+QA-DSH-04,news-dashboard,/:tenant/dashboard,features/dashboard/widgets/meus-lembretes/meus-lembretes-widget.component.ts,,,baixa,funcional,"Meus lembretes: criar, concluir e excluir lembrete pessoal","My reminders: create, complete and delete a personal reminder",,,Lembrete é pessoal e não aparece para outro usuário,A reminder is personal and does not show for another user,liberada,sim,"- Testado a função de ""criar"" está  funcionando.
 
 - Testado a função de ""editar"" está  funcionando.
 
