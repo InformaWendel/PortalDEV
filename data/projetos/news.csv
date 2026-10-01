@@ -268,7 +268,7 @@ QA-CAD-16,news-cadastros,/:tenant/cadastros/servidores-midia,features/cadastros/
 
 - Testado o filtro de pesquisa ""status""  está funcionando.","- Criar campo de ""Senha"" do usuário conforme o protótipo na tela de cadastro/edição.
 
-- O botão de ""Testar Conexão"" não está funcionando na tela de cadatro/edição.
+- O botão de ""Testar Conexão"" não está funcionando na tela de cadastro/edição.
 
 - Testado o filtro de pesquisa ""saúde"" não está funcionando.
 ",Alisson Delatim,2026-10-01,1,2026-10-01,,
