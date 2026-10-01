@@ -219,7 +219,7 @@ QA-CAD-13,news-cadastros,/:tenant/cadastros/jornais-programas,features/cadastros
 
 - Testado o filtro de pesquisa ""nome"" da pessoa está funcionando.
 
-- Testado o filtro de pesquisa ""status"" da pessoa está funcionando.","- Testado o filtro de pesquisa ""Tipo"" não está funcionando.
+- Testado o filtro de pesquisa ""status"" está funcionando.","- Testado o filtro de pesquisa ""Tipo"" não está funcionando.
 
 - Testado o filtro de pesquisa ""Periodicidade"" não está funcionando.",Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-CAD-14,news-cadastros,/:tenant/cadastros/estruturas,features/cadastros/estruturas/lista-estruturas/lista-estruturas.component.ts,,,media,funcional,Estruturas: modelos de espelho com blocos e laudas padrão,Structures: rundown templates with blocks and default scripts,,,A estrutura montada reproduz fielmente os blocos ao ser aplicada,The assembled structure faithfully reproduces the blocks when applied,devolvida,sim,"- Testado a função de ""criar"" funcionando.
