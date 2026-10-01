@@ -207,7 +207,7 @@ QA-CAD-12,news-cadastros,/:tenant/cadastros/pessoas-estudio,features/cadastros/p
 
 - Testado o filtro de pesquisa ""nome"" da pessoa está funcionando.
 
-- Testado o filtro de pesquisa ""status"" da pessoa está funcionando.","- Remover o campo """"tela no cadastro de ""Pessoa do Estudio"".
+- Testado o filtro de pesquisa ""status"" da pessoa está funcionando.","- Remover o campo ""N"" no cadastro de ""Pessoa do Estudio"".
 ",Alisson Delatim,2026-10-01,0,,,
 QA-CAD-13,news-cadastros,/:tenant/cadastros/jornais-programas,features/cadastros/jornais-programas/lista-jornais-programas/lista-jornais-programas.component.ts,,,alta,funcional,"Jornais e Programas: horário, dias da semana e responsáveis","Newscasts and programs: time, weekdays and owners",,,O programa cadastrado aparece na criação do espelho com os dados dele,The registered program appears when creating the rundown with its own data,nao_testado,nao,,,,,0,,,
 QA-CAD-14,news-cadastros,/:tenant/cadastros/estruturas,features/cadastros/estruturas/lista-estruturas/lista-estruturas.component.ts,,,media,funcional,Estruturas: modelos de espelho com blocos e laudas padrão,Structures: rundown templates with blocks and default scripts,,,A estrutura montada reproduz fielmente os blocos ao ser aplicada,The assembled structure faithfully reproduces the blocks when applied,nao_testado,nao,,,,,0,,,
