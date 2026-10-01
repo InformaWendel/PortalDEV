@@ -24,7 +24,7 @@ QA-DSH-03,news-dashboard,/:tenant/dashboard,features/dashboard/avisos-card/aviso
 
 - Testado a função de ""encerrar"" funcionando.
 
-- Testado a função de ""reativar"" funcionando.
+- Testado a função de ""reativar"" está funcionando.
 ",,Alisson Delatim,2026-10-01,0,,,
 QA-DSH-04,news-dashboard,/:tenant/dashboard,features/dashboard/widgets/meus-lembretes/meus-lembretes-widget.component.ts,,,baixa,funcional,"Meus lembretes: criar, concluir e excluir lembrete pessoal","My reminders: create, complete and delete a personal reminder",,,Lembrete é pessoal e não aparece para outro usuário,A reminder is personal and does not show for another user,nao_testado,nao,,,,,0,,,
 QA-DSH-05,news-dashboard,/:tenant/dashboard,features/dashboard/widgets/dica-dia/dica-dia-widget.component.ts,,,baixa,interface,Bloco Dica do dia alterna o conteúdo,Tip of the day block rotates its content,,,O conteúdo muda entre acessos e nunca aparece vazio,The content changes between visits and never shows empty,nao_testado,nao,,,,,0,,,
