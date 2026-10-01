@@ -286,6 +286,8 @@ QA-CHT-05,news-chat,/:tenant,features/chat/compartilhar-lauda-dialog.component.t
 QA-CHT-06,news-chat,/:tenant,features/chat/copiar-lauda-para-espelho-dialog.component.ts,,,media,funcional,Copiar lauda para o espelho a partir da conversa,Copy a script to the rundown from the conversation,,,"A lauda entra no espelho escolhido, no bloco indicado","The script enters the chosen rundown, in the indicated block",nao_testado,nao,,,,,0,,,
 QA-AUD-01,news-auditoria,/:tenant/audit-trail,features/audit-trail/audit-trail.component.ts,UC-17,RF-AUDI-02,alta,funcional,"Trilha de auditoria com filtros por entidade, período e usuário","Audit trail with filters by entity, period and user",,,Cada filtro devolve exatamente os eventos correspondentes,Each filter returns exactly the matching events,devolvida,sim,"- Testado o filtro de pesquisa ""tipo de entidade"" está funcionando.
 
+- Testado o filtro de pesquisa ""tipo de usuário"" está funcionando.
+
 - Testado o filtro de pesquisa ""tipo de usuário"" está funcionando.",,Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-AUD-02,news-auditoria,/:tenant/audit-trail,features/audit-trail/ver-motivo-dialog.component.ts,UC-17,RF-AUDI-02,media,funcional,Ver o motivo registrado em uma decisão de gate,View the reason recorded on a gate decision,,,"O motivo aparece completo, com autor e data da decisão","The reason shows in full, with the decision's author and date",nao_testado,nao,,,,,0,,,
 QA-AUD-03,news-auditoria,/:tenant/audit-trail,features/audit-trail/exportar-audit-dialog.component.ts,UC-17,RF-AUDI-04,media,funcional,Exportar a trilha de auditoria,Export the audit trail,,,O arquivo exportado traz exatamente as linhas filtradas na tela,The exported file carries exactly the rows filtered on screen,nao_testado,nao,,,,,0,,,
