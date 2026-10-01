@@ -230,7 +230,7 @@ QA-CAD-14,news-cadastros,/:tenant/cadastros/estruturas,features/cadastros/estrut
 
 - Testado a função de ""excluir"" funcionando.
 
-- Testado o filtro de pesquisa ""nome"" da pessoa está funcionando.
+- Testado o filtro de pesquisa ""nome"" está funcionando.
 
 - Testado o filtro de pesquisa ""status"" da pessoa está funcionando.","- Testado o filtro de pesquisa ""Jornal/Programa"" não está funcionando.
 
