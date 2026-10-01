@@ -260,7 +260,9 @@ QA-CAD-15,news-cadastros,/:tenant/cadastros/estruturas/:id,features/cadastros/es
 - Na função de salva o relatório de lauda via email não tem a opção de extensão PDF, DOCX, HTML e txt
 
 - O design do relatório está divergente com a do protótipo do Chico.",Alisson Delatim,2026-10-01,1,2026-10-01,,
-QA-CAD-16,news-cadastros,/:tenant/cadastros/servidores-midia,features/cadastros/servidores-midia/lista-servidores-midia/lista-servidores-midia.component.ts,,,media,integracao,Servidores de Mídia: cadastrar caminho e testar o acesso,Media servers: register the path and test access,,,O caminho cadastrado é validado e o espelho referencia o áudio certo,The registered path is validated and the rundown references the right audio,devolvida,sim,"- Testado o filtro de pesquisa ""status""  está funcionando.","- Criar campo de ""Senha"" do usuário conforme o protótipo na tela de cadastro/edição.
+QA-CAD-16,news-cadastros,/:tenant/cadastros/servidores-midia,features/cadastros/servidores-midia/lista-servidores-midia/lista-servidores-midia.component.ts,,,media,integracao,Servidores de Mídia: cadastrar caminho e testar o acesso,Media servers: register the path and test access,,,O caminho cadastrado é validado e o espelho referencia o áudio certo,The registered path is validated and the rundown references the right audio,devolvida,sim,"- Testado o filtro de pesquisa ""nome"" está funcionando.
+
+- Testado o filtro de pesquisa ""status""  está funcionando.","- Criar campo de ""Senha"" do usuário conforme o protótipo na tela de cadastro/edição.
 
 - O botão de ""Testar Conexão"" não está funcionando na tela de cadatro/edição.
 
