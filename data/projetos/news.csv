@@ -237,7 +237,7 @@ QA-CAD-14,news-cadastros,/:tenant/cadastros/estruturas,features/cadastros/estrut
 - Botão de voltar na tela de cadastro/edição está mando para url não existente.",Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-CAD-15,news-cadastros,/:tenant/cadastros/estruturas/:id,features/cadastros/estruturas/dialogs/propagar-lauda-padrao-dialog.component.ts,,,baixa,funcional,Estruturas: propagar lauda padrão para os espelhos que usam o modelo,Structures: propagate a default script to rundowns using the template,,,A propagação avisa quantos espelhos serão afetados antes de aplicar,The propagation warns how many rundowns will be affected before applying,devolvida,sim,"- Testado a função de ""excluir"" funcionando.","- Na tela de cadastro ""Nova Lauda do Zero"" está divergente com a do protótipo do Chico.
 
-- Na tela de cadastro ""Nova Lauda do Zero"" está divergente com a do protótipo do Chico.
+- Na tela de editar""Nova Lauda do Zero"" está divergente com a do protótipo do Chico.
 
 - Na tela de cadastro erro ao vincular áudio na área técnica.",Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-CAD-16,news-cadastros,/:tenant/cadastros/servidores-midia,features/cadastros/servidores-midia/lista-servidores-midia/lista-servidores-midia.component.ts,,,media,integracao,Servidores de Mídia: cadastrar caminho e testar o acesso,Media servers: register the path and test access,,,O caminho cadastrado é validado e o espelho referencia o áudio certo,The registered path is validated and the rundown references the right audio,nao_testado,nao,,,,,0,,,
