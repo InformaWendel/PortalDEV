@@ -205,7 +205,7 @@ QA-CAD-12,news-cadastros,/:tenant/cadastros/pessoas-estudio,features/cadastros/p
 
 - Testado a função de ""inativar"" funcionando.
 
-- Testado o filtro de pesquisa ""nome da pessoa""  está funcionando.
+- Testado o filtro de pesquisa ""nome da pessoa"" está funcionando.
 
 - Testado o filtro de pesquisa ""status"" está funcionando.","- Remover o campo ""Nome da Tela"" no cadastro de ""Pessoa do Estudio"".
 ",Alisson Delatim,2026-10-01,1,2026-10-01,,
