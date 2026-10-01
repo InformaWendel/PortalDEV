@@ -1,5 +1,6 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
 imp_muphphqq_ye08i6,alisson.delatim,2026-10-01T08:00,Reunião Inovação x QA,2026-10-01T09:06,Realizado a reunião.,66,finalizado,2026-10-01T12:07:57.458Z,2026-10-01T12:07:57.458Z,news,Realizado a reunião.
+imp_muphw79q_jiqp4v,alisson.delatim,2026-09-30T09:30,Apoio ao Vandrei (DES) sobre o funcionamento do InfoRadio cobol da parte OPEC e FINANCEIRO e auxilio na instalação do sistema.,2026-09-30T09:55,Explicado o fluxo do sistema e auxiliei na instalação.,25,finalizado,2026-10-01T12:13:10.478Z,2026-10-01T12:13:10.478Z,inforadio-cobol,No caso específico ele entende das regras de negócio do sistema para replicar no InfoRadio WEB.
 imp_mucyjcik_9xyh3q,alisson.delatim,2026-09-22T08:00,"- Participado da palestra sobre mudança da reforma tributária para 2027
 
 - Migração do aplicativo Kit YMNFCOM para InfoRadio Tools SASS",2026-09-22T12:20,"- Participado da palestra.
