@@ -201,7 +201,9 @@ QA-CAD-10,news-cadastros,/:tenant/cadastros/pessoas/:id,features/cadastros/pesso
 
 - Testado a função de ""reativar"" funcionando.
 
-- Testado a função de ""excluir"" funcionando.","- Na tela de cadastro de pessoa adicionar o ""cadastro de telefone"".
+- Testado a função de ""excluir"" funcionando.
+
+- Testado o filtro de pesquisa ""nome"" da pessoa está funcionando.","- Na tela de cadastro de pessoa adicionar o ""cadastro de telefone"".
 
  - Na tela de cadastro de pessoa adicionar o ""cadastro de endereço"".
 
