@@ -22,7 +22,7 @@ QA-DSH-03,news-dashboard,/:tenant/dashboard,features/dashboard/avisos-card/aviso
 
 - Testado a função de ""editar"" funcionando.
 
-- Testado a função de ""desativar"" funcionando.
+- Testado a função de ""encerrar"" funcionando.
 
 - Testado a função de ""reativar"" funcionando.
 ",,Alisson Delatim,2026-10-01,0,,,
