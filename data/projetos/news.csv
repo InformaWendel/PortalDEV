@@ -288,6 +288,8 @@ QA-AUD-01,news-auditoria,/:tenant/audit-trail,features/audit-trail/audit-trail.c
 
 - Testado o filtro de pesquisa ""tipo de usuário"" está funcionando.
 
+- Testado o filtro de pesquisa ""data inicio"" está funcionando.
+
 - Testado o filtro de pesquisa ""data inicio"" está funcionando.",,Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-AUD-02,news-auditoria,/:tenant/audit-trail,features/audit-trail/ver-motivo-dialog.component.ts,UC-17,RF-AUDI-02,media,funcional,Ver o motivo registrado em uma decisão de gate,View the reason recorded on a gate decision,,,"O motivo aparece completo, com autor e data da decisão","The reason shows in full, with the decision's author and date",nao_testado,nao,,,,,0,,,
 QA-AUD-03,news-auditoria,/:tenant/audit-trail,features/audit-trail/exportar-audit-dialog.component.ts,UC-17,RF-AUDI-04,media,funcional,Exportar a trilha de auditoria,Export the audit trail,,,O arquivo exportado traz exatamente as linhas filtradas na tela,The exported file carries exactly the rows filtered on screen,nao_testado,nao,,,,,0,,,
