@@ -200,6 +200,7 @@ QA-CAD-11,news-cadastros,/:tenant/cadastros/pessoas/:id,features/cadastros/pesso
 QA-CAD-12,news-cadastros,/:tenant/cadastros/pessoas-estudio,features/cadastros/pessoas-estudio/lista-pessoas-estudio.component.ts,,,media,funcional,"Pessoas do Estúdio: apresentadores, âncoras e operadores","Studio people: presenters, anchors and operators",,,A pessoa cadastrada fica disponível na escalação do jornal,The registered person becomes available in the newscast lineup,em_teste,sim,"- Testado a função de ""criar"" funcionando.
 - Testado a função de ""editar"" funcionando.
 - Testado a função de ""excluir"" funcionando.
+
 - Testado a função de ""inativar"" funcionando.
 
 - Testado o filtro de pesquisa ""nome"" da pessoa está funcionando.
