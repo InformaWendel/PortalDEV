@@ -261,7 +261,7 @@ QA-CAD-15,news-cadastros,/:tenant/cadastros/estruturas/:id,features/cadastros/es
 
 - O design do relatório está divergente com a do protótipo do Chico.",Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-CAD-16,news-cadastros,/:tenant/cadastros/servidores-midia,features/cadastros/servidores-midia/lista-servidores-midia/lista-servidores-midia.component.ts,,,media,integracao,Servidores de Mídia: cadastrar caminho e testar o acesso,Media servers: register the path and test access,,,O caminho cadastrado é validado e o espelho referencia o áudio certo,The registered path is validated and the rundown references the right audio,devolvida,sim,,"- Criar campo de ""Senha"" do usuário conforme o protótipo na tela de cadatro/edição.
-- O botão de te
+- O botão de """"
 ",Alisson Delatim,2026-10-01,1,2026-10-01,,
 QA-CAD-17,news-cadastros,/:tenant/cadastros,features/cadastros,,,alta,funcional,Excluir e desativar têm efeitos distintos em toda lista de cadastro,Delete and deactivate have distinct effects on every registry list,,,Excluir remove o registro; desativar mantém e apenas tira das escolhas,Delete removes the record; deactivate keeps it and only takes it out of the pickers,nao_testado,nao,,,,,0,,,
 QA-CHT-01,news-chat,/:tenant,features/chat/chat-dock.component.ts,,,media,funcional,"Dock do chat abre, fecha e mantém o estado entre telas","Chat dock opens, closes and keeps its state across screens",,,Navegar de tela não fecha a conversa aberta nem perde o rascunho,Navigating between screens does not close the open conversation or lose the draft,nao_testado,nao,,,,,0,,,
