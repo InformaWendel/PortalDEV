@@ -190,7 +190,7 @@ QA-CAD-09,news-cadastros,/:tenant/cadastros/pessoas,features/cadastros/pessoas/l
 
 - Testado o filtro de pesquisa ""profissão"" está funcionando.
 
-- Testado o filtro de pesquisa ""cidade""  está funcionando.
+- Testado o filtro de pesquisa ""cidade"" está funcionando.
 
 - Testado o filtro de pesquisa ""uf"" da pessoa está funcionando.
 
