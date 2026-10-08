@@ -1,4 +1,14 @@
 id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel
+imp_muztyhic_5j07j2,mateus.batalha,2026-10-07T09:40,"Auxilio ao ATE com atendimento ao cliente Paiquere FM - Londrina/PR.
+",2026-10-07T14:33,"Auxilio ao ATE com atendimento ao cliente Paiquere FM - Londrina/PR.
+Atendimento referente a travamento no InfoAudio ocorrido no dia 05/10/2026, e duplicação da informação de execuções no relatório de registros.
+Coletados os dados para analise do travamento e passados ao Desenvolvedor Christopher.
+A origem das informações duplicadas são orginadas da máquina Reserva do cliente. Porem, foi constatado que a máquina reserva não estava sendo executada no momento dos registros de duplicação.
+A suspeita é de que há alguma outra máquina na rede utilizando a base de dados da Reserva.
+No dia anterior, como uma tentativa de prevenir o problema, o ATE desativou o sql da máquina reserva. Funcionou pois mais nenhum registro duplicado foi observado.
+Reativamos o SQL novamente e monitoramos durante o dia.
+Nenhum regstro duplicado foi detectado.
+Avisamos o cliente e finalizamos o atendimento",293,finalizado,2026-10-08T17:48:34.212Z,2026-10-08T17:48:34.212Z,voicetracker,Testes do novo Voice Tracker MV II e III
 imp_muphve47_bhzife,mateus.batalha,2026-09-30T14:00,"Auxilio a MusicMaster com implantação do cliente Harding University - KVHU-FM, e auxilio com atendimento ao cliente Sevens Radio.",2026-09-30T18:00,"Cliente nos conectou a sua máquina e realizamos a instalação do SQL Server 2025 , InfoAudio release 26.0.0.11, Novo Voice Tracker e DXEditor.
 Houve um contratempo no final da reunião com o DXEditor, onde o áudio das musicas não estava sendo carregado corretamente. Combinamos com a MM de continuar verificando no próximo dia.",240,finalizado,2026-10-01T12:12:32.695Z,2026-10-01T12:13:16.531Z,playout,Testes release 27.0.0.1
 imp_muo40239_8qx6ry,mateus.batalha,2026-09-30T09:30,"Impedimento para analise da ocorrência CAS-137847-M4K8S6, cliente Clube FM - Votuporanga",2026-09-30T10:02,"Verificado que houve travamento do Nexus ocasionando na perca de programação no Player. ATE já contornou a situação e está estabilizado novamente. Entrei em contato com o Anderso para avisar que o setor de Desenvolvimento está assumindo o atendimento, e ativamos os Logs do Nexus Server para melhor monitoramento da situação.",32,finalizado,2026-09-30T12:56:29.589Z,2026-09-30T13:15:11.306Z,playout,Testes Release 27.0.0.1
