@@ -77,3 +77,13 @@ imp_muwys08i_e80q2g,gustavo.dias,Gustavo Dias,programacao-cn,CN,"Apresentação 
 ","Apresentação da CN-Musical para Rádio Trampolim da Vitória FM 104,7 Mhz - Parnamirim/RN (Part. Eduardo, Fabio Ramon, Nilson e Alayde)
 ","Apresentação da CN-Musical para Rádio Trampolim da Vitória FM 104,7 Mhz - Parnamirim/RN (Part. Eduardo, Fabio Ramon, Nilson e Alayde)
 ",2026-10-06T10:30,2026-10-06T12:00,90,ativo,2026-10-06T17:40:11.442Z,2026-10-06T17:40:12.875Z
+imp_muztyhic_5j07j2,mateus.batalha,Mateus Batalha,voicetracker,VoiceTracker,Testes do novo Voice Tracker MV II e III,"Auxilio ao ATE com atendimento ao cliente Paiquere FM - Londrina/PR.
+","Auxilio ao ATE com atendimento ao cliente Paiquere FM - Londrina/PR.
+Atendimento referente a travamento no InfoAudio ocorrido no dia 05/10/2026, e duplicação da informação de execuções no relatório de registros.
+Coletados os dados para analise do travamento e passados ao Desenvolvedor Christopher.
+A origem das informações duplicadas são orginadas da máquina Reserva do cliente. Porem, foi constatado que a máquina reserva não estava sendo executada no momento dos registros de duplicação.
+A suspeita é de que há alguma outra máquina na rede utilizando a base de dados da Reserva.
+No dia anterior, como uma tentativa de prevenir o problema, o ATE desativou o sql da máquina reserva. Funcionou pois mais nenhum registro duplicado foi observado.
+Reativamos o SQL novamente e monitoramos durante o dia.
+Nenhum regstro duplicado foi detectado.
+Avisamos o cliente e finalizamos o atendimento",2026-10-07T09:40,2026-10-07T14:33,293,ativo,2026-10-08T17:48:34.212Z,2026-10-08T17:48:35.823Z
