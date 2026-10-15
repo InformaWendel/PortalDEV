@@ -64,11 +64,11 @@ Papéis que já vêm configurados:
 |---|:-:|:-:|:-:|
 | `gestor` — Gestor | ✓ | ✓ | ✓ |
 | `qa` — Analista de QA | ✓ | ✓ | |
-| `dev` — Desenvolvedor | | | |
+| `dev` — Desenvolvedor | ✓ | | |
 
-O papel `dev` vem sem nenhuma permissão: a pessoa entra e vê que o papel ainda não libera
-ferramenta. Para dar consulta ao Portal QA, marque `qa.consultar` no papel `dev` em
-**Administração → Permissões**; para dar registro, `qa.registrar`.
+O papel `dev` só consulta o Portal QA: vê o que foi devolvido, o que está bloqueado, o
+critério de cada caso e o retrabalho, mas não muda o resultado do teste. Para dar registro,
+marque `qa.registrar` no papel ou troque o papel da pessoa.
 
 A Administração tem duas travas: ninguém desativa o próprio usuário, e nenhuma
 alteração pode deixar o portal sem pelo menos uma pessoa ativa com
