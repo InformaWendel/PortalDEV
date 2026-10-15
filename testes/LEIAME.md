@@ -34,7 +34,7 @@ que exercita o ciclo ler-alterar-gravar de `Github.alterarArquivo`.
 | `fila-do-roadmap.mjs` | Triagem em `#/admin/roadmap`, pacote do OPSView, trava de permissão, item órfão, inglês e 400px |
 | `captura-no-impedimento.mjs` | O lado de quem registra: finalizar sem catálogo, CSV antigo ganhando as colunas, fila que falha sem pintar o selo, reconciliação ao entrar |
 | `versao-nova.mjs` | Aviso de versão nova com a página aberta: script mudado e arquivo sumido acendem; dado, erro de rede e 5xx não |
-| `qa-plano.mjs` | Portal QA no formato do plano executável: os quatro catálogos na estrutura nova e exportados idênticos, seções e sumário, conferência e anotações gravadas, conflito com o colega, gaveta, catálogo de 19 colunas, papel que só consulta, inglês e 400px |
+| `qa-plano.mjs` | Portal QA no formato do plano executável: os cinco catálogos na estrutura nova e exportados idênticos, seções e sumário, conferência e anotações gravadas, conflito com o colega, gaveta, catálogo de 19 colunas, papel que só consulta, inglês e 400px |
 
 As capturas saem em `testes/*.png` e não são versionadas. **Olhe-as:** o teste confere
 comportamento, não layout.

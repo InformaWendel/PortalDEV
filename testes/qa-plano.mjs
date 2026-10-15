@@ -15,7 +15,7 @@ const CONSULTA = 'consulta.teste';
 const ENDERECO = 'http://127.0.0.1:' + PORTA + '/';
 const AUDIENCE = 'data/projetos/audience.csv';
 const LEGADO = 'data/projetos/legado.csv';
-const PROJETOS = ['news', 'editor', 'voicetracker', 'audience'];
+const PROJETOS = ['news', 'editor', 'voicetracker', 'audience', 'regressao'];
 
 const { secao, conferir, registrarFalha, resumo } = conferidor();
 

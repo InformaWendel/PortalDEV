@@ -456,6 +456,102 @@
     'vt-plataforma': { pt: 'Plataforma modular', en: 'Modular platform' },
     'vt-onair': { pt: 'On-Air e biblioteca', en: 'On-Air and library' },
     'vt-seguranca': { pt: 'Segurança e acesso', en: 'Security and access' },
+    'reg-instalacao': {
+      pt: 'Instalação e atualização',
+      en: 'Install and update',
+      preparo: {
+        pt: 'Máquina limpa e máquina com a versão anterior do mês. Para a atualização, usar uma cópia do banco de produção, nunca o original.',
+        en: 'A clean machine and a machine with the previous monthly version. For the update, use a copy of the production database, never the original.',
+      },
+    },
+    'reg-abertura': {
+      pt: 'Abertura, login e licença',
+      en: 'Startup, login and license',
+      preparo: {
+        pt: 'Base de produção (cópia), um usuário comum, um administrador e um sem a feature AutoCatalog. Para a licença, acesso para bloquear o servidor de validação.',
+        en: 'Production database (copy), a regular user, an administrator and one without the AutoCatalog feature. For the license, a way to block the validation server.',
+      },
+    },
+    'reg-player': {
+      pt: 'Player e Grid (o ar)',
+      en: 'Player and Grid (on air)',
+      preparo: {
+        pt: 'Programação com blocos para as próximas horas e ao menos 10 músicas e 3 comerciais no catálogo. Saída de áudio ativa e fone para ouvir cortes e repetições.',
+        en: 'A schedule with blocks for the next hours and at least 10 songs and 3 commercials in the catalog. Active audio output and headphones to hear cuts and repetitions.',
+      },
+    },
+    'reg-mixagem': {
+      pt: 'Mixagem',
+      en: 'Mixing',
+      preparo: {
+        pt: 'Tabela de mixagem por tipo configurada. Ordem das regras: situações especiais, edição do evento, dB, tempo e limite de segurança. Ter um vídeo, uma vinheta de passagem e um testemunhal com trilha.',
+        en: 'Mix table by type configured. Rule order: special situations, event edit, dB, time and safety limit. Have a video, a pass-through jingle and a testimonial with a track.',
+      },
+    },
+    'reg-catalogo': {
+      pt: 'Catálogo e Programação',
+      en: 'Catalog and Scheduling',
+      preparo: {
+        pt: 'Central de Negócios aberta com usuário administrador. Ter um áudio novo (MP3) para cadastrar e uma lista com pasta própria.',
+        en: 'Business Center open with an administrator user. Have a new audio (MP3) to register and a list with its own folder.',
+      },
+    },
+    'reg-operacao': {
+      pt: 'Botoneira, InstantPlay e Jornal',
+      en: 'Button panel, InstantPlay and News',
+      preparo: {
+        pt: 'Player aberto, botoneira com um botão alimentado por pasta do disco e dois usuários com layouts diferentes.',
+        en: 'Player open, a button panel with one button fed by a disk folder and two users with different layouts.',
+      },
+    },
+    'reg-rede': {
+      pt: 'Entrada de rede, áudio externo e satélite',
+      en: 'Network input, external audio and satellite',
+      preparo: {
+        pt: 'Só se o cliente usa rede ou áudio externo. Regras de satélite cadastradas e uma fonte de sinal (placa ou URL) disponível.',
+        en: 'Only if the customer uses network or external audio. Satellite rules registered and a signal source (card or URL) available.',
+      },
+    },
+    'reg-servicos': {
+      pt: 'Serviços de integração',
+      en: 'Integration services',
+      preparo: {
+        pt: 'Serviços instalados e em execução no Gerenciador de Serviços. Conferir o resultado (arquivo, evento, bloco), não só o status "Em execução". Ter arquivos de exemplo para ProgAuto, AutoCatalog e ExportaLog, e acesso ao Nexus Server do MusicMaster.',
+        en: 'Services installed and running in the Service Manager. Check the result (file, event, block), not just the "Running" status. Have sample files for ProgAuto, AutoCatalog and ExportaLog, and access to the MusicMaster Nexus Server.',
+      },
+    },
+    'reg-relatorios': {
+      pt: 'Relatórios',
+      en: 'Reports',
+      preparo: {
+        pt: 'Banco com um dia completo de reprodução (o dia anterior serve) e o log de execução disponível para comparar.',
+        en: 'Database with a full day of playback (the previous day will do) and the execution log available for comparison.',
+      },
+    },
+    'reg-vt': {
+      pt: 'VoiceTracker (VT)',
+      en: 'VoiceTracker (VT)',
+      preparo: {
+        pt: 'Só se o cliente usa locução gravada. Microfone funcionando, duas músicas na grade e, para o VT remoto, acesso pelo navegador.',
+        en: 'Only if the customer uses recorded voice tracks. Working microphone, two songs in the grid and, for the remote VT, browser access.',
+      },
+    },
+    'reg-seguranca': {
+      pt: 'Segurança e permissões',
+      en: 'Security and permissions',
+      preparo: {
+        pt: 'Um usuário restrito (sem acesso a alguns recursos) e um com horário de acesso limitado.',
+        en: 'A restricted user (without access to some features) and one with limited access hours.',
+      },
+    },
+    'reg-opcionais': {
+      pt: 'Módulos opcionais',
+      en: 'Optional modules',
+      preparo: {
+        pt: 'Só testar o que o cliente usa ou o que a release alterou. Um caminho feliz por módulo.',
+        en: 'Only test what the customer uses or what the release changed. One happy path per module.',
+      },
+    },
     'aud-acesso': {
       pt: 'Acesso, configuração e cadastros básicos',
       en: 'Access, configuration and basic records',

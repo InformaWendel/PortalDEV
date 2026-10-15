@@ -146,7 +146,7 @@ O portal sai com o histórico registrado até 14/09/2026:
 
 | Arquivo | Conteúdo |
 |---|---|
-| `data/projetos.csv` e `data/projetos/*.csv` | 4 projetos e 416 casos de teste, com os testes já registrados — no Editor de Mídias, 20 liberadas, 2 devolvidas e 1 não implementada |
+| `data/projetos.csv` e `data/projetos/*.csv` | 5 projetos e 476 casos de teste, com os testes já registrados (o plano de regressão do InfoAudio entra sem execução) — no Editor de Mídias, 20 liberadas, 2 devolvidas e 1 não implementada |
 | `data/impedimentos/*.csv` | um arquivo por pessoa, com os impedimentos já registrados |
 | `data/usuarios.csv` | as 15 pessoas da equipe; quem vinha só do Controle de Impedimentos está com `senha_hash` vazio |
 | `data/papeis.csv` | papéis `gestor`, `qa` e `dev` |
