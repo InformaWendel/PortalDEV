@@ -382,7 +382,7 @@ não apenas o que já foi codificado:
 | `editor` | Editor de Mídias | 45 | Integração do novo editor de áudio e vídeo entregue em 2026 na Central de Negócios |
 | `voicetracker` | VoiceTracker MVP II | 60 | Backlog de produto do MVP 2 e do MVP 3 — 21 cards, um caso por critério "Pronto quando" |
 | `audience` | InfoRadio Audience (Gestão de Ouvintes) | 138 | Plano executável do QA (83 casos, `QA-001` a `QA-083`, em 11 seções) mais 55 casos do catálogo por épico que o plano não cobre |
-| `regressao` | InfoAudio — Regressão da release | 60 | Plano padrão de regressão dos recursos críticos do InfoAudio, rodado a cada release mensal (não cobre feature nova): 12 seções, 29 casos `Smoke` (mínimo para liberar; a coluna `rota` guarda `Smoke` ou `Completo`), P0 = bloqueia a liberação. Origem: documentos de recurso do InfoAudio e ocorrências recentes (`rf` guarda o CAS). Ids `QA-REG-NN` |
+| `regressao` | Release 27.2.0 (InfoAudio) | 60 | Plano padrão de regressão dos recursos críticos do InfoAudio, rodado a cada release mensal (não cobre feature nova): 12 seções, 29 casos `Smoke` (mínimo para liberar; a coluna `rota` guarda `Smoke` ou `Completo`), P0 = bloqueia a liberação. Origem: documentos de recurso do InfoAudio e ocorrências recentes (`rf` guarda o CAS). Ids `QA-REG-NN` |
 
 > **Audience: a implementação viva está no front React.** O módulo Angular é a
 > geração anterior; olhar só o Angular leva a concluir, errado, que o recurso não
