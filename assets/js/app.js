@@ -6,8 +6,7 @@
  * Rotas (hash):
  *   #/                        início — as ferramentas do papel de quem entrou
  *   #/qa/...                  Portal QA
- *   #/impedimentos[/painel]   Controle de Impedimentos
- *   #/admin[/permissoes|/roadmap]  Administração: usuários, permissões e fila do roadmap
+ *   #/admin[/permissoes]  Administração: usuários e permissões
  */
 (function () {
   'use strict';
@@ -45,7 +44,6 @@
   function modulo(nome) {
     const mapa = {
       qa: window.QA && window.QA.Telas,
-      impedimentos: window.Impedimentos && window.Impedimentos.Telas,
       admin: window.Admin && window.Admin.Telas,
     };
     // hasOwnProperty: um hash como #/constructor não pode virar ferramenta.

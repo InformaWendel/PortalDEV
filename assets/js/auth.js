@@ -3,8 +3,8 @@
  *
  * Isto NÃO é controle de acesso. O portal é uma página estática: o arquivo
  * data/usuarios.csv é legível por qualquer pessoa que abra o site e a sessão
- * mora no navegador. O login existe para carimbar quem registrou — o teste, o
- * impedimento, a alteração de cadastro — e para mostrar a cada um as
+ * mora no navegador. O login existe para carimbar quem registrou — o teste e a
+ * alteração de cadastro — e para mostrar a cada um as
  * ferramentas do seu papel. Quem de fato consegue gravar é o GitHub que decide,
  * pelo token.
  */
@@ -119,8 +119,8 @@
 
   /**
    * Confere a senha de um registro. Quem ainda não tem senha pessoal entra com a
-   * senha compartilhada do antigo Controle de Impedimentos — o mesmo acesso de
-   * antes da unificação, até definir a própria.
+   * senha compartilhada herdada do antigo Controle de Impedimentos — o mesmo
+   * acesso de antes da unificação, até definir a própria.
    */
   function conferir(registro, login, senha) {
     return Promise.all([hashSenha(login, senha), sha256(senha)]).then(function (hashes) {

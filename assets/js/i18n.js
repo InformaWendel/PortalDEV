@@ -21,9 +21,6 @@
       'ferramenta.qa': 'Portal QA',
       'ferramenta.qaDesc':
         'Acompanhamento dos testes de qualidade: o que está planejado, em andamento e liberado, e o retrabalho que vai e volta entre teste e desenvolvimento.',
-      'ferramenta.impedimentos': 'Impedimentos',
-      'ferramenta.impedimentosDesc':
-        'Registro e análise das interrupções do dia a dia: cronômetro do impedimento em andamento, calendário e painel consolidado da equipe.',
       'ferramenta.admin': 'Administração',
       'ferramenta.adminDesc': 'Cadastro de usuários, papéis e permissões de acesso às ferramentas do portal.',
 
@@ -62,10 +59,6 @@
       'perm.qa.consultarDesc': 'Painéis, catálogos de casos, testes em aberto e retrabalho de todos os projetos.',
       'perm.qa.registrar': 'Registrar testes',
       'perm.qa.registrarDesc': 'Mudar a situação dos casos e preencher testado por, data, referência e observações.',
-      'perm.impedimentos.registrar': 'Registrar impedimentos',
-      'perm.impedimentos.registrarDesc': 'Cronômetro e calendário dos próprios impedimentos.',
-      'perm.impedimentos.painel': 'Painel consolidado de impedimentos',
-      'perm.impedimentos.painelDesc': 'Indicadores, gráficos e exportação com os registros de toda a equipe.',
       'perm.admin.usuarios': 'Administrar usuários e permissões',
       'perm.admin.usuariosDesc': 'Cadastrar pessoas, trocar papéis, redefinir senhas e editar a matriz de permissões.',
 
@@ -83,10 +76,10 @@
         'Ele pode ter expirado ou não ter acesso ao repositório {repo}. A leitura continua pelo site publicado, mas nada será gravado até um token válido ser informado.',
       'banner.senhaTitulo': 'Defina a sua senha pessoal',
       'banner.senhaAjuda':
-        'Você entrou com a senha compartilhada do antigo Controle de Impedimentos. Troque-a por uma senha só sua — é ela que carimba os seus registros.',
+        'Você entrou com a senha compartilhada herdada do antigo Controle de Impedimentos. Troque-a por uma senha só sua — é ela que carimba os seus registros.',
       'banner.versaoTitulo': 'Saiu uma versão nova do portal',
       'banner.versaoAjuda':
-        'Recarregue a página antes de continuar. Registrar pela versão antiga pode deixar dados de fora — como o módulo do roadmap ao finalizar um impedimento.',
+        'Recarregue a página antes de continuar. Gravar pela versão antiga pode deixar dados de fora.',
 
       'token.titulo': 'Token do GitHub',
       'token.configurar': 'Configurar token',
@@ -94,7 +87,7 @@
       'token.pendente': 'Sem token',
       'token.recusado': 'Token recusado',
       'token.explica':
-        'O Portal DEV grava tudo — testes de QA, impedimentos e cadastro de usuários — no repositório {repo}. Informe o seu token uma única vez: ele vale para todas as ferramentas e fica guardado só neste navegador, ligado ao seu usuário. Antes, aceite o convite de colaborador do repositório.',
+        'O Portal DEV grava tudo — testes de QA e cadastro de usuários — no repositório {repo}. Informe o seu token uma única vez: ele vale para todas as ferramentas e fica guardado só neste navegador, ligado ao seu usuário. Antes, aceite o convite de colaborador do repositório.',
       'token.passo1': 'No GitHub: Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic).',
       'token.passo2': 'Marque o escopo public_repo (ou repo, se {repo} for privado) e escolha a validade.',
       'token.passo3':
@@ -145,9 +138,6 @@
       'ferramenta.qa': 'QA Portal',
       'ferramenta.qaDesc':
         'Quality testing tracker: what is planned, in progress and released, and the rework that bounces between testing and development.',
-      'ferramenta.impedimentos': 'Impediments',
-      'ferramenta.impedimentosDesc':
-        'Recording and analysis of day-to-day interruptions: a stopwatch for the impediment in progress, a calendar and the consolidated team panel.',
       'ferramenta.admin': 'Administration',
       'ferramenta.adminDesc': 'User registry, roles and access permissions for the portal tools.',
 
@@ -186,10 +176,6 @@
       'perm.qa.consultarDesc': 'Dashboards, case catalogs, open tests and rework across every project.',
       'perm.qa.registrar': 'Record tests',
       'perm.qa.registrarDesc': 'Change case status and fill in tested by, date, reference and notes.',
-      'perm.impedimentos.registrar': 'Record impediments',
-      'perm.impedimentos.registrarDesc': 'Stopwatch and calendar of your own impediments.',
-      'perm.impedimentos.painel': 'Consolidated impediment panel',
-      'perm.impedimentos.painelDesc': 'Indicators, charts and export with the whole team’s records.',
       'perm.admin.usuarios': 'Manage users and permissions',
       'perm.admin.usuariosDesc': 'Register people, change roles, reset passwords and edit the permission matrix.',
 
@@ -207,10 +193,10 @@
         'It may have expired or lack access to the {repo} repository. Reading goes on through the published site, but nothing will be saved until a valid token is provided.',
       'banner.senhaTitulo': 'Set your personal password',
       'banner.senhaAjuda':
-        'You signed in with the shared password of the former Impediment Tracker. Replace it with a password of your own — it is what stamps your records.',
+        'You signed in with the shared password inherited from the former Impediment Tracker. Replace it with a password of your own — it is what stamps your records.',
       'banner.versaoTitulo': 'A new version of the portal is out',
       'banner.versaoAjuda':
-        'Reload the page before going on. Saving from the old version can leave data out — such as the roadmap module when finishing an impediment.',
+        'Reload the page before going on. Saving from the old version can leave data out.',
 
       'token.titulo': 'GitHub token',
       'token.configurar': 'Set up token',
@@ -218,7 +204,7 @@
       'token.pendente': 'No token',
       'token.recusado': 'Token rejected',
       'token.explica':
-        'The DEV Portal writes everything — QA tests, impediments and the user registry — to the {repo} repository. Provide your token once: it works for every tool and is kept in this browser only, tied to your user. Accept the repository collaborator invitation first.',
+        'The DEV Portal writes everything — QA tests and the user registry — to the {repo} repository. Provide your token once: it works for every tool and is kept in this browser only, tied to your user. Accept the repository collaborator invitation first.',
       'token.passo1': 'On GitHub: Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic).',
       'token.passo2': 'Tick the public_repo scope (or repo, if {repo} is private) and pick an expiration.',
       'token.passo3':

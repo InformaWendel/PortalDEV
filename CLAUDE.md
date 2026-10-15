@@ -11,11 +11,10 @@ Solutions sobre **um login, um cadastro de permissões e um token do GitHub**:
 - **Portal QA** (`#/qa`) — testes de qualidade por projeto: planejado, em andamento,
   concluído e retrabalho. Cada projeto é um plano executável — seções com preparação,
   casos com passos e resultado esperado, e a conferência do QA em cada um.
-- **Controle de Impedimentos** (`#/impedimentos`) — interrupções do dia a dia, com
-  cronômetro, calendário e painel consolidado. Ao finalizar, o analista classifica o
-  que fez num módulo do roadmap e escreve o entregável.
-- **Administração** (`#/admin`) — usuários, papéis, matriz de permissões e a triagem
-  da fila do roadmap.
+- **Administração** (`#/admin`) — usuários, papéis e matriz de permissões.
+
+> O Controle de Impedimentos e a fila do roadmap (integração com o OPSView) foram
+> descontinuados e removidos em 15/10/2026; o histórico está no git.
 
 Código e dados de todas as ferramentas moram em `InformaWendel/PortalDEV`, branch
 `main`, publicado pelo GitHub Pages.
@@ -27,11 +26,11 @@ Código e dados de todas as ferramentas moram em `InformaWendel/PortalDEV`, bran
 - **JavaScript sem transpilação**, em `assets/js/`, um arquivo por responsabilidade,
   no padrão IIFE que publica um objeto em `window`. Nada de ES modules.
 - **Tema escuro único.** Cor primária `#f7941d` (laranja da casa). Tokens `--pd-*` no
-  `:root` do `portal.css`. Prefixos de classe: `pd-` casca e compartilhado, `imp-`
-  Impedimentos, `adm-` Administração.
+  `:root` do `portal.css`. Prefixos de classe: `pd-` casca e compartilhado, `adm-`
+  Administração.
 - **Dois idiomas: pt-BR e en-US.** Detecção pelo navegador, alternância no cabeçalho.
   Nenhuma string fixa na renderização — tudo passa por `I18N.t()`. Cada ferramenta
-  registra o próprio dicionário com prefixo (`qa.`, `imp.`, `adm.`); a casca usa
+  registra o próprio dicionário com prefixo (`qa.`, `adm.`); a casca usa
   chaves sem prefixo. Conteúdo de CSV bilíngue usa `_pt`/`_en` e `I18N.campo()`.
 - **Código, comentários e nomes em pt-BR.** Comentário explica o porquê, não o quê.
 - **O CSV do repositório é a única fonte de verdade.** O `localStorage` guarda apenas
@@ -51,28 +50,21 @@ PortalDEV/
 │   ├── usuarios.csv              cadastro único de pessoas
 │   ├── papeis.csv                papel -> permissões
 │   ├── projetos.csv              Portal QA: catálogo de projetos
-│   ├── projetos/<id>.csv         Portal QA: casos de teste de um projeto
-│   ├── impedimentos/<usuario>.csv  Impedimentos: registros de uma pessoa
-│   └── roadmap/
-│       ├── modulos.csv           catálogo dos módulos do roadmap (cópia versionada)
-│       └── fila.csv              o que virou item de roadmap, e a triagem dele
+│   └── projetos/<id>.csv         Portal QA: casos de teste de um projeto
 ├── testes/                       harness (Chrome headless + GitHub simulado) e suítes
 └── assets/
     ├── css/portal.css
     └── js/
-        ├── config.js             repositório, caminhos, salt, permissões, mapa do OPSView
+        ├── config.js             repositório, caminhos, salt, permissões
         ├── i18n.js               motor de idioma + dicionário da casca
         ├── csv.js                leitura e escrita RFC 4180
         ├── ui.js                 escape, diálogo, aviso flutuante, download
-        ├── graficos.js           barras e série em SVG, compartilhado pelas ferramentas
         ├── github.js             token por usuário, leitura, gravação, ler-alterar-gravar
         ├── auth.js               login, sessão, troca e gravação de senha
         ├── acesso.js             papéis e permissões (pode, podeFerramenta)
         ├── versao.js             percebe versão nova publicada e pede para recarregar
         ├── qa/                   i18n.js · store.js · telas.js
-        ├── impedimentos/         i18n.js · datahora.js · store.js · roadmap.js ·
-        │                         calendario.js · painel.js · telas.js
-        ├── admin/                i18n.js · roadmap.js · telas.js
+        ├── admin/                i18n.js · telas.js
         └── app.js                casca: login, cabeçalho, menu, token, senha, rotas
 ```
 
@@ -86,10 +78,7 @@ ferramenta (textos → dados → telas), e `app.js` por último.
 | `#/` | Início: ferramentas do papel e o que ele permite | sessão |
 | `#/qa` · `#/qa/guia` | Visão geral e guia do QA | `qa.consultar` |
 | `#/qa/p/<id>` · `#/qa/p/<id>/casos` | Painel e plano executável do projeto | `qa.consultar` (registrar: `qa.registrar`) |
-| `#/impedimentos` | Meu calendário | `impedimentos.registrar` |
-| `#/impedimentos/painel` | Painel consolidado | `impedimentos.painel` |
 | `#/admin` · `#/admin/permissoes` | Usuários e matriz | `admin.usuarios` |
-| `#/admin/roadmap` | Triagem da fila do roadmap e pacote do OPSView | `admin.usuarios` |
 
 ## Contrato de uma ferramenta
 
@@ -97,7 +86,7 @@ ferramenta (textos → dados → telas), e `app.js` por último.
 
 | Função | Papel |
 |---|---|
-| `iniciar()` | Liga os ouvintes, uma vez. Ouvinte delegado confere `App.ferramentaAtual()` e usa atributo próprio (`data-qa`, `data-imp`, `data-imp-painel`, `data-imp-roadmap`, `data-adm`); a casca usa `data-acao` |
+| `iniciar()` | Liga os ouvintes, uma vez. Ouvinte delegado confere `App.ferramentaAtual()` e usa atributo próprio (`data-qa`, `data-adm`); a casca usa `data-acao` |
 | `permitido()` | Alguma permissão da ferramenta; sem ela a casca mostra "sem acesso" |
 | `entrar(segmentos)` | Rota nova; devolve uma Promise se precisar carregar dados (a casca redesenha ao resolver) |
 | `render(segmentos)` | Desenha em `#vista` |
@@ -127,23 +116,12 @@ reaplicando só o que este navegador alterou (até 3 tentativas):
   vez: o que for registrado com o PUT em voo continua na fila e sai logo em seguida. O
   plano não é redesenhado a cada tecla — `atualizarCaso()` mexe só na faixa, na caixa,
   na situação e na assinatura, para quem digita não perder o campo.
-- **Impedimentos e Administração** — `Github.alterarArquivo(caminho, mutador)`: lê,
-  aplica o mutador sobre a versão mais nova e grava. O mutador pode lançar erro (ex.:
-  impedimento já aberto, último administrador) para abortar. A matriz de permissões
+- **Administração** — `Github.alterarArquivo(caminho, mutador)`: lê, aplica o mutador
+  sobre a versão mais nova e grava. O mutador pode lançar erro (ex.: último
+  administrador) para abortar. A matriz de permissões
   guarda o que mudou em cada papel e reaplica só isso sobre a versão relida; as travas
   que dependem do outro cadastro (último administrador, papel em uso) o relêem antes
   de gravar.
-- **Fila do roadmap** — os dois juntos. `Impedimentos.Roadmap.enfileirar()` põe a linha
-  numa fila em memória e chama `alterarArquivo`; o impedimento em si já está gravado,
-  então falhar aqui não desfaz nada. A fila **não mexe no selo** — ele já disse "Salvo"
-  sobre o impedimento — e a falha aparece no `banner()` de Impedimentos, com botão de
-  tentar de novo. Ao entrar no calendário, `reconciliar()` compara os registros da
-  pessoa com a fila e reenvia, num commit só, o que ficou só em memória (F5 no meio do
-  commit) ou o cancelamento que não saiu. Não cancela a linha de registro finalizado sem
-  módulo: isso só nasce de gravação pela versão antiga, que descarta as colunas novas ao
-  reescrever o arquivo, e a linha da fila é a única cópia do que foi informado. A triagem
-  da Administração grava direto por `alterarArquivo`.
-
 O selo no cabeçalho (`Salvando…` · `Salvo no repositório` · `Falha ao salvar` ·
 `Somente leitura` · `Somente consulta`) é a garantia visível — mantenha-o. Toda
 gravação chama `App.sinalizarGravacao()`.
@@ -167,36 +145,7 @@ página carregou — index, scripts e CSS — e confere a cada 5 minutos e ao vo
 Se o site publicado mudou, a casca mostra o aviso com **Recarregar**, antes de qualquer
 outro. Não há número de versão para subir, e commit só de dados não acende o aviso.
 Arquivo que a página carregou e sumiu do site conta como versão nova; erro de rede e
-5xx não contam.
-
-> Em 15/09/2026, antes disso existir, um impedimento finalizado uma hora depois da
-> publicação da fila do roadmap saiu sem módulo, pela versão antiga, e foi corrigido à
-> mão. Publicação que muda o que se grava ainda merece aviso à equipe.
-
-## A fila do roadmap e o OPSView
-
-Impedimento finalizado com módulo e entregável entra em `data/roadmap/fila.csv`. Em
-`#/admin/roadmap` o gestor tria linha a linha, aprova com um nome curto, e gera o
-pacote no formato do `POST /roadmap/api/import-json`. O mapeamento de campos está em
-`opsview`, no `config.js` — é acordo com quem é dono daquele ambiente, não dedução.
-
-**O portal para no pacote.** O POST não sai do navegador: o endereço do OPSView não
-responde à verificação prévia (OPTIONS devolve 405, sem `Access-Control-Allow-Origin`),
-e um token de serviço não tem o que fazer numa página estática. O `curl` é digitado por
-quem decide enviar, e a tela mostra o comando pronto.
-
-Três coisas que o payload nunca leva, e o motivo:
-
-- **`fim_baseline`** — é a régua do atraso, se grava uma vez e não se muda. Não se
-  cunha automaticamente a partir de data que ninguém prometeu.
-- **`peso`, `progresso` de item em curso, `bloqueada`** — são da tela do OPSView.
-  Campo ausente preserva o que estiver lá; mandá-lo apagaria trabalho de outra pessoa.
-- **numeração de MVP** — `MVP <I..IV>` é recurso finito do roadmap, e a maioria dos
-  módulos já tem o III ocupado. O que sai daqui é sempre `TarefaInterna - <nome>`.
-
-E uma que não tem conserto pela API: **no OPSView não há rota de remoção.** Item
-enviado cuja linha depois é cancelada fica órfão lá, e a tela acende um aviso dizendo
-que o conserto é na tela do OPSView, à mão.
+5xx não contam. Publicação que muda o que se grava ainda merece aviso à equipe.
 
 ## Esquema dos CSV
 
@@ -204,7 +153,7 @@ que o conserto é na tela do OPSView, à mão.
 
 `usuario,nome,papel,senha_hash,ativo`
 
-- `usuario` — minúsculas, `[a-z0-9._-]`; nomeia `data/impedimentos/<usuario>.csv` e
+- `usuario` — minúsculas, `[a-z0-9._-]`; é o carimbo dos registros e
   não muda depois.
 - `papel` — chave de `data/papeis.csv`.
 - `senha_hash` — SHA-256 hex de `usuario + ':' + senha + ':' + salt` (salt em
@@ -258,59 +207,6 @@ O portal grava sempre nesta ordem. Catálogo em formato anterior é lido normalm
 ganha as colunas na próxima gravação — sem `verificado`, conta como verificado o caso
 com desfecho e `testado_por` preenchido. Coluna que o portal não conhece não se perde:
 vai para o fim do arquivo.
-
-### `data/impedimentos/<usuario>.csv`
-
-`id,usuario,inicio,motivo_inicio,fim,motivo_fim,duracao_min,status,criado_em,atualizado_em,modulo,entregavel`
-
-- `inicio`/`fim` — `AAAA-MM-DDTHH:mm`, horário local, sem fuso (o formato do
-  `datetime-local`).
-- `duracao_min` e `status` (`aberto`/`finalizado`) são derivados de início e fim e
-  recalculados a cada gravação.
-- Um impedimento aberto por vez — conferido ao iniciar e ao editar; data futura
-  bloqueada (tolerância de 1 minuto).
-- Atravessar a meia-noite conta o esforço inteiro no dia de início — calendário e
-  painel somam igual.
-- `modulo`/`entregavel` — informados ao finalizar, e é o que alimenta a fila do
-  roadmap. Ficam também aqui, e não só na fila, para o que a pessoa digitou nunca
-  depender da segunda gravação. **Finalizar exige o catálogo de módulos**: se ele não
-  carregar, o formulário mostra o erro e *Tentar de novo*, sem perder o término digitado.
-  Iniciar não depende dele.
-- Arquivo ainda com as 10 colunas de antes é lido normalmente — coluna ausente vem vazia
-  — e ganha as duas na próxima gravação da própria pessoa. Não há migração em lote: ela
-  disputaria o arquivo com quem está usando o portal.
-
-### `data/roadmap/modulos.csv`
-
-`modulo,nome,frente,ativo`
-
-Cópia versionada dos módulos do roadmap — o portal não lê arquivo de fora do
-repositório em tempo de execução. `frente` é `S` (SaaS), `P` (Premise) ou `T`
-(Tarefas Internas), e é o que decide `ambiente` e `area` no OPSView.
-
-> **`nome` é o nome do produto no OPSView, byte a byte** — acento e o `×` (U+00D7) de
-> `PROG × PLAYOUT` inclusive. Divergir aqui cria um produto novo lá, em silêncio.
->
-> **Exceção:** `inforadio-cobol` ("InfoRádio Cobol", Tarefas Internas) foi criado aqui em
-> 15/09/2026 e ainda não existe nem no roadmap nem no OPSView — o primeiro envio dele
-> cria o produto lá. Alinhar com o dono do OPSView antes, e levar o módulo ao roadmap.
-
-### `data/roadmap/fila.csv`
-
-`id,usuario,pessoa,modulo,modulo_nome,entregavel,motivo_inicio,motivo_fim,inicio,fim,duracao_min,situacao,criado_em,atualizado_em` — escritas por Impedimentos;
-`titulo,triagem,triagem_por,triagem_em,motivo_recusa,roadmap_key,enviado_em` — escritas pela Administração.
-
-Um arquivo, dois donos. Cada lado só escreve os campos que são dele e preserva o
-resto: `Impedimentos.Roadmap.aplicarSobre` copia apenas o que a linha traz, e
-`Admin.Roadmap` acrescenta coluna no fim sem tocar nas catorze primeiras.
-
-- `id` é o do impedimento — é o que amarra as duas pontas.
-- `situacao` (`ativo`/`cancelado`) vem de Impedimentos: impedimento excluído ou
-  reaberto marca a linha em vez de apagá-la, para o roadmap não perder o rastro.
-- `triagem` é `pendente`/`aprovado`/`recusado`. Linha cancelada não se aprova.
-- `roadmap_key` é cunhada na aprovação e **nunca muda** — é ela que faz o reenvio ao
-  OPSView atualizar em vez de duplicar. O contador vive na própria fila, calculado
-  sobre a versão relida, então dois gestores triando ao mesmo tempo não colidem.
 
 ## Portal QA — situações e métricas
 
@@ -418,21 +314,6 @@ escrever caso novo estão em `testes/LEIAME.md`. Percorrer:
 - login com senha errada, senha compartilhada e senha pessoal; usuário inativo;
 - dev sem token (modo leitura), com token (somente consulta), sem acesso a `#/admin`;
 - token inválido, sem escrita e válido — e que não é pedido de novo no próximo login;
-- impedimento: data futura, abrir, finalizar, CSV com escape RFC 4180;
-- finalizar sem o catálogo no ar é barrado com *Tentar de novo*, e iniciar não; CSV de
-  10 colunas ganha as duas na primeira gravação, com vírgula e quebra de linha intactas;
-- fila que falha não pinta o selo de falha, acende o aviso e sai no tentar de novo;
-  linha perdida em memória volta pela reconciliação, em commit único, e registro que não
-  foi lido não cancela nada, nem registro reescrito pela versão antiga sem módulo;
-- fila do roadmap: a triagem grava **sem tocar nas catorze colunas de Impedimentos**,
-  e uma gravação de Impedimentos não apaga `triagem` nem `roadmap_key`;
-- chave do roadmap cunhada uma vez só, sem colidir com as 61 `RMAP-` já no OPSView, e
-  imutável quando a linha é reaberta;
-- linha cancelada não se aprova; linha já enviada e depois cancelada acende o aviso de
-  item órfão; linha editada depois da triagem aparece marcada;
-- pacote do OPSView: envelope `items`, `fim_baseline` e `peso` **nunca** no payload,
-  título sem cunhar numeração de MVP, datas em `AAAA-MM`;
-- `#/admin/roadmap` com papel sem `admin.usuarios` cai em "sem acesso" e não lê a fila;
 - QA: registrar, contador de voltas, **conflito** com alteração alheia preservada,
   alteração feita com o commit em voo, catálogo que falhou relido ao entrar;
 - plano executável: seções na ordem do CSV com preparação, passos e resultado; marcar

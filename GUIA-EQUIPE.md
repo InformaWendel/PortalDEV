@@ -72,12 +72,12 @@ por canal separado.
 
 ---
 
-**Assunto: Portal DEV — Portal QA e Impedimentos num lugar só**
+**Assunto: Portal DEV — Portal QA num lugar só**
 
-Pessoal, o Portal QA e o Controle de Impedimentos agora estão juntos no **Portal
+Pessoal, o Portal QA agora mora no **Portal
 DEV**: https://informawendel.github.io/PortalDEV/
 
-Um login só, e o token do GitHub é informado **uma única vez** para as duas
+Um login só, e o token do GitHub é informado **uma única vez** para todas as
 ferramentas. Os endereços antigos deixam de ser usados.
 
 **Configuração inicial — uns 3 minutos, só na primeira vez.**
@@ -125,8 +125,7 @@ Se o chip do cabeçalho mostrar **GitHub conectado**, está pronto.
   que foi **devolvido** para ajuste com as observações do QA, o que está bloqueado e
   o retrabalho. É consulta — quem muda o resultado do teste é o QA.
 - **QA** continua registrando os testes como antes, agora no mesmo portal.
-- **Impedimentos** funcionam como antes: **Iniciar impedimento**, **Finalizar**,
-  **Registrar impedimento passado** e o calendário para ver, editar ou excluir.
+- O **Controle de Impedimentos** foi descontinuado e saiu do portal.
 
 O repositório guarda tudo em CSV: não escreva nos motivos ou observações nome de
 cliente, dado pessoal ou informação contratual.

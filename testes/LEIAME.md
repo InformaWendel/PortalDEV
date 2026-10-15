@@ -6,8 +6,6 @@ DevTools, com a **API de conteúdo do GitHub simulada em memória** por um scrip
 injetado antes da página.
 
 ```
-node testes/fila-do-roadmap.mjs
-node testes/captura-no-impedimento.mjs
 node testes/versao-nova.mjs
 node testes/qa-plano.mjs
 ```
@@ -31,8 +29,6 @@ que exercita o ciclo ler-alterar-gravar de `Github.alterarArquivo`.
 | Arquivo | O que é |
 |---|---|
 | `harness.mjs` | Servidor, navegador por CDP, simulação do GitHub e o contador de asserções. Lê `salt`, caminhos e nomes de chave do próprio `config.js`, para o teste não guardar uma segunda cópia da verdade |
-| `fila-do-roadmap.mjs` | Triagem em `#/admin/roadmap`, pacote do OPSView, trava de permissão, item órfão, inglês e 400px |
-| `captura-no-impedimento.mjs` | O lado de quem registra: finalizar sem catálogo, CSV antigo ganhando as colunas, fila que falha sem pintar o selo, reconciliação ao entrar |
 | `versao-nova.mjs` | Aviso de versão nova com a página aberta: script mudado e arquivo sumido acendem; dado, erro de rede e 5xx não |
 | `qa-plano.mjs` | Portal QA no formato do plano executável: os cinco catálogos na estrutura nova e exportados idênticos, seções e sumário, conferência e anotações gravadas, conflito com o colega, gaveta, catálogo de 19 colunas, papel que só consulta, inglês e 400px |
 

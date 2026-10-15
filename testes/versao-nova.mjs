@@ -46,9 +46,9 @@ try {
   conferir('sem aviso', !(await temAviso()));
 
   secao('commit so de dados nao acende');
-  await js("window.__sobrescritas['data/roadmap/fila.csv'] = 'dado novo';");
+  await js("window.__sobrescritas['data/projetos.csv'] = 'dado novo';");
   await js("window.__sobrescritas['data/usuarios.csv'] = 'dado novo';");
-  conferir('fila e cadastro mudando nao sao versao nova', (await conferirVersao()) === false);
+  conferir('catalogo e cadastro mudando nao sao versao nova', (await conferirVersao()) === false);
   conferir('continua sem aviso', !(await temAviso()));
 
   secao('erro de rede e 5xx nao acendem');
@@ -84,7 +84,7 @@ try {
     !(await temAviso()) && !(await js('return window.Versao.desatualizada();')));
 
   secao('arquivo que sumiu no deploy acende');
-  await js("window.__ausentes.add('assets/js/graficos.js');");
+  await js("window.__ausentes.add('assets/js/ui.js');");
   conferir('script que deixou de existir e versao nova', (await conferirVersao()) === true);
 
   secao('textos nos dois idiomas');

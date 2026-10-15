@@ -2,7 +2,7 @@
  * Configuração do Portal DEV.
  *
  * O portal reúne as ferramentas do time de desenvolvimento — Portal QA e
- * Controle de Impedimentos — sobre um único login, um único cadastro de
+ * Administração — sobre um único login, um único cadastro de
  * permissões e um único repositório de dados. Todos os CSV moram nesse
  * repositório e são lidos e gravados pela API do GitHub; por isso um token por
  * pessoa, informado uma vez, serve para todas as ferramentas.
@@ -23,55 +23,6 @@ window.PORTAL_CONFIG = {
     usuarios: 'data/usuarios.csv',
     papeis: 'data/papeis.csv',
     qaProjetos: 'data/projetos.csv',
-    impedimentos: 'data/impedimentos',
-    /** Catálogo dos módulos do roadmap e a fila que o roadmap consome na carga dele. */
-    roadmapModulos: 'data/roadmap/modulos.csv',
-    roadmapFila: 'data/roadmap/fila.csv',
-  },
-
-  /**
-   * Como uma linha aprovada da fila vira item do roadmap do OPSView.
-   *
-   * Isto é acordo com quem é dono daquele ambiente, não dedução nossa: `ambiente`
-   * cria valor novo em silêncio se o nome divergir, e `area` é enum fechado. Os módulos
-   * de data/roadmap/modulos.csv existem lá como produto com o nome escrito exatamente
-   * assim — não renomeie de um lado só. A exceção é `inforadio-cobol`, criado em
-   * 15/09/2026 sem produto correspondente: o primeiro envio dele cria o produto lá.
-   *
-   * O portal monta o pacote e para aí. O POST não sai do navegador: o endereço não
-   * responde à verificação prévia (OPTIONS devolve 405, sem
-   * Access-Control-Allow-Origin), e um token de serviço não tem o que fazer numa
-   * página estática. Quem envia digita o curl.
-   */
-  opsview: {
-    endpoint: 'https://opsview.informa.solutions/roadmap/api/import-json',
-
-    /**
-     * Chave do item. Contador próprio, cunhado na aprovação e imutável depois — é
-     * o que faz reenviar atualizar em vez de duplicar. As 61 chaves já em uso no
-     * OPSView não colidem com este prefixo.
-     */
-    prefixoChave: 'RMAP-I',
-    digitosChave: 3,
-
-    /** Frente do módulo -> ambiente · area · deploy_model, conforme o plano de exportação. */
-    frentes: {
-      S: { ambiente: 'SaaS', area: 'radio_saas', deploy_model: 'saas' },
-      P: { ambiente: 'Premise', area: 'radio_onprem', deploy_model: 'onprem' },
-      T: { ambiente: 'Informa', area: 'plataforma', deploy_model: 'hibrido' },
-    },
-
-    /** Item nascido de impedimento é trabalho já concluído. */
-    fase: 'entregue',
-
-    /**
-     * O nome do item nunca é "MVP <n> - <módulo>": a numeração de MVP é do roadmap
-     * e é recurso finito. O que sai daqui é sempre tarefa.
-     */
-    prefixoTitulo: 'TarefaInterna - ',
-
-    /** O contrato só tem título curto. O maior dos 61 já enviados tem 56 caracteres. */
-    maxTitulo: 56,
   },
 
   /**
@@ -85,8 +36,8 @@ window.PORTAL_CONFIG = {
   salt: 'portalqa-informa-2026',
 
   /**
-   * SHA-256 da senha compartilhada do antigo Controle de Impedimentos. Vale só
-   * para quem ainda não tem senha pessoal (senha_hash vazio), e o portal pede a
+   * SHA-256 da senha compartilhada herdada do antigo Controle de Impedimentos (já
+   * retirado). Vale só para quem ainda não tem senha pessoal (senha_hash vazio), e o portal pede a
    * troca logo na entrada.
    */
   senhaCompartilhadaHash: '90ecc336d6200b1389eb49c4b557ee42892345c2f727453ae82c96e6de94098e',
@@ -116,11 +67,9 @@ window.PORTAL_CONFIG = {
   permissoes: [
     { chave: 'qa.consultar', ferramenta: 'qa' },
     { chave: 'qa.registrar', ferramenta: 'qa', requer: 'qa.consultar' },
-    { chave: 'impedimentos.registrar', ferramenta: 'impedimentos' },
-    { chave: 'impedimentos.painel', ferramenta: 'impedimentos' },
     { chave: 'admin.usuarios', ferramenta: 'admin' },
   ],
 
   /** Ordem das ferramentas no menu e na página inicial. */
-  ferramentas: ['qa', 'impedimentos', 'admin'],
+  ferramentas: ['qa', 'admin'],
 };

@@ -7,7 +7,6 @@
  * Rotas (hash):
  *   #/admin              usuários
  *   #/admin/permissoes   matriz de permissões por papel
- *   #/admin/roadmap      triagem da fila do roadmap (tela em admin/roadmap.js)
  */
 (function () {
   'use strict';
@@ -69,17 +68,13 @@
 
   function entrar(segmentos) {
     if (segmentos[1] === 'permissoes') vista.rota = 'permissoes';
-    else if (segmentos[1] === 'roadmap') vista.rota = 'roadmap';
     else vista.rota = 'usuarios';
-    // A fila e o catálogo de módulos não vêm no carregamento do portal: são desta tela só.
-    return vista.rota === 'roadmap' ? window.Admin.Roadmap.carregar() : null;
   }
 
   function abas() {
     return [
       { chave: 'usuarios', rotulo: t('nav.usuarios'), hash: '#/admin' },
       { chave: 'permissoes', rotulo: t('nav.permissoes'), hash: '#/admin/permissoes' },
-      { chave: 'roadmap', rotulo: t('nav.roadmap'), hash: '#/admin/roadmap' },
     ];
   }
 
@@ -130,13 +125,7 @@
 
   function render() {
     if (vista.rota === 'permissoes') renderPermissoes();
-    else if (vista.rota === 'roadmap') window.Admin.Roadmap.render();
     else renderUsuarios();
-  }
-
-  /** Token novo: a fila é relida, porque sem token ela vinha do site publicado. */
-  function recarregar() {
-    return vista.rota === 'roadmap' ? window.Admin.Roadmap.recarregar() : null;
   }
 
   /* ---------------- gravação ---------------- */
@@ -778,8 +767,6 @@
       if (nome === 'editarPapel') return abrirFormularioPapel(acao.getAttribute('data-papel'));
       if (nome === 'excluirPapel') return excluirPapel(acao.getAttribute('data-papel'));
       if (nome === 'salvarPermissoes') return salvarPermissoes();
-      // A triagem da fila tem tela própria; aqui só se encaminha o clique.
-      if (nome.indexOf('rm') === 0) return window.Admin.Roadmap.acao(nome, acao);
       if (nome === 'descartar') {
         descartarRascunho();
         renderPermissoes();
@@ -800,13 +787,6 @@
         if (id === 'admFormUsuario') salvarUsuario(evento.target);
         else if (id === 'admFormSenha') salvarSenha(evento.target);
         else salvarPapel(evento.target);
-        return;
-      }
-      // Os formulários da fila respondem por si. O default é barrado antes de
-      // chamar: se a gravação falhasse, a página recarregaria e perderia o erro.
-      if (id.indexOf('admFormRoadmap') === 0) {
-        evento.preventDefault();
-        window.Admin.Roadmap.enviarFormulario(evento.target);
       }
     });
   }
@@ -820,7 +800,6 @@
     abaAtual: abaAtual,
     subtitulo: subtitulo,
     render: render,
-    recarregar: recarregar,
     temPendencias: temPendencias,
     descarregar: descarregar,
     icone: ICONE,

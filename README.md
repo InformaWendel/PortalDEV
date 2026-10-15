@@ -6,7 +6,6 @@ cadastro de permissões e um token do GitHub** para tudo:
 | Ferramenta | Para que serve |
 |---|---|
 | **Portal QA** | Acompanhamento dos testes de qualidade por projeto: o que está planejado, em andamento e liberado, e o retrabalho que vai e volta entre teste e desenvolvimento. |
-| **Impedimentos** | Registro das interrupções do dia a dia, com cronômetro, calendário pessoal e painel consolidado da equipe. |
 | **Administração** | Usuários, papéis e a matriz de permissões de acesso às ferramentas. |
 
 Roda inteiramente no navegador — HTML, CSS e JavaScript, sem backend e sem
@@ -43,7 +42,7 @@ Cada pessoa entra com o próprio usuário (`wendel.martins`, `cicero`…) e a pr
 senha. O papel dela define o menu: quem não tem nenhuma permissão de uma ferramenta
 não a vê.
 
-Quem veio do antigo Controle de Impedimentos e ainda não tem senha pessoal
+Quem veio do antigo Controle de Impedimentos (já retirado) e ainda não tem senha pessoal
 (`senha_hash` vazio no cadastro) entra com a **senha compartilhada de antes** e o
 portal mostra um aviso até a pessoa trocá-la pelo menu da conta → **Trocar senha**.
 Quem já usava o Portal QA continua com a senha que tinha.
@@ -57,27 +56,24 @@ cada uma fica em `data/papeis.csv` e é editado na **Administração → Permiss
 |---|---|
 | `qa.consultar` | Painéis, catálogos, testes em aberto e retrabalho de todos os projetos |
 | `qa.registrar` | Mudar a situação dos casos e preencher testado por, data, referência e observações (inclui `qa.consultar`) |
-| `impedimentos.registrar` | Cronômetro e calendário dos próprios impedimentos |
-| `impedimentos.painel` | Painel consolidado com os registros de toda a equipe e exportação |
 | `admin.usuarios` | Cadastrar pessoas, trocar papéis, redefinir senhas e editar a matriz |
 
 Papéis que já vêm configurados:
 
-| Papel | Consultar QA | Registrar testes | Registrar impedimentos | Painel consolidado | Administrar |
-|---|:-:|:-:|:-:|:-:|:-:|
-| `gestor` — Gestor | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `qa` — Analista de QA | ✓ | ✓ | ✓ | | |
-| `dev` — Desenvolvedor | ✓ | | ✓ | | |
+| Papel | Consultar QA | Registrar testes | Administrar |
+|---|:-:|:-:|:-:|
+| `gestor` — Gestor | ✓ | ✓ | ✓ |
+| `qa` — Analista de QA | ✓ | ✓ | |
+| `dev` — Desenvolvedor | | | |
 
-**Desenvolvedores agora têm acesso ao Portal QA**, em modo consulta: veem o que foi
-devolvido, o que está bloqueado, o critério de cada caso e o retrabalho, mas não
-mudam o resultado do teste. Para dar registro a alguém, troque o papel da pessoa ou
-marque `qa.registrar` no papel `dev`.
+O papel `dev` vem sem nenhuma permissão: a pessoa entra e vê que o papel ainda não libera
+ferramenta. Para dar consulta ao Portal QA, marque `qa.consultar` no papel `dev` em
+**Administração → Permissões**; para dar registro, `qa.registrar`.
 
 A Administração tem duas travas: ninguém desativa o próprio usuário, e nenhuma
 alteração pode deixar o portal sem pelo menos uma pessoa ativa com
-`admin.usuarios`. Usuário não é excluído, é **desativado** — o histórico de testes e
-impedimentos continua no repositório.
+`admin.usuarios`. Usuário não é excluído, é **desativado** — o histórico de testes
+continua no repositório.
 
 ### Token do GitHub — informado uma vez
 
@@ -122,12 +118,10 @@ data/
 ├── usuarios.csv                 cadastro único: usuario,nome,papel,senha_hash,ativo
 ├── papeis.csv                   papel,nome_pt,nome_en,permissoes
 ├── projetos.csv                 Portal QA — catálogo de projetos (formato inalterado)
-├── projetos/<id>.csv            Portal QA — casos de teste (formato inalterado)
-└── impedimentos/<usuario>.csv   Impedimentos — um arquivo por pessoa (formato inalterado)
+└── projetos/<id>.csv            Portal QA — casos de teste (formato inalterado)
 ```
 
-Os CSV de projetos, catálogos e impedimentos mantêm as colunas originais do Portal
-QA e do Controle de Impedimentos — o esquema completo está no [CLAUDE.md](CLAUDE.md).
+Os CSV de projetos e catálogos mantêm as colunas do Portal QA — o esquema completo está no [CLAUDE.md](CLAUDE.md).
 
 Duas pessoas gravando o mesmo arquivo não se atropelam: em conflito o portal relê o
 arquivo, reaplica só a alteração daquele navegador e grava de novo. O selo no
@@ -135,8 +129,7 @@ cabeçalho (`Salvando…` · `Salvo no repositório` · `Falha ao salvar` ·
 `Somente leitura` · `Somente consulta`) mostra se o registro chegou.
 
 As mensagens de commit identificam a ferramenta e quem registrou —
-`chore(qa): QA-ED-01 devolvida por …`, `impedimento: inicio (cicero)` — e as da
-Administração começam com `chore(acesso):`.
+`chore(qa): QA-ED-01 devolvida por …` — e as da Administração começam com `chore(acesso):`.
 
 ---
 
@@ -147,11 +140,10 @@ O portal sai com o histórico registrado até 14/09/2026:
 | Arquivo | Conteúdo |
 |---|---|
 | `data/projetos.csv` e `data/projetos/*.csv` | 5 projetos e 476 casos de teste, com os testes já registrados (o plano de regressão do InfoAudio entra sem execução) — no Editor de Mídias, 20 liberadas, 2 devolvidas e 1 não implementada |
-| `data/impedimentos/*.csv` | um arquivo por pessoa, com os impedimentos já registrados |
 | `data/usuarios.csv` | as 15 pessoas da equipe; quem vinha só do Controle de Impedimentos está com `senha_hash` vazio |
 | `data/papeis.csv` | papéis `gestor`, `qa` e `dev` |
 
-Combine com a equipe a data da virada: a partir dela, teste e impedimento se
+Combine com a equipe a data da virada: a partir dela, os testes se
 registram só aqui.
 
 ---
